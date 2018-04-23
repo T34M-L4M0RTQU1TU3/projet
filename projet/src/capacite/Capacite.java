@@ -16,10 +16,11 @@ public abstract class Capacite implements Icapacite {
 
 	
 	/**
+	 * 
 	 * @param nom
 	 * @param description
 	 */
-	protected Capacite(String nom, String description) {
+	public Capacite(String nom, String description) {
 
 		setNom(nom);
 		setDescription(description);
@@ -28,7 +29,7 @@ public abstract class Capacite implements Icapacite {
 	 * @param nom
 	 *
 	 */
-	protected void setNom(String nom) {
+	public void setNom(String nom) {
 		this.nom = nom;
 	}
 	@Override
@@ -47,11 +48,6 @@ public abstract class Capacite implements Icapacite {
 		return description;
 	}
 
-
-
-
-
-	
 
 	@Override
 	public void executerAction(Object cible) {

@@ -6,9 +6,9 @@ public class application {
 
 	public static void main(String[] args) {
 		
-		//Icapacite c = new Cri_de_guerre();
+		Icapacite c = new Marque("Marque du chasseur",2);
 		
-	//	System.out.println(c);
+	   System.out.println(c);
 	}
 
 }
