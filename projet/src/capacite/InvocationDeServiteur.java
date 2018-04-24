@@ -1,16 +1,18 @@
 package capacite;
 
+import cartes.Serviteur;
+
 public class InvocationDeServiteur extends Invocation {
 		
-	public InvocationDeServiteur(String nom,Serviteur s) {
-		super(nom,s);
+	public InvocationDeServiteur(String nom,int pAttaque,int pVie,Capacite c) {
+		super(nom,new Serviteur("Serviteur de nom",0,pAttaque,pVie,c));
 
 	}
 
 	
 	@Override
 	public String toString() {
-		return "Capacite [nom ="+getNom()+", description=Invoque un serviteur "+getServiteur().getPAttaque()+"/"+getServiteur().getPVie()+"]";
+		return "Capacite [nom ="+getNom()+", description=Invoque un serviteur "+getServiteur().getAttaque()+"/"+getServiteur().getVie()+"]";
 	}
 	
 	

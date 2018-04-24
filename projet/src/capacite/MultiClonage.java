@@ -1,5 +1,7 @@
 package capacite;
 
+import cartes.Serviteur;
+
 public class MultiClonage extends Invocation {
 
 	public MultiClonage(String nom,int pAttaque,int pVie,Capacite c) {
@@ -12,7 +14,7 @@ public class MultiClonage extends Invocation {
 
 	@Override
 	public String toString() {
-		return "Capacite [nom ="+getNom()+", description=Invoque autant de "+getNom().substring(15)+" "+getServiteur().getPAttaque()+"/"+getServiteur().getPVie()+"avec la capacité "+getServiteur().getCapacite().getClass().getSimpleName()+",que de serviteurs adverses]";
+		return "Capacite [nom ="+getNom()+", description=Invoque autant de "+getNom().substring(15)+" "+getServiteur().getAttaque()+"/"+getServiteur().getVie()+" avec la capacité "+getServiteur().getCapacite().getClass().getSimpleName()+" ,que de serviteurs adverses]";
 	}
 	
 	

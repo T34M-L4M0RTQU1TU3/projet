@@ -11,7 +11,7 @@ public class EffetPermanent extends Capacite {
 	 */
 	
 	public EffetPermanent(String nom,int bPAT , int bPDV ) {
-		super(nom, "Vos autres serviteurs ont +"+bPAT+"/+"+bPDV+"");
+		super("Bonus de "+nom, "Vos autres serviteurs ont +"+bPAT+"/+"+bPDV+"");
 		//une capacité EffetPermanent est d'abords une capacité puis elle a 2 champs
 		//bPDV la valeur de booste de point de vie
 		//bPAT la valeur de booste de point d'attaque

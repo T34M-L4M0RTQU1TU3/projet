@@ -1,4 +1,7 @@
 package capacite;
+
+import cartes.Serviteur;
+
 public abstract class Invocation extends Capacite {
 	private Serviteur serviteur;
 	

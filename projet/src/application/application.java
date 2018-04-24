@@ -1,14 +1,17 @@
 package application;
 
 import capacite.*;
+import cartes.Serviteur;
+import cartes.Sort;
 
 public class application {
 
 	public static void main(String[] args) {
 		
-		Icapacite c = new Marque("Marque du chasseur",2);
+		Serviteur s = new Serviteur("L'ogre-magi",4,4,4,new Provocation());
 		
-	   System.out.println(c);
+	   System.out.println(s);
+	   
 	}
 
 }
