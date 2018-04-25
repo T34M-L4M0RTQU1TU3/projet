@@ -1,5 +1,7 @@
 package cartes;
 
+import player.Ijoueur;
+
 public interface Icarte {
 	Boolean disparait();
 	void executerAction(Object cible);
@@ -9,5 +11,5 @@ public interface Icarte {
 	void executerEffetFinTour(Object cible);
 	int getCout();
 	String getNom();
-	//Ijoueur getProprietaire();
+	Ijoueur getProprietaire();
 }

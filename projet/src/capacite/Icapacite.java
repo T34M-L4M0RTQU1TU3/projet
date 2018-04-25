@@ -21,7 +21,7 @@ public interface Icapacite {
 	 * execution au debut de chaque tour
 	 *
 	 */
- void executerEffetDebutTour(Object cible );
+ void executerEffetDebutTour();
  
 	/**
 	 * effet apres disparition
@@ -34,6 +34,7 @@ public interface Icapacite {
 	 *
 	 */
  void executerEffetMiseEnJeu(Object cible );
+ void executerEffetFinTour(); 
  String getDescription();
  String getNom();
  

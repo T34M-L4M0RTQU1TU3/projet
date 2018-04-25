@@ -40,7 +40,7 @@ public abstract class Capacite implements Icapacite {
 	 * @param description
 	 *
 	 */
-	protected void setDescription(String description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 	@Override
@@ -55,10 +55,12 @@ public abstract class Capacite implements Icapacite {
 
 
 	@Override
-	public void executerEffetDebutTour(Object cible) {
+	public void executerEffetDebutTour() {
 	}
-
-	
+	@Override
+	public void executerEffetFinTour() {
+		 
+	 }
 	@Override
 	public void executerEffetDisparition(Object cible) {
 	}
@@ -67,10 +69,19 @@ public abstract class Capacite implements Icapacite {
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) {
 	}
-
-
-
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
 	public String toString() {
 		return "Capacite [nom=" + nom + ", description=" + description + "]";
 	}
+
+	
+
+
+
 }

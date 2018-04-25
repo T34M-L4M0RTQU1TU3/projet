@@ -1,5 +1,7 @@
 package capacite;
 
+import cartes.Serviteur;
+
 public class Provocation extends Capacite {
 
 	public Provocation() {
@@ -8,8 +10,10 @@ public class Provocation extends Capacite {
 	}
 	
 	@Override
-	public void executerEffetDebutTour(Object cible) {
-		//le serviteur en question sera focus 
+	public void executerEffetMiseEnJeu(Object cible) {
+		if (cible instanceof Serviteur)
+			((Serviteur) cible).setCapacite(new Provocation());
+		
 	}
 
 

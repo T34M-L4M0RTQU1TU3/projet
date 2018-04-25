@@ -4,9 +4,9 @@ import cartes.Serviteur;
 
 public class MultiClonage extends Invocation {
 
-	public MultiClonage(String nom,int pAttaque,int pVie,Capacite c) {
+	public MultiClonage(String nom,int attaque,int vie,Capacite c) {
 		
-		super(nom,new Serviteur(nom.substring(15),0,pAttaque,pVie,c));
+		super(nom,"Invoque autant de "+nom.substring(15)+" "+attaque+"/"+vie+" avec la capacite "+c.getClass().getSimpleName()+", que de serviteurs adverses",new Serviteur(nom.substring(15),0,attaque,vie,c));
 	}
 	
 
@@ -14,7 +14,7 @@ public class MultiClonage extends Invocation {
 
 	@Override
 	public String toString() {
-		return "Capacite [nom ="+getNom()+", description=Invoque autant de "+getNom().substring(15)+" "+getServiteur().getAttaque()+"/"+getServiteur().getVie()+" avec la capacité "+getServiteur().getCapacite().getClass().getSimpleName()+" ,que de serviteurs adverses]";
+		return "Capacite [nom ="+getNom()+", description="+getDescription()+"]";
 	}
 	
 	

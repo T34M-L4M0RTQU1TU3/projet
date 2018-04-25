@@ -2,10 +2,11 @@ package capacite;
 
 import cartes.Serviteur;
 
+
 public class ImageMirroir extends Invocation {
 
-	public ImageMirroir(String nom,int pAttaque,int pVie,Capacite c) {
-		super(nom,new Serviteur("Serviteur de Jayna",0,pAttaque,pVie,c));
+	public ImageMirroir(String nom,int attaque,int vie,Capacite c) {
+		super(nom,"Invoque deux serviteur de Jayna "+attaque+"/"+vie+" ayant la capacite "+c.getClass().getSimpleName(),new Serviteur("Serviteur de Jayna",0,attaque,vie,c));
 		
 	}
 
@@ -13,6 +14,6 @@ public class ImageMirroir extends Invocation {
 	
 	@Override
 	public String toString() {
-		return "Capacite [nom =Image Mirroir, description=Invoque deux serviteur de Jayna "+getServiteur().getAttaque()+"/"+getServiteur().getVie()+" ayant la capacite "+getServiteur().getCapacite().getClass().getSimpleName()+" ]";
+		return "Capacite [nom =Image Mirroir, description="+getDescription()+" ]";
 	}
 }

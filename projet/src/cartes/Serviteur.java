@@ -1,6 +1,8 @@
 package cartes;
 
-import capacite.Capacite;
+import capacite.*;
+import player.*;
+
 
 public class Serviteur extends Carte {
 		private int attaque;
@@ -65,6 +67,55 @@ public class Serviteur extends Carte {
 	}
 
 
+	@Override
+	public Boolean disparait() {
+		if ( this.getVie() <= 0)
+			return true ;
+		return false ;
+	}
+
+	@Override
+	public void executerAction(Object cible) {
+		if (cible instanceof Hero )
+			((Hero) cible).setVie(((Hero) cible).getVie()-getAttaque());
+		
+		if(cible instanceof Serviteur)
+			{
+			((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getAttaque());
+			setVie(getVie()-((Serviteur) cible).getAttaque());
+			if(disparait() ) 
+				 getProprietaire().getJeu().remove(this) ;
+				((Serviteur) cible).disparait();
+			}
+
+	}
+
+	@Override
+	public void executerEffetDebutMiseEnJeu(Object cible) {
+	
+			getProprietaire().getJeu().add(this);
+			if(this.getCapacite() instanceof EffetPermanent || this.getCapacite() instanceof Attaque || this.getCapacite() instanceof Invocation )
+				capacite.executerEffetMiseEnJeu(cible);
+
+	}
+
+	@Override
+	public void executerEffetDebutTour(Object cible) {
+		capacite.executerEffetDebutTour();
+
+	}
+
+	@Override
+	public void executerEffetDisparition(Object cible) {
+		capacite.executerEffetDisparition(cible);
+
+	}
+
+	@Override
+	public void executerEffetFinTour(Object cible) {
+		capacite.executerEffetFinTour();
+
+	}
 	
 	
 

@@ -1,18 +1,21 @@
 package cartes;
 
+import player.*;
+
 public abstract class Carte implements Icarte {
 
 	private String nom ;
 	private int cout ;
-	
+	private Ijoueur joueur ;
 	/**
 	 * @param nom
 	 * @param cout
 	 */
 	public Carte(String nom, int cout) {
-
+		setJoueur(null);
 		setCout(cout);
 		setNom(nom);
+		
 	}
 
 	/**
@@ -39,6 +42,21 @@ public abstract class Carte implements Icarte {
 	
 		return cout;
 	}
+	/**
+	 * @return the joueur
+	 */
+	@Override
+	public Ijoueur getProprietaire() {
+		return joueur;
+	}
+
+	/**
+	 * @param joueur the joueur to set
+	 */
+	public void setJoueur(Ijoueur joueur) {
+		this.joueur = joueur;
+	}
+
 
 
 	@Override
@@ -55,7 +73,7 @@ public abstract class Carte implements Icarte {
 
 	@Override
 	public void executerEffetDebutMiseEnJeu(Object cible) {
-
+		
 
 	}
 
@@ -76,13 +94,13 @@ public abstract class Carte implements Icarte {
 		
 
 	}
-	//@Override
-	//Ijoueur getProprietaire();
 
 	@Override
 	public String toString() {
 		return "Carte [ nom=" + nom + ", cout=" + cout + " ]";
 	}
+
+
 
 
 }

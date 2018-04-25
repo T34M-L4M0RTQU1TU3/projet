@@ -4,8 +4,8 @@ public abstract class Attaque extends Capacite {
 	
 	private int degats ;
 
-	public Attaque(String nom,int degats ) {
-		super(nom, "");
+	public Attaque(String nom,String description,int degats ) {
+		super(nom, description);
 		setDegats(degats);
 	}
 
@@ -23,6 +23,10 @@ public abstract class Attaque extends Capacite {
 		this.degats = degats;
 	}
 
+
+
+	@Override
+	public void executerEffetMiseEnJeu(Object cible) {};
 	
 	
 }

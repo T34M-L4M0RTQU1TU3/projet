@@ -4,15 +4,15 @@ import cartes.Serviteur;
 
 public class InvocationDeServiteur extends Invocation {
 		
-	public InvocationDeServiteur(String nom,int pAttaque,int pVie,Capacite c) {
-		super(nom,new Serviteur("Serviteur de nom",0,pAttaque,pVie,c));
+	public InvocationDeServiteur(String nom,int attaque,int vie,Capacite c) {
+		super(nom,"Invoque un serviteur "+attaque+"/"+vie,new Serviteur("Serviteur de murloc",0,attaque,vie,c));
 
 	}
 
 	
 	@Override
 	public String toString() {
-		return "Capacite [nom ="+getNom()+", description=Invoque un serviteur "+getServiteur().getAttaque()+"/"+getServiteur().getVie()+"]";
+		return "Capacite [nom ="+getNom()+", description="+getDescription()+"]";
 	}
 	
 	

@@ -1,5 +1,7 @@
 package capacite;
 
+import cartes.Serviteur;
+
 public class Charge extends Capacite {
 
 	public Charge() {
@@ -7,7 +9,8 @@ public class Charge extends Capacite {
 	}
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) {
-		//serviteur comme cible
+		if (cible instanceof Serviteur)
+			((Serviteur) cible).setCapacite(new Charge());
 	}
 
 }
