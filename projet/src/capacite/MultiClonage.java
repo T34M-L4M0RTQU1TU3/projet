@@ -32,7 +32,7 @@ public class MultiClonage extends Invocation {
 
 	@Override
 	public void executerEffetDebutTour() {
-		// TODO Auto-generated method stub
+		//Nothing
 		
 	}
 
@@ -41,7 +41,7 @@ public class MultiClonage extends Invocation {
 
 	@Override
 	public void executerEffetDisparition(Object cible) {
-		// TODO Auto-generated method stub
+		//Nothing 
 		
 	}
 
@@ -50,9 +50,7 @@ public class MultiClonage extends Invocation {
 
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) {
-		((Joueur ) cible).addJeu(getServiteur());
-		((Joueur ) cible).addJeu(getServiteur());
-		
+		// TODO Auto-generated method stub
 	}
 
 
@@ -60,7 +58,7 @@ public class MultiClonage extends Invocation {
 
 	@Override
 	public void executerEffetFinTour() {
-		// TODO Auto-generated method stub
+		//Nothing
 		
 	}
 	

@@ -61,6 +61,7 @@ public class EffetPermanent extends Capacite {
 	@Override
 	public void executerEffetDebutTour() {
 		//nothing
+		
 	}
 
 	@Override
@@ -85,7 +86,7 @@ public class EffetPermanent extends Capacite {
 
 	@Override
 	public void executerEffetFinTour() {
-	
+		//nothing
 	}
 
 

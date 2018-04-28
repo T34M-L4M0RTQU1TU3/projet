@@ -88,8 +88,8 @@ public class Serviteur extends Carte {
 
 	@Override
 	public void executerAction(Object cible) {
-		if (cible instanceof Hero )
-			((Hero) cible).setVie(((Hero) cible).getVie()-getAttaque());
+		if (cible instanceof Joueur )
+			((Joueur) cible).getHero().setVie(((Joueur) cible).getHero().getVie()-getAttaque());
 		
 		if(cible instanceof Serviteur)
 			{
@@ -98,7 +98,7 @@ public class Serviteur extends Carte {
 			if(disparait() ) 
 				 getProprietaire().getJeu().remove(this) ;
 			
-				if (((Serviteur) cible).disparait())
+			if (((Serviteur) cible).disparait())
 					((Carte) cible).getProprietaire().getJeu().remove((Serviteur) cible);
 			}
 	}

@@ -16,16 +16,10 @@ public class InvocationDeServiteur extends Invocation {
 	}
 	
 	
-	
-	
-	public void executerEffetDebutMiseEnJeu(Object cible) {
-		
-	}
-
 
 	@Override
 	public void executerAction(Object cible) {
-		// TODO Auto-generated method stub
+		((Joueur ) cible).addJeu(getServiteur());
 		
 	}
 

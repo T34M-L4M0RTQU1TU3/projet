@@ -7,7 +7,7 @@ public class Mage extends Hero {
 	
 	public Mage(String nom) {
 		super(nom);
-		setCapacite(new AttaqueDuHero("Boule de Feu",1));
+		setCapacite(new AttaqueCible("Boule de Feu",1));
 	}
 	/**
 	 * @return the capacite

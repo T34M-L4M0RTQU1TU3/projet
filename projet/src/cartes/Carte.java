@@ -60,41 +60,7 @@ public abstract class Carte implements Icarte {
 
 
 
-	@Override
-	public Boolean disparait() {
-	
-		return null;
-	}
 
-	@Override
-	public void executerAction(Object cible) {
-		
-
-	}
-
-	@Override
-	public void executerEffetDebutMiseEnJeu(Object cible) {
-		
-
-	}
-
-	@Override
-	public void executerEffetDebutTour(Object cible) {
-	
-
-	}
-
-	@Override
-	public void executerEffetDisparition(Object cible) {
-		
-
-	}
-
-	@Override
-	public void executerEffetFinTour(Object cible) {
-		
-
-	}
 
 	@Override
 	public String toString() {

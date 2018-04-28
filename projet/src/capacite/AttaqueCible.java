@@ -25,9 +25,9 @@ public class AttaqueCible extends Attaque {
 
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) {
-		if (cible instanceof Hero)
+		if (cible instanceof Joueur)
 		{
-			((Hero) cible).setVie(((Hero) cible).getVie()-getDegats());
+			((Joueur) cible).getHero().setVie(((Joueur) cible).getHero().getVie()-getDegats());
 		}
 		if (cible instanceof Serviteur)
 		{

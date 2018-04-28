@@ -88,7 +88,7 @@ public class Joueur implements Ijoueur {
 
 	@Override
 	public Icarte getCarteEnJeu(String nomCarte) {
-		for (Icarte c : jeu )
+		for (Icarte c : getJeu() )
 			if ( c.getNom().equals(nomCarte) )
 					return c ;
 		throw new IllegalArgumentException("cette carte n'est pas dans votre jeu !");
@@ -120,11 +120,13 @@ public class Joueur implements Ijoueur {
 	
 	@Override
 	public void finirTour() {
-		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void jouerCarte(Icarte carte, Object cible) {
+		if (!main.contains(carte))
+			throw new IllegalArgumentException("cette carte n'est pas dans votre main");
 		carte.executerEffetDebutMiseEnJeu(cible);	
 		perdreCarte(carte);	
 	}

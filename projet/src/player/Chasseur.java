@@ -21,7 +21,6 @@ public class Chasseur extends Hero {
 
 	@Override
 	public Capacite getCapacite() {
-		// TODO Auto-generated method stub
 		return capacite;
 	}
 

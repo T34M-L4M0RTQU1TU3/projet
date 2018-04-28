@@ -26,14 +26,14 @@ public class AttaqueDuHero extends Attaque {
 
 	@Override
 	public void executerEffetDebutTour() {
-		// TODO Auto-generated method stub
+		//Nothing
 		
 	}
 
 
 	@Override
 	public void executerEffetDisparition(Object cible) {
-		// TODO Auto-generated method stub
+		//Nothing
 		
 	}
 
@@ -47,7 +47,7 @@ public class AttaqueDuHero extends Attaque {
 
 	@Override
 	public void executerEffetFinTour() {
-		// TODO Auto-generated method stub
+		//Nothing
 		
 	}
 

@@ -22,8 +22,12 @@ public class Piocher extends Capacite {
 	}
 	@Override
 	public void executerAction(Object cible) {
-		((Joueur)cible).piocher();
+		int i ;
 		
+		for ( i=0;i< getNombre();  i++)
+			{((Joueur)cible).piocher();
+			
+			}
 	}
 	@Override
 	public void executerEffetDebutTour() {

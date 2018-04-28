@@ -14,22 +14,22 @@ public class Charge extends Capacite {
 	}
 	@Override
 	public void executerAction(Object cible) {
-		// TODO Auto-generated method stub
-		
+		if (cible instanceof Serviteur)
+			((Serviteur) cible).setCapacite(new Charge());
 	}
 	@Override
 	public void executerEffetDebutTour() {
-		// TODO Auto-generated method stub
+		//nothing
 		
 	}
 	@Override
 	public void executerEffetDisparition(Object cible) {
-		// TODO Auto-generated method stub
+		//nothing
 		
 	}
 	@Override
 	public void executerEffetFinTour() {
-		// TODO Auto-generated method stub
+		//nothing
 		
 	}
 
