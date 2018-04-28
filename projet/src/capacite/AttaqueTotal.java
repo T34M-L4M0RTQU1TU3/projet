@@ -1,5 +1,8 @@
 package capacite;
 
+import cartes.Icarte;
+import cartes.Serviteur;
+
 public class AttaqueTotal extends Attaque {
 
 	public AttaqueTotal(String nom, int degats) {
@@ -16,7 +19,10 @@ public class AttaqueTotal extends Attaque {
 
 	@Override
 	public void executerAction(Object cible) {
-		// TODO Auto-generated method stub
+		for(  Icarte c : ((Serviteur) cible).getProprietaire().getJeu() )
+			if ( ((Serviteur)c).getCapacite() instanceof Provocation )
+				throw new IllegalArgumentException("vous ne pouvez pas attaquer ce serviteur  tant qu'il a un autre serviteur ayant Provocation dans le plateau adverse ");
+		
 		
 	}
 
@@ -37,7 +43,9 @@ public class AttaqueTotal extends Attaque {
 
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) {
-		// TODO Auto-generated method stub
+		for(  Icarte c : ((Serviteur) cible).getProprietaire().getJeu() )
+			if ( ((Serviteur)c).getCapacite() instanceof Provocation )
+				throw new IllegalArgumentException("vous ne pouvez pas attaquer ce serviteur  tant qu'il a un autre serviteur ayant Provocation dans le plateau adverse ");
 		
 	}
 
