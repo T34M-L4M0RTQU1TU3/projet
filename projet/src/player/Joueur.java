@@ -32,7 +32,6 @@ public class Joueur implements Ijoueur {
 	}
 
 	public void addDeck(Icarte c ) {
-		
 		deck.add(c);
 
 	}
