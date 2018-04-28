@@ -1,12 +1,13 @@
 package cartes;
 
-import capacite.Capacite;
+import capacite.*;
+import player.*;
 
 
 public class Sort extends Carte {
 	private Capacite capacite ;
-	public Sort(String nom, int cout,Capacite c) {
-		super(nom, cout);
+	public Sort(String nom, int cout,Capacite c,Ijoueur j) {
+		super(nom, cout,j);
 		setCapacite(c);
 	}
 	/**
@@ -43,7 +44,7 @@ public class Sort extends Carte {
 	@Override
 	public void executerEffetDebutMiseEnJeu(Object cible) {
 		capacite.executerEffetMiseEnJeu(cible);
-
+		
 	}
 
 	@Override

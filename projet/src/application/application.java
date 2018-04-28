@@ -12,41 +12,45 @@ public class application {
 	public static void main(String[] args) {
 
 		Joueur j = new Joueur("skarlette-johanson",new Mage("Jayna Porvaint"));	
-		Icarte c = new Sort("Choc de flemme",7,new AttaqueTotal("Attaque massive",4));
+		Icarte c = new Sort("Choc de flemme",7,new AttaqueCible("Attaque massive",4),j);
 
-		Icarte c1 = new Sort("Eclair de givre",2,new AttaqueCible("Attaque du givre",3));
+		Icarte c1 = new Sort("Eclair de givre",2,new EffetPermanent("bouste de givre",2,2),j);
 
-		Icarte c2 = new Sort("Inteligence des arcanes",2,new Piocher(2));
+		Icarte c2 = new Sort("Inteligence des arcanes",2,new Piocher(2),j);
 
-		Icarte c3 = new Sort("Image mirroir",1,new ImageMirroir("Image mirroir",0,2,new Provocation()));
+		Icarte c3 = new Sort("Image mirroir",1,new ImageMirroir("Image mirroir",0,2,new Provocation(),j),j);
 
-		Icarte c4 = new Sort("Explosion pyrotechnique",10,new AttaqueCible("Explosion pyrotechnique",10));
+		Icarte c4 = new Sort("Explosion pyrotechnique",10,new AttaqueCible("Explosion pyrotechnique",10),j);
 		
-		Icarte c5 = new Serviteur("chasse-marée murloc",2, 2, 6, new ImageMirroir("serviteur de murloc",1,1,new Charge()));
+		Icarte c5 = new Serviteur("chasse-marée murloc",2, 2, 6, new ImageMirroir("serviteur de murloc",1,1,new Charge(),j),j);
 
-		Icarte c6 = new Serviteur("chasse-marée murloc",2, 10, 50, new InvocationDeServiteur("serviteur de murloc",1,1,null));
+		Icarte c6 = new Serviteur("chasse-marée murloc",2, 3, 3, new AttaqueDuHero("ATTAQUE MENTALE !", 4),j);
 
-		
-		System.out.println(c6);
 		
 		
-		j.addDeck(c5);
-		j.addDeck(c5);
-		j.addDeck(c1);
-		j.addDeck(c2);
-		j.addDeck(c3);
-		j.addDeck(c4);
+		
+		
+		j.addDeck(c6);
+		//j.addDeck(c3);
+		//j.addDeck(c1);
+		//j.addDeck(c3);
+
 		
 		 j.piocher();
-		 j.piocher();
-		 j.piocher();
-		 j.piocher();
+		 //j.piocher();
+		// j.piocher();
+			// j.piocher();
 		 
 
-		 j.jouerCarte(c5);
+	 
+		 //j.jouerCarte(c6);
+		j.utiliserPouvoir(j);
+		//j.jouerCarte(c);
+		//Icarte d = j.getCarteEnJeu("chasse-marée murloc");
+		//j.jouerCarte(c,d);
 		 
-
-		 j.utiliserCarte(c5,c6);
+		
+		//j.utiliserCarte(j.getCarteEnJeu("Serviteur de Jayna Porvaint 1"),j.getCarteEnJeu("Serviteur de Jayna Porvaint 2"));
 		 
 		 
 		
@@ -66,10 +70,10 @@ public class application {
 			
 			
 			
-			
+		System.out.println(j);
 		afficherMain(j.getMain());
 		afficherJeu(j.getJeu());
-		System.out.println(c6);
+		
 		
 		
 		

@@ -1,5 +1,10 @@
 package capacite;
 
+import cartes.Carte;
+import cartes.Icarte;
+import cartes.Serviteur;
+import player.Joueur;
+
 public class EffetPermanent extends Capacite {
 
 	private int bPDV ;
@@ -12,9 +17,6 @@ public class EffetPermanent extends Capacite {
 	
 	public EffetPermanent(String nom,int bPAT , int bPDV ) {
 		super("Bonus de "+nom, "Vos autres serviteurs ont +"+bPAT+"/+"+bPDV+"");
-		//une capacité EffetPermanent est d'abords une capacité puis elle a 2 champs
-		//bPDV la valeur de booste de point de vie
-		//bPAT la valeur de booste de point d'attaque
 		setbPDV(bPDV);
 		setbPAT(bPAT);
 	}
@@ -45,6 +47,45 @@ public class EffetPermanent extends Capacite {
 	 */
 	protected void setbPAT(int bPAT) {
 		this.bPAT = bPAT;
+	}
+
+	@Override
+	public void executerAction(Object cible) {
+		for( Icarte c : ((Joueur) cible).getJeu() )
+		{
+			((Serviteur) c).setVie(((Serviteur) c).getVie() + getbPDV()) ;
+			((Serviteur) c).setAttaque(((Serviteur) c).getAttaque() + getbPAT()) ;
+		}
+	}
+
+	@Override
+	public void executerEffetDebutTour() {
+		//nothing
+	}
+
+	@Override
+	public void executerEffetDisparition(Object cible) {
+		for( Icarte c : ((Joueur) cible).getJeu() )
+		{
+			((Serviteur) c).setVie(((Serviteur) c).getVie() - getbPDV()) ;
+			((Serviteur) c).setAttaque(((Serviteur) c).getAttaque() - getbPAT()) ;
+		}
+		
+	}
+
+	@Override
+	public void executerEffetMiseEnJeu(Object cible) {
+		for( Icarte c : ((Joueur) cible).getJeu() )
+		{
+			((Serviteur) c).setVie(((Serviteur) c).getVie() + getbPDV()) ;
+			((Serviteur) c).setAttaque(((Serviteur) c).getAttaque() + getbPAT()) ;
+		}
+		
+	}
+
+	@Override
+	public void executerEffetFinTour() {
+	
 	}
 
 

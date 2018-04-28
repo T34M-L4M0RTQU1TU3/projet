@@ -1,5 +1,7 @@
 package cartes;
 
+import java.util.ArrayList;
+
 import capacite.*;
 import player.*;
 
@@ -9,11 +11,17 @@ public class Serviteur extends Carte {
 		private int vie;
 		private Capacite capacite ;
 		
-	public Serviteur(String nom, int cout,int attaque,int vie,Capacite capacite) {
-		super(nom, cout);
+	public Serviteur(String nom, int cout,int attaque,int vie,Capacite capacite,Ijoueur j) {
+		super(nom, cout,j);
 		setVie(vie);
 		setAttaque(attaque);
 		setCapacite(capacite);
+	}
+	
+	public Serviteur clone(){
+		
+		Serviteur clone = new Serviteur(this.getNom(),this.getCout(),this.attaque,this.getVie(),this.getCapacite(),this.getProprietaire());
+		return clone;
 	}
 
 	/**
@@ -63,7 +71,11 @@ public class Serviteur extends Carte {
 	 */
 	@Override
 	public String toString() {
+
+		
 		return "Serviteur [ "+super.toString()+" attaque=" + attaque + ", vie=" + vie + " ] " + capacite;
+		
+			
 	}
 
 
@@ -85,17 +97,20 @@ public class Serviteur extends Carte {
 			setVie(getVie()-((Serviteur) cible).getAttaque());
 			if(disparait() ) 
 				 getProprietaire().getJeu().remove(this) ;
-				((Serviteur) cible).disparait();
+			
+				if (((Serviteur) cible).disparait())
+					((Carte) cible).getProprietaire().getJeu().remove((Serviteur) cible);
 			}
-
 	}
 
 	@Override
 	public void executerEffetDebutMiseEnJeu(Object cible) {
 	
-			getProprietaire().getJeu().add(this);
-			if(this.getCapacite() instanceof EffetPermanent || this.getCapacite() instanceof Attaque || this.getCapacite() instanceof Invocation )
-				capacite.executerEffetMiseEnJeu(cible);
+	((Joueur)getProprietaire()).addJeu(this);
+			//if(this.getCapacite() instanceof EffetPermanent || this.getCapacite() instanceof Attaque || this.getCapacite() instanceof Invocation )
+			
+			if (capacite != null ) 
+					capacite.executerEffetMiseEnJeu(cible);
 
 	}
 

@@ -11,8 +11,8 @@ public abstract class Carte implements Icarte {
 	 * @param nom
 	 * @param cout
 	 */
-	public Carte(String nom, int cout) {
-		setJoueur(null);
+	public Carte(String nom, int cout,Ijoueur joueur) {
+		setJoueur(joueur);
 		setCout(cout);
 		setNom(nom);
 		
@@ -45,6 +45,7 @@ public abstract class Carte implements Icarte {
 	/**
 	 * @return the joueur
 	 */
+	
 	@Override
 	public Ijoueur getProprietaire() {
 		return joueur;

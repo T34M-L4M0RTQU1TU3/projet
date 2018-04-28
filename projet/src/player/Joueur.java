@@ -28,16 +28,18 @@ public class Joueur implements Ijoueur {
 		setHero(hero);
 		setMana(0);
 		setStockMana(0);
+		
 	}
 
 	public void addDeck(Icarte c ) {
 		deck.add(c);
-		((Carte)c).setJoueur(this);
+
 	}
     
-	/**
-	 * @param pseudo the pseudo to set
-	 */
+	public void addJeu(Icarte c ) {
+		jeu.add(c);
+	}
+	
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
 	}
@@ -47,13 +49,11 @@ public class Joueur implements Ijoueur {
 		return pseudo ;
 	}
 
-	/**
-	 * @param hero the hero to set
-	 */
+
 	public void setHero(Hero hero) {
 		this.hero = hero;
 	}
-	
+
 	@Override
 	public Hero getHero() {
 		return hero ;
@@ -64,9 +64,7 @@ public class Joueur implements Ijoueur {
 		return mana ;
 	}
 	
-	/**
-	 * @param mana the mana to set
-	 */
+
 	public void setMana(int mana) {
 		this.mana = mana;
 	}
@@ -86,7 +84,6 @@ public class Joueur implements Ijoueur {
 	@Override
 	public void piocher() {
 		main.add(deck.remove(0));
-
 	}
 
 	@Override
@@ -102,90 +99,49 @@ public class Joueur implements Ijoueur {
 		for (Icarte c : getMain() )
 			if ( c.getNom().equals(nomCarte) )
 					return c ;
-
 		throw new IllegalArgumentException("cette carte n'est pas dans votre main !");
 	}
 
-
-
-	/**
-	 * @param stockMana the stockMana to set
-	 */
 	public void setStockMana(int stockMana) {
 		this.stockMana = stockMana;
 	}
-
 
 	@Override
 	public int getStockMana() {
 		return stockMana;
 	}
 
-	
 	@Override
 	public void prendreTour() {
 		setMana(getMana()+1);
 		setStockMana(getMana());
 		piocher();
-
 	}
-	
-
-	
-	
 	
 	@Override
 	public void finirTour() {
 		// TODO Auto-generated method stub
-
 	}
-
-
-
 
 	@Override
 	public void jouerCarte(Icarte carte, Object cible) {
-		
-
+		carte.executerEffetDebutMiseEnJeu(cible);	
+		perdreCarte(carte);	
 	}
 
 	@Override
 	public void jouerCarte(Icarte carte) {
-		if (carte instanceof Serviteur)
-		{	{jeu.add(carte);
-			 if (  ((Serviteur) carte).getCapacite() instanceof InvocationDeServiteur)
-			 	{
-				 jeu.add(((InvocationDeServiteur) ((Serviteur) carte).getCapacite()).getServiteur()) ;
-			 	}
-			 if (  ((Serviteur) carte).getCapacite() instanceof ImageMirroir)
-			 	{
-				 jeu.add(((ImageMirroir) ((Serviteur) carte).getCapacite()).getServiteur()) ;
-				 jeu.add(((ImageMirroir) ((Serviteur) carte).getCapacite()).getServiteur()) ;
-			 	}
-			 
-			 }
-			
-			 main.remove(carte);
-			}
+		if (!main.contains(carte))
+			throw new IllegalArgumentException("cette carte n'est pas dans votre main");
+		carte.executerEffetDebutMiseEnJeu(this);
+		perdreCarte(carte);	
 		
-		
-		if( carte instanceof Sort)
-			if(((Sort) carte).getCapacite() instanceof Piocher )
-			{
-			int i ;
-			
-			for ( i=0;i< ((Piocher)((Sort) carte).getCapacite()).getNombre();  i++)
-				piocher();
-			
-			main.remove(carte);
-			}	
-		
-			
 	}
 
+	
 	@Override
 	public void perdreCarte(Icarte carte) {
-		
+		main.remove(carte);	
 	}
 
 	
@@ -193,7 +149,7 @@ public class Joueur implements Ijoueur {
 
 	@Override
 	public void utiliserCarte(Icarte carte, Object cible) {
-		if ( carte instanceof Serviteur)
+
 			carte.executerAction(cible);
 
 	}

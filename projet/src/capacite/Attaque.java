@@ -25,8 +25,6 @@ public abstract class Attaque extends Capacite {
 
 
 
-	@Override
-	public void executerEffetMiseEnJeu(Object cible) {};
 	
 	
 }

@@ -23,5 +23,8 @@ public abstract class Invocation extends Capacite {
 	public void setServiteur(Serviteur s) {
 		this.serviteur= s;
 	}
+
+	
+	
 }
  

@@ -13,4 +13,39 @@ public class AttaqueTotal extends Attaque {
 		return "Capacite [nom=" + getNom() + ", description="+getDescription()+"]";
 	}
 
+
+	@Override
+	public void executerAction(Object cible) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void executerEffetDebutTour() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void executerEffetDisparition(Object cible) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void executerEffetMiseEnJeu(Object cible) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void executerEffetFinTour() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

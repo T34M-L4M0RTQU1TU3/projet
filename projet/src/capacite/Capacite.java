@@ -49,26 +49,7 @@ public abstract class Capacite implements Icapacite {
 	}
 
 
-	@Override
-	public void executerAction(Object cible) {
-	}
 
-
-	@Override
-	public void executerEffetDebutTour() {
-	}
-	@Override
-	public void executerEffetFinTour() {
-		 
-	 }
-	@Override
-	public void executerEffetDisparition(Object cible) {
-	}
-
-
-	@Override
-	public void executerEffetMiseEnJeu(Object cible) {
-	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
