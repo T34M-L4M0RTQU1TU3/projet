@@ -1,5 +1,6 @@
 package capacite;
 
+import cartes.*;
 import cartes.Serviteur;
 import player.Hero;
 import player.Joueur;
@@ -27,10 +28,19 @@ public class AttaqueCible extends Attaque {
 	public void executerEffetMiseEnJeu(Object cible) {
 		if (cible instanceof Joueur)
 		{
+			for(  Icarte c : ((Joueur) cible).getJeu() )
+				if ( ((Serviteur)c).getCapacite() instanceof Provocation )
+					throw new IllegalArgumentException("vous ne pouvez pas attaquer le hero tant qu'il a un serviteur ayant Provocation");
 			((Joueur) cible).getHero().setVie(((Joueur) cible).getHero().getVie()-getDegats());
+			
 		}
 		if (cible instanceof Serviteur)
 		{
+			for(  Icarte c : ((Serviteur) cible).getProprietaire().getJeu() )
+				if ( ((Serviteur)c).getCapacite() instanceof Provocation )
+					throw new IllegalArgumentException("vous ne pouvez pas attaquer ce serviteur  tant qu'il a un autre serviteur ayant Provocation dans le plateau adverse ");
+			
+			
 			((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getDegats());
 				if(((Serviteur) cible).disparait() ) 
 					((Serviteur) cible).getProprietaire().getJeu().remove(((Serviteur) cible)) ;

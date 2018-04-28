@@ -96,19 +96,23 @@ public class Serviteur extends Carte {
 			((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getAttaque());
 			setVie(getVie()-((Serviteur) cible).getAttaque());
 			if(disparait() ) 
-				 getProprietaire().getJeu().remove(this) ;
+				 {
+					getProprietaire().getJeu().remove(this) ;
+					executerEffetDisparition(cible);
+				 }
 			
-			if (((Serviteur) cible).disparait())
-					((Carte) cible).getProprietaire().getJeu().remove((Serviteur) cible);
+			if (((Serviteur) cible).disparait()) 
+					{
+						((Carte) cible).getProprietaire().getJeu().remove((Serviteur) cible);
+						((Carte) cible).executerEffetDisparition(((Carte) cible).getProprietaire());
+					}
 			}
 	}
 
 	@Override
 	public void executerEffetDebutMiseEnJeu(Object cible) {
 	
-	((Joueur)getProprietaire()).addJeu(this);
-			//if(this.getCapacite() instanceof EffetPermanent || this.getCapacite() instanceof Attaque || this.getCapacite() instanceof Invocation )
-			
+			((Joueur)getProprietaire()).addJeu(this);
 			if (capacite != null ) 
 					capacite.executerEffetMiseEnJeu(cible);
 
