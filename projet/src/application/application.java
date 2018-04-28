@@ -30,7 +30,7 @@ public class application {
 
 		
 		
-		//
+		
 		
 		j.addDeck(c);
 		//j.addDeck(c3);
