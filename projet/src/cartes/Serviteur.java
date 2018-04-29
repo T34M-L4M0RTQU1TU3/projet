@@ -11,7 +11,7 @@ public class Serviteur extends Carte {
 		private int vie;
 		private Capacite capacite ;
 		private boolean jouable = false ;
-		
+		//test
 	public Serviteur(String nom, int cout,int attaque,int vie,Capacite capacite,Ijoueur j) {
 		super(nom, cout,j);
 		setVie(vie);
