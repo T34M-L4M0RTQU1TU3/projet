@@ -30,6 +30,7 @@ public class application {
 
 		
 		
+		//pour linstant ca va
 		
 		
 		j.addDeck(c);
