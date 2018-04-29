@@ -14,7 +14,7 @@ public class application {
 		Joueur j = new Joueur("skarlette-johanson",new Mage("Jayna Porvaint"));	
 		
 		
-		Icarte c  = new Sort("Choc de flemme",7,new AttaqueCible("Attaque massive",4),j);
+		//Icarte c  = new Sort("Choc de flemme",7,new AttaqueCible("Attaque massive",4),j);
 
 	//	Icarte c1 = new Sort("Eclair de givre",2,new EffetPermanent("bouste de givre",2,2),j);
 
