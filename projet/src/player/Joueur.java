@@ -1,12 +1,16 @@
 package player;
 
 import java.util.ArrayList;
+import java.util.Random;
 
-import capacite.*;
+import application.application;
 
 import cartes.*;
 
+
 public class Joueur implements Ijoueur {
+
+
 	private String pseudo ;
 	private Hero hero ;
 	private int mana;
@@ -14,8 +18,9 @@ public class Joueur implements Ijoueur {
 	private ArrayList<Icarte> deck =new ArrayList<Icarte>(); ;
 	private ArrayList<Icarte> main = new ArrayList<Icarte>();
 	private ArrayList<Icarte> jeu = new ArrayList<Icarte>();
-	//private Plateau plateau ;
+	private Iplateau plateau = null  ;
  
+	
 	
 	/**
 	 * @param pseudo
@@ -28,13 +33,42 @@ public class Joueur implements Ijoueur {
 		setHero(hero);
 		setMana(0);
 		setStockMana(0);
+		deck.addAll(hero.deckSpecial());
+		deck.addAll(application.deckBase());
 		
+		for ( Icarte carte : deck )
+			((Carte)carte).setJoueur(this);
+	}
+	
+
+	public Iplateau getPlateau() {
+		return plateau;
 	}
 
-	public void addDeck(Icarte c ) {
-		
-		deck.add(c);
 
+	public void setPlateau(Iplateau plateau) {
+		this.plateau = plateau;
+	}
+
+
+
+
+	public void addDeck(Icarte c ) {	
+		if (deck.size()== TAILLE_DECK)
+			throw new IllegalArgumentException("taille du deck > "+TAILLE_DECK);
+		if(c.getProprietaire()!=null && c.getProprietaire().getHero().getClass() != this.getHero().getClass() )
+			throw new IllegalArgumentException(" carte non attribuable a ce Hero" );
+		deck.add(c);
+		((Carte)c).setJoueur(this);
+		
+	}
+	public void addDeck() {	
+		ArrayList<Icarte> A = application.deckBase();
+		if(deck.size() + A.size() > TAILLE_DECK)
+			throw new IllegalArgumentException("taille du deck > "+TAILLE_DECK);
+		deck.addAll(A);
+		for ( Icarte carte : this.getJeu() )
+			((Carte)carte).setJoueur(this);
 	}
     
 	public void addJeu(Icarte c ) {
@@ -84,7 +118,9 @@ public class Joueur implements Ijoueur {
 	
 	@Override
 	public void piocher() {
-		main.add(deck.remove(0));
+		if(deck.size()>0)
+		{int x = new Random().nextInt(deck.size());
+		main.add(deck.remove(x));}
 	}
 
 	@Override
@@ -114,14 +150,28 @@ public class Joueur implements Ijoueur {
 
 	@Override
 	public void prendreTour() {
-		setMana(getMana()+1);
-		setStockMana(getMana());
-		piocher();
+		if(!plateau.estDermarree())
+			throw new IllegalArgumentException("vous ne pouvez pas jouer tant que la partie n'est pas démarée");
+		
+		if ( this != plateau.getJoueurCourant() )
+				throw new IllegalArgumentException("vous ne pouvez pas jouer tant que ce n'est pas votre tour ");
+			
+			for(Icarte carte : getJeu())
+				carte.executerEffetDebutTour(this);
+			
+			if ( getMana() <10 )
+				setMana(getMana()+1);
+				setStockMana(getMana());
+				piocher();
+				
 	}
 	
 	@Override
 	public void finirTour() {
+		for(Icarte carte : getJeu())
+			carte.executerEffetFinTour(this);
 		
+		this.getPlateau().finTour(this);
 	}
 
 	@Override
@@ -136,9 +186,9 @@ public class Joueur implements Ijoueur {
 	public void jouerCarte(Icarte carte) {
 		if (!main.contains(carte))
 			throw new IllegalArgumentException("cette carte n'est pas dans votre main");
-		carte.executerEffetDebutMiseEnJeu(this);
+		carte.executerEffetDebutMiseEnJeu(carte.getProprietaire());
 		perdreCarte(carte);	
-		
+
 	}
 
 	
@@ -152,21 +202,14 @@ public class Joueur implements Ijoueur {
 
 	@Override
 	public void utiliserCarte(Icarte carte, Object cible) {
-
 			carte.executerAction(cible);
-
 	}
 
 	@Override
 	public void utiliserPouvoir(Object cible) {
 		this.getHero().getCapacite().executerAction(cible);
-		
-	
-	
+
 	}
-
-
-
 
 	@Override
 	public String toString() {

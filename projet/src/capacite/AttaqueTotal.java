@@ -1,7 +1,11 @@
 package capacite;
 
+import java.util.ArrayList;
+
 import cartes.Icarte;
 import cartes.Serviteur;
+import player.Ijoueur;
+import player.Joueur;
 
 public class AttaqueTotal extends Attaque {
 
@@ -19,11 +23,23 @@ public class AttaqueTotal extends Attaque {
 
 	@Override
 	public void executerAction(Object cible) {
-		for(  Icarte c : ((Serviteur) cible).getProprietaire().getJeu() )
+		int nombreServiteurAyantProvocation  = 0 ;
+		
+		for( Icarte c : ((Joueur) cible).getPlateau().getAdversaire((Joueur) cible).getJeu() )
 			if ( ((Serviteur)c).getCapacite() instanceof Provocation )
-				throw new IllegalArgumentException("vous ne pouvez pas attaquer ce serviteur  tant qu'il a un autre serviteur ayant Provocation dans le plateau adverse ");
+				nombreServiteurAyantProvocation++;
 		
+			if(((Joueur) cible).getPlateau().getAdversaire((Joueur) cible).getJeu().size() != nombreServiteurAyantProvocation ) 
+				throw new IllegalArgumentException("vous ne pouvez pas attaquer un serviteur  tant qu'il a un autre serviteur ayant Provocation dans le plateau adverse ");
+			
+				
 		
+		for(  Icarte c : ((Joueur) cible).getPlateau().getAdversaire((Joueur) cible).getJeu() )
+		{
+			((Serviteur)c).setVie(((Serviteur)c).getVie() - getDegats()) ; 
+			if( ((Serviteur)c).disparait() )
+				((Joueur) cible).getPlateau().getAdversaire((Joueur) cible).getJeu().remove(((Serviteur) c))  ;
+		}
 	}
 
 
@@ -43,9 +59,28 @@ public class AttaqueTotal extends Attaque {
 
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) {
-		for(  Icarte c : ((Serviteur) cible).getProprietaire().getJeu() )
+	int nombreServiteurAyantProvocation  = 0 ;
+		
+		Ijoueur adversaire = ((Joueur) cible).getPlateau().getAdversaire((Joueur) cible);
+		for( Icarte c : adversaire.getJeu() )
 			if ( ((Serviteur)c).getCapacite() instanceof Provocation )
-				throw new IllegalArgumentException("vous ne pouvez pas attaquer ce serviteur  tant qu'il a un autre serviteur ayant Provocation dans le plateau adverse ");
+				nombreServiteurAyantProvocation++;
+		
+			if(adversaire.getJeu().size() != nombreServiteurAyantProvocation ) 
+				throw new IllegalArgumentException("vous ne pouvez pas attaquer un serviteur  tant qu'il a un autre serviteur ayant Provocation dans le plateau adverse ");
+			
+				
+		ArrayList<Icarte> l = (ArrayList<Icarte>) adversaire.getJeu().clone();
+		for(  Icarte c : l ) 
+		{
+			((Serviteur)c).setVie(((Serviteur)c).getVie() - getDegats()) ; 
+			if( ((Serviteur)c).disparait() )
+				adversaire.getJeu().remove(((Serviteur) c))  ;
+		}
+	
+
+	
+	
 		
 	}
 

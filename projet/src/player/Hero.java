@@ -1,6 +1,9 @@
 package player;
 
+import java.util.ArrayList;
+
 import capacite.Capacite;
+import cartes.Icarte;
 
 public abstract class Hero {
 
@@ -54,6 +57,8 @@ public abstract class Hero {
 		return "Hero [nom=" + nom + ", pointsDeVieCourant=" + vie + ",pointsDeVieMax="+PDVMAX+"]";
 	}
 
+	public  abstract ArrayList<Icarte>  deckSpecial() ;
+		 
 	
 	
 }

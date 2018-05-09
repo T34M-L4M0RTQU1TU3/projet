@@ -7,7 +7,7 @@ public class MultiClonage extends Invocation {
 
 	public MultiClonage(String nom,int attaque,int vie,Capacite c,Ijoueur j) {
 		
-		super(nom,"Invoque autant de "+nom.substring(15)+" "+attaque+"/"+vie+" avec la capacite "+c.getClass().getSimpleName()+", que de serviteurs adverses",new Serviteur(nom.substring(15),0,attaque,vie,c,j));
+		super(nom,"Invoque autant de chien "+attaque+"/"+vie+" avec la capacite "+c.getClass().getSimpleName()+", que de serviteurs adverses",new Serviteur("chien",0,attaque,vie,c,j));
 	}
 	
 

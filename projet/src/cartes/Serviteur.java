@@ -1,6 +1,6 @@
 package cartes;
 
-import java.util.ArrayList;
+
 
 import capacite.*;
 import player.*;
@@ -11,14 +11,17 @@ public class Serviteur extends Carte {
 		private int vie;
 		private Capacite capacite ;
 		private boolean jouable = false ;
-		//test
+		
+		private int frappeParTour = 0 ;
+	
 	public Serviteur(String nom, int cout,int attaque,int vie,Capacite capacite,Ijoueur j) {
 		super(nom, cout,j);
 		setVie(vie);
 		setAttaque(attaque);
 		setCapacite(capacite);
-
-	}
+		if(capacite instanceof Charge)
+			setJouable(true);	
+		}
 	
 	public Serviteur clone(){
 		
@@ -100,65 +103,101 @@ public class Serviteur extends Carte {
 	@Override
 	public Boolean disparait() {
 		if ( this.getVie() <= 0)
-			return true ;
+		{
+			return true ;}
 		return false ;
 	}
 
 	@Override
 	public void executerAction(Object cible) {
+			if( cible == null )
+				throw new IllegalArgumentException("cible null");
+			
+			
 			if(!jouable)
 			{
 				throw new IllegalArgumentException("ce serviteur est en etat Zombie !");
 			}
+			
+			
+			if ( this.frappeParTour  != 0)
+				throw new IllegalArgumentException("Ce serviteur à dèja cracher le morceau");
+			
+			
 			if (cible instanceof Joueur )
+				{
+				for(  Icarte c : ((Joueur) cible).getJeu() )
+					if ( ((Serviteur)c).getCapacite() instanceof Provocation )
+						throw new IllegalArgumentException("vous ne pouvez pas attaquer le hero tant qu'il a un serviteur ayant Provocation");
 				((Joueur) cible).getHero().setVie(((Joueur) cible).getHero().getVie()-getAttaque());
+				this.frappeParTour++;
+				if (((Joueur) getProprietaire()).getPlateau().getAdversaire(getProprietaire()).getHero().getVie() <= 0)
+				((Joueur) getProprietaire()).getPlateau().gagnePartie(getProprietaire());
+				}
 		
 			if(cible instanceof Serviteur)
 				{
-				((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getAttaque());
-				setVie(getVie()-((Serviteur) cible).getAttaque());
-				if(disparait() ) 
-					{
-					getProprietaire().getJeu().remove(this) ;
-					executerEffetDisparition(cible);
-					}
-			
-				if (((Serviteur) cible).disparait()) 
-					{
-					((Carte) cible).getProprietaire().getJeu().remove((Serviteur) cible);
-					((Carte) cible).executerEffetDisparition(((Carte) cible).getProprietaire());
-					}
+					((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getAttaque());
+					setVie(getVie()-((Serviteur) cible).getAttaque());
+					if(disparait() ) 
+						{
+							getProprietaire().getJeu().remove(this) ;
+							executerEffetDisparition(this);
+						}
+					this.frappeParTour++;
+
+					if(((Serviteur) cible).disparait())
+						{
+							executerEffetDisparition(((Serviteur) cible));
+							((Joueur) getProprietaire()).getPlateau().getAdversaire(getProprietaire()).getJeu().remove(((Serviteur) cible));
+				
+						}
 				}
-		
 	}
 
 	@Override
 	public void executerEffetDebutMiseEnJeu(Object cible) {
-		if(this.capacite instanceof Charge)
-			setJouable(true);	
 		((Joueur)getProprietaire()).addJeu(this);
 			
-			if (capacite != null ) 
-					capacite.executerEffetMiseEnJeu(cible);
+		if( capacite != null)
+			capacite.executerEffetMiseEnJeu(cible);
 	}
 
 	@Override
 	public void executerEffetDebutTour(Object cible) {
+		if( capacite != null)
 		capacite.executerEffetDebutTour();
 
 	}
 
 	@Override
 	public void executerEffetDisparition(Object cible) {
-		capacite.executerEffetDisparition(cible);
+		if( capacite != null)
+		capacite.executerEffetDisparition(this);
 
 	}
 
 	@Override
 	public void executerEffetFinTour(Object cible) {
+		if( capacite != null)
 		capacite.executerEffetFinTour();
 		setJouable(true);
+		this.frappeParTour=0;
 
+	}
+
+	/**
+	 * @return the nbre
+	 */
+	public int getNbre() {
+		return frappeParTour;
+	}
+
+	/**
+	 * @param nbre the nbre to set
+	 */
+	public void setNbre(int nbre) {
+		this.frappeParTour = nbre;
 	}
 
 	

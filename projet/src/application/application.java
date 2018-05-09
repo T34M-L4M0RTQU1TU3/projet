@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import capacite.*;
 import cartes.*;
@@ -9,109 +10,118 @@ import player.*;
 
 public class application {
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
-
-		Joueur j = new Joueur("skarlette-johanson",new Mage("Jayna Porvaint"));	
+		 Plateau TerrainDeJeu = Plateau.getPlateauCourant() ;
 		
-		
-		//Icarte c  = new Sort("Choc de flemme",7,new AttaqueCible("Attaque massive",4),j);
 
-	//	Icarte c1 = new Sort("Eclair de givre",2,new EffetPermanent("bouste de givre",2,2),j);
-
-	//	Icarte c2 = new Sort("Inteligence des arcanes",2,new Piocher(2),j);
-
-		Icarte c3 = new Sort("Image mirroir",1,new ImageMirroir("Image mirroir",0,2,new Provocation(),j),j);
-
-		//Icarte c4 = new Sort("Explosion pyrotechnique",10,new AttaqueCible("Explosion pyrotechnique",10),j);
+		Joueur j = new Joueur("Joueur1",new Mage());	
+		Joueur j2 = new Joueur("Joueur2",new Mage());	
 		
-		Icarte c5 = new Serviteur("achraf",2, 2, 6,new Charge(),j);
+		 TerrainDeJeu.ajouterJoueur(j);
+		 TerrainDeJeu.ajouterJoueur(j2);
+		 TerrainDeJeu.demarrerPartie();
+		for ( int i = 0 ; i < 14 ; i++)
+		{
+			TerrainDeJeu.getJoueurCourant().prendreTour();
+		  TerrainDeJeu.getJoueurCourant().finirTour();
+		  TerrainDeJeu.getJoueurCourant().prendreTour();
+		  TerrainDeJeu.getJoueurCourant().finirTour();
 
-	//	Icarte c6 = new Serviteur("chasse-marée murloc",2, 50, 90, new AttaqueCible("ATTAQUE MENTALE !", 4),j);
 
+		}
 		
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Chasse-marée murloc"));
 		
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Charge"),TerrainDeJeu.getJoueurCourant().getCarteEnJeu("Archimage"));
 		
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Attaque mentale"));
 		
-		j.addDeck(c3);
-		//j.addDeck(c3);
-		j.addDeck(c5);
-		//j.addDeck(c3);
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Champion de Hurlevent"));
+		
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Chef de raid"));
+		
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Garde de Baie-du-butin"));
+		
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("La missilière téméraire"));
+		
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("L'ogre-magi"));
+		
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Archimage"));
 
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Gnôme Lépreux"));	
 		
-		 j.piocher();
-		 j.piocher();
-		 //c5.executerEffetFinTour(c);
-		 //j.piocher();
-			// j.piocher();
-		 j.jouerCarte(c3);
-		 j.jouerCarte(c5);
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Golem des moissons"));
+		
+
 
 	 
-		// j.jouerCarte(c6,j.getCarteEnJeu("achraf"));
-		//j.utiliserPouvoir(j);
+	 
+		 TerrainDeJeu.getJoueurCourant().prendreTour();
+		 TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Archimage"));
+		 TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Garde de Baie-du-butin"));
+		  TerrainDeJeu.getJoueurCourant().finirTour();
+		  TerrainDeJeu.getJoueurCourant().prendreTour();
+		  TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Archimage"));
+		  TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Choc de flamme"));
+		  
+		  
+		  
+		//  TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Chef de raid"));
 
-		//Icarte d = ");
-		//j.jouerCarte(c,d);
-		 
+		  
+	 // sort
+	 
+	
+	//	TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Image mirroir"));
+	 
+
+	 
+	
+
+	//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Eclair de givre"));
 		
-		j.utiliserCarte(c5,j.getCarteEnJeu("Serviteur de Jayna Porvaint 1"));
-		 
-		 
+	 
 		
+
 		 
-		/* System.out.println(c4.getProprietaire());
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 //TerrainDeJeu.getJoueurCourant().utiliserCarte(TerrainDeJeu.getJoueurCourant().getCarteEnJeu("Charge"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant().get));
 		 
-		 
-			try  { 
-			Icarte car = j.getCarteEnMain("Explosion pyrotechnique");
-			System.out.println(car);
-			}
-			catch(Exception e) {
-				System.out.println(e.getMessage());
-			}*/
-			
-			
-			
-			
-			
-		System.out.println(j);
-		afficherMain(j.getMain());
-		afficherJeu(j.getJeu());
+	
 		
 		
 		
+		
+		
+		 TerrainDeJeu.getJoueurCourant().prendreTour();
+		 System.out.println(TerrainDeJeu.getJoueurCourant());
+		 afficherMain(TerrainDeJeu.getJoueurCourant().getMain());
+		 afficherJeu(TerrainDeJeu.getJoueurCourant().getJeu());
+		 TerrainDeJeu.getJoueurCourant().finirTour();
+		 TerrainDeJeu.getJoueurCourant().prendreTour();
+		 System.out.println(TerrainDeJeu.getJoueurCourant());
+		 afficherMain(TerrainDeJeu.getJoueurCourant().getMain());
+		 afficherJeu(TerrainDeJeu.getJoueurCourant().getJeu());
+
 		
 		
 	}
-	/*public static ArrayList<Icarte> remplirDeckDeBase(){
-		ArrayList<Icarte> deck = new ArrayList<Icarte>();
-	
-		
-		
-		Icarte c5 = new Serviteur("Chasse-marée murloc",2, 2, 1, new InvocationDeServiteur("serviteur de murloc",1,1,null));
-		deck.add(c5);
-		Icarte c12 = new Sort("Charge",1,new Charge());
-		deck.add(c12);
-		Icarte c13 = new Sort("Attaque mentale",2,new AttaqueDuHero("Attaque mentale",5));
-		deck.add(c13);
-		Icarte c6 = new Serviteur("Champion de Hurlevent",7,6, 6, new EffetPermanent("Bonus de Hurelevent",1,1));
-		deck.add(c6);
-		Icarte c14 = new Serviteur("Chef de raid",3,2, 2, new EffetPermanent("Bonus du chef de raid",1,0));
-		deck.add(c14);
-		Icarte c7 = new Serviteur("Garde de Baie-du-butin",5, 5, 4, new Provocation());
-		deck.add(c7);
-		Icarte c8 = new Serviteur("La missilière téméraire",6,5, 2, new Charge());
-		deck.add(c8);
-		Icarte c9 = new Serviteur("L'ogre-magi",4, 4, 4, new Provocation());
-		deck.add(c9);
-		Icarte c10 = new Serviteur("Archimage",6, 4, 7, new Provocation());
-		deck.add(c10);
-		Icarte c11= new Serviteur("Gnôme Lépreux",1,1,1, new AttaqueDuHero("Attaque du lépreux",2));
-		deck.add(c11);
-		return deck;
-	
-	}*/
-	
+
 	public static void afficherMain(ArrayList<Icarte> c ) {
 		String s =">>>> TOUR <<<<\n### Ta main ###\n###############\n";
 		for ( Icarte carte :c)
@@ -127,6 +137,44 @@ public class application {
 			s+="### "+carte.toString()+(((Serviteur)carte).isJouable()?"(jouable)":"(en attente)")+"\n";
 	   s+="==================================";
 		System.out.println(s);
+	}
+	
+	public static ArrayList<Icarte> deckBase(){
+		ArrayList<Icarte> deck = new ArrayList<Icarte>();
+		Icarte c5 = new Serviteur("Chasse-marée murloc",2, 2, 1,new InvocationDeServiteur("Cri de guerre",1,1,null,null),null);
+		deck.add(c5);
+		Icarte c12 = new Sort("Charge",1,new Charge(),null);
+		deck.add(c12);
+		Icarte c13 = new Sort("Attaque mentale",2,new AttaqueDuHero("Attaque mentale",5),null);
+		deck.add(c13);
+		Icarte c6 = new Serviteur("Champion de Hurlevent",7,6, 6, new EffetPermanent("Bonus de Hurelevent",1,1),null);
+		deck.add(c6);
+		Icarte c14 = new Serviteur("Chef de raid",3,2, 2, new EffetPermanent("Bonus du chef de raid",1,0),null);
+		deck.add(c14);
+		Icarte c7 = new Serviteur("Garde de Baie-du-butin",5, 5, 4, new Provocation(),null);
+		deck.add(c7);
+		Icarte c8 = new Serviteur("La missilière téméraire",6,5, 2, new Charge(),null);
+		deck.add(c8);
+		Icarte c9 = new Serviteur("L'ogre-magi",4, 4, 4, new Provocation(),null);
+		deck.add(c9);
+		Icarte c10 = new Serviteur("Archimage",6, 4, 7, new Provocation(),null);
+		deck.add(c10);
+		Icarte c11= new Serviteur("Gnôme Lépreux",1,1,1, new AttaqueDuHero("Attaque du lépreux",2),null);
+		deck.add(c11);
+		Icarte c20= new Serviteur("Golem des moissons",3,2,3,  new InvocationDeServiteur("Golémisation",2,1,null,null,"Golem endomagé"),null);
+		deck.add(c20);
+		boolean sortir = false ;
+		int i;
+		for( i=0 ; i < deck.size() && !sortir ; i++)
+			{
+				if (deck.size() == 10)
+					sortir = true ;
+				else {
+					int x = new Random().nextInt(deck.size());
+					deck.remove(x); 
+				}
+			}
+		return (ArrayList<Icarte>) deck.clone();
 	}
 
 }

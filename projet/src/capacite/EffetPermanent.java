@@ -1,6 +1,6 @@
 package capacite;
 
-import cartes.Carte;
+
 import cartes.Icarte;
 import cartes.Serviteur;
 import player.Joueur;
@@ -66,7 +66,7 @@ public class EffetPermanent extends Capacite {
 
 	@Override
 	public void executerEffetDisparition(Object cible) {
-		for( Icarte c : ((Joueur) cible).getJeu() )
+		for( Icarte c : ((Serviteur) cible).getProprietaire().getJeu() )
 		{
 			((Serviteur) c).setVie(((Serviteur) c).getVie() - getbPDV()) ;
 			((Serviteur) c).setAttaque(((Serviteur) c).getAttaque() - getbPAT()) ;

@@ -9,13 +9,15 @@ public class Charge extends Capacite {
 	}
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) {
+		
 		if (cible instanceof Serviteur)
-			((Serviteur) cible).setCapacite(new Charge());
+			((Serviteur) cible).setJouable(true);
+		
 	}
 	@Override
 	public void executerAction(Object cible) {
 		if (cible instanceof Serviteur)
-			((Serviteur) cible).setCapacite(new Charge());
+			((Serviteur) cible).setJouable(true);
 	}
 	@Override
 	public void executerEffetDebutTour() {
