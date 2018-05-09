@@ -69,9 +69,7 @@ public class application {
 		  
 		  
 		  
-		//  TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Chef de raid"));
 
-		  
 	 // sort
 	 
 	
