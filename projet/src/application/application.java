@@ -57,20 +57,6 @@ public class application {
 		j.utiliserCarte(c5,j.getCarteEnJeu("Serviteur de Jayna Porvaint 1"));
 		 
 		 
-		
-		 
-		/* System.out.println(c4.getProprietaire());
-		 
-		 
-			try  { 
-			Icarte car = j.getCarteEnMain("Explosion pyrotechnique");
-			System.out.println(car);
-			}
-			catch(Exception e) {
-				System.out.println(e.getMessage());
-			}*/
-			
-			
 			
 			
 			
@@ -83,34 +69,7 @@ public class application {
 		
 		
 	}
-	/*public static ArrayList<Icarte> remplirDeckDeBase(){
-		ArrayList<Icarte> deck = new ArrayList<Icarte>();
-	
-		
-		
-		Icarte c5 = new Serviteur("Chasse-marée murloc",2, 2, 1, new InvocationDeServiteur("serviteur de murloc",1,1,null));
-		deck.add(c5);
-		Icarte c12 = new Sort("Charge",1,new Charge());
-		deck.add(c12);
-		Icarte c13 = new Sort("Attaque mentale",2,new AttaqueDuHero("Attaque mentale",5));
-		deck.add(c13);
-		Icarte c6 = new Serviteur("Champion de Hurlevent",7,6, 6, new EffetPermanent("Bonus de Hurelevent",1,1));
-		deck.add(c6);
-		Icarte c14 = new Serviteur("Chef de raid",3,2, 2, new EffetPermanent("Bonus du chef de raid",1,0));
-		deck.add(c14);
-		Icarte c7 = new Serviteur("Garde de Baie-du-butin",5, 5, 4, new Provocation());
-		deck.add(c7);
-		Icarte c8 = new Serviteur("La missilière téméraire",6,5, 2, new Charge());
-		deck.add(c8);
-		Icarte c9 = new Serviteur("L'ogre-magi",4, 4, 4, new Provocation());
-		deck.add(c9);
-		Icarte c10 = new Serviteur("Archimage",6, 4, 7, new Provocation());
-		deck.add(c10);
-		Icarte c11= new Serviteur("Gnôme Lépreux",1,1,1, new AttaqueDuHero("Attaque du lépreux",2));
-		deck.add(c11);
-		return deck;
-	
-	}*/
+
 	
 	public static void afficherMain(ArrayList<Icarte> c ) {
 		String s =">>>> TOUR <<<<\n### Ta main ###\n###############\n";
