@@ -20,6 +20,7 @@ public class application {
 		Joueur j = new Joueur("Joueur1",new Chasseur());	
 		Joueur j2 = new Joueur("Joueur2",new Chasseur());	
 		
+
 		 TerrainDeJeu.ajouterJoueur(j);
 		 TerrainDeJeu.ajouterJoueur(j2);
 		 TerrainDeJeu.demarrerPartie();
@@ -66,16 +67,17 @@ public class application {
 		 
 		 TerrainDeJeu.getJoueurCourant().finirTour();
 		TerrainDeJeu.getJoueurCourant().prendreTour();
-		
 		 TerrainDeJeu.getJoueurCourant().finirTour();
 			TerrainDeJeu.getJoueurCourant().prendreTour();
 		
+
 			
 	
 	
 		 	
 		 	
 		 	
+
 	
 		 	System.out.println(TerrainDeJeu);
 	}
