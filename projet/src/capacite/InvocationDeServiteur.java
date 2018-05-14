@@ -1,5 +1,6 @@
 package capacite;
 
+import cartes.Icarte;
 import cartes.Serviteur;
 import player.*;
 public class InvocationDeServiteur extends Invocation {
@@ -29,28 +30,40 @@ public class InvocationDeServiteur extends Invocation {
 
 	@Override
 	public void executerEffetDebutTour() {
-		// TODO Auto-generated method stub
+		// nothing
 		
 	}
 
 
 	@Override
 	public void executerEffetDisparition(Object cible) {
-		// TODO Auto-generated method stub
+		// nothing
 		
 	}
 
 
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) {
-		((Joueur ) cible).addJeu(getServiteur());
+		Serviteur s = getServiteur().clone();
+		
+		for ( Icarte c : ((Joueur) cible).getJeu())
+		{
+			if ( ((Serviteur) c).getCapacite() instanceof EffetPermanent )
+				 {
+					int boosteVie = ((EffetPermanent)((Serviteur) c).getCapacite()).getbPDV() ;
+					s.setVie(s.getVie()+boosteVie);
+					int boosteAttaque = ((EffetPermanent)((Serviteur) c).getCapacite()).getbPAT() ;
+					s.setAttaque(s.getAttaque()+boosteAttaque);
+				 }
+		}
+		((Joueur ) cible).addJeu(s);
 		
 	}
 
 
 	@Override
 	public void executerEffetFinTour() {
-		// TODO Auto-generated method stub
+		// nothing
 		
 	}
 }

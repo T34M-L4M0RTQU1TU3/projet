@@ -17,109 +17,74 @@ public class application {
 		 Plateau TerrainDeJeu = Plateau.getPlateauCourant() ;
 		
 
-		Joueur j = new Joueur("Joueur1",new Mage());	
-		Joueur j2 = new Joueur("Joueur2",new Mage());	
+		Joueur j = new Joueur("Joueur1",new Chasseur());	
+		Joueur j2 = new Joueur("Joueur2",new Chasseur());	
 		
 		 TerrainDeJeu.ajouterJoueur(j);
 		 TerrainDeJeu.ajouterJoueur(j2);
 		 TerrainDeJeu.demarrerPartie();
-		for ( int i = 0 ; i < 14 ; i++)
+		for ( int i = 0 ; i < 12 ; i++)
 		{
 			TerrainDeJeu.getJoueurCourant().prendreTour();
-		  TerrainDeJeu.getJoueurCourant().finirTour();
-		  TerrainDeJeu.getJoueurCourant().prendreTour();
-		  TerrainDeJeu.getJoueurCourant().finirTour();
-
-
+			TerrainDeJeu.getJoueurCourant().finirTour();
+			TerrainDeJeu.getJoueurCourant().prendreTour();
+			TerrainDeJeu.getJoueurCourant().finirTour();
 		}
 		
+	
+		 TerrainDeJeu.getJoueurCourant().prendreTour();
+		//pouvoir
+		TerrainDeJeu.getJoueurCourant().utiliserPouvoir(TerrainDeJeu.getJoueurCourant()); 
+		//serviteur qui attaque serviteur ou Joueur
+		//TerrainDeJeu.getJoueurCourant().utiliserCarte(TerrainDeJeu.getJoueurCourant().getCarteEnJeu("Archimage"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()));
+
+
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Chasse-marée murloc"));
-		
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Charge"),TerrainDeJeu.getJoueurCourant().getCarteEnJeu("Archimage"));
-		
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Attaque mentale"));
-		
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Champion de Hurlevent"));
-		
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Chef de raid"));
-		
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Garde de Baie-du-butin"));
-		
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("La missilière téméraire"));
-		
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("L'ogre-magi"));
-		
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Garde de Baie-du-butin"));		
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("La missilière téméraire"));		
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("L'ogre-magi"));		
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Archimage"));
-
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Gnôme Lépreux"));	
-		
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Golem des moissons"));
-		
-
-
-	 
-	 
-		 TerrainDeJeu.getJoueurCourant().prendreTour();
-		 TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Archimage"));
-		 TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Garde de Baie-du-butin"));
-		  TerrainDeJeu.getJoueurCourant().finirTour();
-		  TerrainDeJeu.getJoueurCourant().prendreTour();
-		  TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Archimage"));
-		  TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Choc de flamme"));
-		  
-		  
-		  
-
-	 // sort
-	 
-	
-	//	TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Image mirroir"));
-	 
-
-	 
-	
-
-	//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Eclair de givre"));
-		
-	 
-		
-
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Gnôme Lépreux"));		 
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Golem des moissons"));		
+		//Mage 
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Choc de flamme"));		 
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Eclair de givre"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()));		 
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Intelligence des arcanes"));		 
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Image mirroir"));		
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Explosion pyrotechnique"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()).getCarteEnJeu("Champion de Hurlevent"));
+		 //chasseur
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Busard affamé"));	
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Marque du chasseur"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()).getCarteEnJeu("Archimage"));
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Lâchez les chiens"));
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Tir des arcanes"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()).getCarteEnJeu("Archimage"));
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Ordre de tuer"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()).getCarteEnJeu("Archimage"));
 		 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	 //TerrainDeJeu.getJoueurCourant().utiliserCarte(TerrainDeJeu.getJoueurCourant().getCarteEnJeu("Charge"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant().get));
 		 
-	
-		
-		
-		
-		
-		
-		 TerrainDeJeu.getJoueurCourant().prendreTour();
-		 System.out.println(TerrainDeJeu.getJoueurCourant());
-		 afficherMain(TerrainDeJeu.getJoueurCourant().getMain());
-		 afficherJeu(TerrainDeJeu.getJoueurCourant().getJeu());
 		 TerrainDeJeu.getJoueurCourant().finirTour();
-		 TerrainDeJeu.getJoueurCourant().prendreTour();
-		 System.out.println(TerrainDeJeu.getJoueurCourant());
-		 afficherMain(TerrainDeJeu.getJoueurCourant().getMain());
-		 afficherJeu(TerrainDeJeu.getJoueurCourant().getJeu());
-
+		TerrainDeJeu.getJoueurCourant().prendreTour();
 		
+		 TerrainDeJeu.getJoueurCourant().finirTour();
+			TerrainDeJeu.getJoueurCourant().prendreTour();
 		
+			
+	
+	
+		 	
+		 	
+		 	
+	
+		 	System.out.println(TerrainDeJeu);
 	}
 
+	/**
+	 * 
+	 * @deprecated 
+	 * @see Plateau.toString()
+	 */
 	public static void afficherMain(ArrayList<Icarte> c ) {
 		String s =">>>> TOUR <<<<\n### Ta main ###\n###############\n";
 		for ( Icarte carte :c)
@@ -128,7 +93,11 @@ public class application {
 		System.out.println(s);
 	}
 	
-	
+	/**
+	 * 
+	 * @deprecated 
+	 * @see Plateau.toString()
+	 */
 	public static void afficherJeu(ArrayList<Icarte> c ) {
 		String s ="==================================\n";
 		for ( Icarte carte :c)
@@ -136,6 +105,8 @@ public class application {
 	   s+="==================================";
 		System.out.println(s);
 	}
+	
+
 	
 	public static ArrayList<Icarte> deckBase(){
 		ArrayList<Icarte> deck = new ArrayList<Icarte>();
@@ -172,7 +143,7 @@ public class application {
 					deck.remove(x); 
 				}
 			}
-		return (ArrayList<Icarte>) deck.clone();
+		return  (ArrayList<Icarte>) deck.clone();
 	}
 
 }

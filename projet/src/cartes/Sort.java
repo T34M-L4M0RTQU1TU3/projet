@@ -20,6 +20,8 @@ public class Sort extends Carte {
 	 * @param capacite the capacite to set
 	 */
 	public void setCapacite(Capacite capacite) {
+		if(capacite == null)
+			throw new IllegalArgumentException("Capacite null dans un sort Invalide");
 		this.capacite = capacite;
 	}
 	

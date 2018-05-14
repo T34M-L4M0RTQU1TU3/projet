@@ -1,8 +1,6 @@
 package capacite;
 
 import cartes.*;
-import cartes.Serviteur;
-
 import player.Joueur;
 
 
@@ -42,25 +40,35 @@ public class AttaqueCible extends Attaque {
 				
 			
 		}
-		if (cible instanceof Serviteur)
+		if(cible instanceof Serviteur)
 		{
-			if ( ((Serviteur) cible).getCapacite() instanceof Provocation )
-			{
+		if(((Serviteur) cible).getCapacite() instanceof Provocation)
+			{ // La cible a Provocation
 				((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getDegats());
-				if(((Serviteur) cible).disparait() ) 
-					((Serviteur) cible).getProprietaire().getJeu().remove(((Serviteur) cible)) ;
-			}
-			else 
-			{
-				for(  Icarte c : ((Serviteur) cible).getProprietaire().getJeu() )
+			
+				
+				if(((Serviteur) cible).disparait())
+					{
+						executerEffetDisparition(((Serviteur) cible));
+						((Serviteur)cible).getProprietaire().perdreCarte(((Serviteur) cible));
+		
+					}
+			}else { // La cible n'a pas provocation
+				for(  Icarte c : ((Serviteur)cible).getProprietaire().getJeu() )
 					if ( ((Serviteur)c).getCapacite() instanceof Provocation )
-						throw new IllegalArgumentException("vous ne pouvez pas attaquer ce serviteur  tant qu'il a un autre serviteur ayant Provocation dans le plateau adverse ");
-			
-				((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getDegats());
-				if(((Serviteur) cible).disparait() ) 
-					((Serviteur) cible).getProprietaire().getJeu().remove(((Serviteur) cible)) ;
+						// Un des serviteurs de l'adversaire a Provocation
+						throw new IllegalArgumentException("vous ne pouvez pas attaquer le hero tant qu'il a un serviteur ayant Provocation");
+					// Aucun serviteur de l'adversaire possede Provocation
+					((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getDegats());
+
+					if(((Serviteur) cible).disparait())
+						{
+							executerEffetDisparition(((Serviteur) cible));
+							((Serviteur)cible).getProprietaire().perdreCarte(((Serviteur) cible));
+				
+						}
+				
 			}
-			
 		}
 	}
 
@@ -79,28 +87,37 @@ public class AttaqueCible extends Attaque {
 
 			if(((Joueur) cible).getHero().getVie() <= 0)
 				((Joueur) cible).getPlateau().gagnePartie(((Joueur) cible).getPlateau().getAdversaire(((Joueur) cible)));
-				
-			
+	
 		}
-		if (cible instanceof Serviteur)
+		if(cible instanceof Serviteur)
 		{
-			if ( ((Serviteur) cible).getCapacite() instanceof Provocation )
-			{
+		if(((Serviteur) cible).getCapacite() instanceof Provocation)
+			{ // La cible a Provocation
 				((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getDegats());
-				if(((Serviteur) cible).disparait() ) 
-					((Serviteur) cible).getProprietaire().getJeu().remove(((Serviteur) cible)) ;
-			}
-			else 
-			{
-				for(  Icarte c : ((Serviteur) cible).getProprietaire().getJeu() )
+			
+				
+				if(((Serviteur) cible).disparait())
+					{
+						executerEffetDisparition(((Serviteur) cible));
+						((Serviteur)cible).getProprietaire().perdreCarte(((Serviteur) cible));
+		
+					}
+			}else { // La cible n'a pas provocation
+				for(  Icarte c : ((Serviteur)cible).getProprietaire().getJeu() )
 					if ( ((Serviteur)c).getCapacite() instanceof Provocation )
-						throw new IllegalArgumentException("vous ne pouvez pas attaquer ce serviteur  tant qu'il a un autre serviteur ayant Provocation dans le plateau adverse ");
-			
-				((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getDegats());
-				if(((Serviteur) cible).disparait() ) 
-					((Serviteur) cible).getProprietaire().getJeu().remove(((Serviteur) cible)) ;
+						// Un des serviteurs de l'adversaire a Provocation
+						throw new IllegalArgumentException("vous ne pouvez pas attaquer le hero tant qu'il a un serviteur ayant Provocation");
+					// Aucun serviteur de l'adversaire possede Provocation
+					((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getDegats());
+
+					if(((Serviteur) cible).disparait())
+						{
+							executerEffetDisparition(((Serviteur) cible));
+							((Serviteur)cible).getProprietaire().perdreCarte(((Serviteur) cible));
+				
+						}
+				
 			}
-			
 		}
 	}
 

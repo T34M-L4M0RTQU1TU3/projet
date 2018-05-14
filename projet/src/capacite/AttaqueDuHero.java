@@ -20,8 +20,14 @@ public class AttaqueDuHero extends Attaque {
 
 	@Override
 	public void executerAction(Object cible) {
-
-		((Joueur) cible).getPlateau().getAdversaire((Ijoueur) cible).getHero().setVie(((Joueur) cible).getHero().getVie()-getDegats());
+		
+		
+		
+		Ijoueur adversaire = ((Joueur) cible).getPlateau().getAdversaire((Ijoueur) cible);
+		
+		adversaire.getHero().setVie(adversaire.getHero().getVie()-getDegats());
+		if(adversaire.getHero().getVie() <= 0)
+			((Joueur) cible).getPlateau().gagnePartie(((Joueur) cible));
 	}
 
 
@@ -41,10 +47,11 @@ public class AttaqueDuHero extends Attaque {
 
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) {
-
 				
-		((Joueur) cible).getPlateau().getAdversaire((Ijoueur) cible).getHero().setVie(((Joueur) cible).getHero().getVie()-getDegats());
-	
+		Ijoueur adversaire = ((Joueur) cible).getPlateau().getAdversaire((Ijoueur) cible);
+		adversaire.getHero().setVie(adversaire.getHero().getVie()-getDegats());
+		if(adversaire.getHero().getVie() <= 0)
+			((Joueur) cible).getPlateau().gagnePartie(((Joueur) cible));	
 	}
 
 

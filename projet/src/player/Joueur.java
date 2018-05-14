@@ -19,6 +19,8 @@ public class Joueur implements Ijoueur {
 	private ArrayList<Icarte> main = new ArrayList<Icarte>();
 	private ArrayList<Icarte> jeu = new ArrayList<Icarte>();
 	private Iplateau plateau = null  ;
+	
+	private int utilisationPouvoirParTour = 0 ;
  
 	
 	
@@ -47,21 +49,27 @@ public class Joueur implements Ijoueur {
 
 
 	public void setPlateau(Iplateau plateau) {
+		if (plateau == null)
+			throw new IllegalArgumentException("plateau invalide");
+		
 		this.plateau = plateau;
 	}
 
 
 
 
-	public void addDeck(Icarte c ) {	
+	public void addDeck(Icarte c ) {
+		if ( c==null )
+			throw new IllegalArgumentException("ajout d'une carte null au deck");
 		if (deck.size()== TAILLE_DECK)
 			throw new IllegalArgumentException("taille du deck > "+TAILLE_DECK);
-		if(c.getProprietaire()!=null && c.getProprietaire().getHero().getClass() != this.getHero().getClass() )
-			throw new IllegalArgumentException(" carte non attribuable a ce Hero" );
+
 		deck.add(c);
-		((Carte)c).setJoueur(this);
-		
+				
 	}
+	/**
+	 * @deprecated
+	 */
 	public void addDeck() {	
 		ArrayList<Icarte> A = application.deckBase();
 		if(deck.size() + A.size() > TAILLE_DECK)
@@ -72,10 +80,14 @@ public class Joueur implements Ijoueur {
 	}
     
 	public void addJeu(Icarte c ) {
+		if ( c==null )
+			throw new IllegalArgumentException("ajout d'une carte null au jeu");
 		jeu.add(c);
 	}
 	
 	public void setPseudo(String pseudo) {
+		if ( pseudo == null || pseudo.isEmpty() || pseudo.trim().isEmpty() )
+			throw new IllegalArgumentException("Pseudo Joueur invalide") ;
 		this.pseudo = pseudo;
 	}
 	
@@ -86,6 +98,8 @@ public class Joueur implements Ijoueur {
 
 
 	public void setHero(Hero hero) {
+		if ( hero == null)
+			throw new IllegalArgumentException("Hero null invalide") ;
 		this.hero = hero;
 	}
 
@@ -101,7 +115,25 @@ public class Joueur implements Ijoueur {
 	
 
 	public void setMana(int mana) {
+		if ( mana < 0)
+			throw new IllegalArgumentException("mana < 0");
 		this.mana = mana;
+	}
+
+
+	/**
+	 * @return the utilisationPouvoirParTour
+	 */
+	public int getUtilisationPouvoirParTour() {
+		return utilisationPouvoirParTour;
+	}
+
+
+	/**
+	 * @param utilisationPouvoirParTour the utilisationPouvoirParTour to set
+	 */
+	public void setUtilisationPouvoirParTour(int utilisationPouvoirParTour) {
+		this.utilisationPouvoirParTour = utilisationPouvoirParTour;
 	}
 
 
@@ -116,6 +148,14 @@ public class Joueur implements Ijoueur {
 	}
 
 	
+	/**
+	 * @return the deck
+	 */
+	public ArrayList<Icarte> getDeck() {
+		return deck;
+	}
+
+
 	@Override
 	public void piocher() {
 		if(deck.size()>0)
@@ -125,6 +165,8 @@ public class Joueur implements Ijoueur {
 
 	@Override
 	public Icarte getCarteEnJeu(String nomCarte) {
+		if ( pseudo == null || pseudo.isEmpty() || pseudo.trim().isEmpty() )
+			throw new IllegalArgumentException("nom de la carte rechercher en jeu invalide");
 		for (Icarte c : getJeu() )
 			if ( c.getNom().equals(nomCarte) )
 					return c ;
@@ -133,6 +175,8 @@ public class Joueur implements Ijoueur {
 
 	@Override
 	public Icarte getCarteEnMain(String nomCarte) {
+		if ( pseudo == null || pseudo.isEmpty() || pseudo.trim().isEmpty() )
+			throw new IllegalArgumentException("nom de la carte rechercher en main invalide");
 		for (Icarte c : getMain() )
 			if ( c.getNom().equals(nomCarte) )
 					return c ;
@@ -140,6 +184,8 @@ public class Joueur implements Ijoueur {
 	}
 
 	public void setStockMana(int stockMana) {
+		 if( stockMana < 0)
+			 throw new IllegalArgumentException("Stock mana < 0");
 		this.stockMana = stockMana;
 	}
 
@@ -153,16 +199,20 @@ public class Joueur implements Ijoueur {
 		if(!plateau.estDermarree())
 			throw new IllegalArgumentException("vous ne pouvez pas jouer tant que la partie n'est pas démarée");
 		
+	//	if (  plateau.getJoueurCourant() == null )
+		//	throw new IllegalArgumentException("joueur courent null");
+		
+		
 		if ( this != plateau.getJoueurCourant() )
 				throw new IllegalArgumentException("vous ne pouvez pas jouer tant que ce n'est pas votre tour ");
 			
-			for(Icarte carte : getJeu())
-				carte.executerEffetDebutTour(this);
+		for(Icarte carte : getJeu())
+			carte.executerEffetDebutTour(this);
 			
-			if ( getMana() <10 )
-				setMana(getMana()+1);
-				setStockMana(getMana());
-				piocher();
+		if ( getMana() <MAX_MANA )
+			setMana(getMana()+1);
+		setStockMana(getMana());
+		piocher();
 				
 	}
 	
@@ -171,30 +221,42 @@ public class Joueur implements Ijoueur {
 		for(Icarte carte : getJeu())
 			carte.executerEffetFinTour(this);
 		
+		setUtilisationPouvoirParTour(0);
+		
 		this.getPlateau().finTour(this);
 	}
 
 	@Override
 	public void jouerCarte(Icarte carte, Object cible) {
+		if ( this.getStockMana() < carte.getCout())
+			throw new IllegalArgumentException("vous n'avez pas assez de Mana !");
+		if ( cible == null )
+			throw new IllegalArgumentException("Cible null dans jouer Carte avec cible ");
 		if (!main.contains(carte))
 			throw new IllegalArgumentException("cette carte n'est pas dans votre main");
 		carte.executerEffetDebutMiseEnJeu(cible);	
-		perdreCarte(carte);	
+		setStockMana(getStockMana()-carte.getCout());
+		main.remove(carte);	
 	}
 
 	@Override
 	public void jouerCarte(Icarte carte) {
+		if ( this.getStockMana() < carte.getCout())
+			throw new IllegalArgumentException("vous n'avez pas assez de Mana !");
 		if (!main.contains(carte))
 			throw new IllegalArgumentException("cette carte n'est pas dans votre main");
 		carte.executerEffetDebutMiseEnJeu(carte.getProprietaire());
-		perdreCarte(carte);	
+		setStockMana(getStockMana()-carte.getCout());
+		main.remove(carte);	
 
 	}
 
 	
 	@Override
 	public void perdreCarte(Icarte carte) {
-		main.remove(carte);	
+		for (Icarte c : getJeu())
+			c.executerEffetDisparition(this);
+		jeu.remove(carte);	
 	}
 
 	
@@ -207,8 +269,11 @@ public class Joueur implements Ijoueur {
 
 	@Override
 	public void utiliserPouvoir(Object cible) {
-		this.getHero().getCapacite().executerAction(cible);
-
+		if(getUtilisationPouvoirParTour() != 0 ) 
+			throw new IllegalArgumentException("vous avez déja utiliser votre pouvoir se tour la !");
+		
+			getHero().getCapacite().executerAction(cible);
+			setUtilisationPouvoirParTour(1);
 	}
 
 	@Override

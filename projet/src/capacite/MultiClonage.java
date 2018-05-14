@@ -23,8 +23,25 @@ public class MultiClonage extends Invocation {
 
 	@Override
 	public void executerAction(Object cible) {
-		// TODO Auto-generated method stub
-		
+		for (int i = 0; i< ((Joueur) cible).getPlateau().getAdversaire( ((Joueur) cible) ).getJeu().size(); i++ )
+		{
+			Serviteur s = getServiteur().clone();
+			s.setNom(s.getNom()+" "+(i+1));
+			
+			
+			for ( Icarte c : ((Joueur) cible).getJeu())
+			{
+				if ( ((Serviteur) c).getCapacite() instanceof EffetPermanent )
+					 {
+						int boosteVie = ((EffetPermanent)((Serviteur) c).getCapacite()).getbPDV() ;
+						s.setVie(s.getVie()+boosteVie);
+						int boosteAttaque = ((EffetPermanent)((Serviteur) c).getCapacite()).getbPAT() ;
+						s.setAttaque(s.getAttaque()+boosteAttaque);
+					 }
+			}
+			
+			((Joueur) cible).addJeu(s);
+		}
 	}
 
 
@@ -50,7 +67,26 @@ public class MultiClonage extends Invocation {
 
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) {
-		// TODO Auto-generated method stub
+		for (int i = 0; i< ((Joueur) cible).getPlateau().getAdversaire( ((Joueur) cible) ).getJeu().size(); i++ )
+		{
+			Serviteur s = getServiteur().clone();
+			s.setNom(s.getNom()+" "+(i+1));
+			
+			
+			for ( Icarte c : ((Joueur) cible).getJeu())
+			{
+				if ( ((Serviteur) c).getCapacite() instanceof EffetPermanent )
+					 {
+						int boosteVie = ((EffetPermanent)((Serviteur) c).getCapacite()).getbPDV() ;
+						s.setVie(s.getVie()+boosteVie);
+						int boosteAttaque = ((EffetPermanent)((Serviteur) c).getCapacite()).getbPAT() ;
+						s.setAttaque(s.getAttaque()+boosteAttaque);
+					 }
+			}
+			((Joueur) cible).addJeu(s);
+		}
+		
+		
 	}
 
 

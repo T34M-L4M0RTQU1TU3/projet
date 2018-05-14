@@ -35,7 +35,7 @@ public class Mage extends Hero {
 		deck.add(c);
 		Icarte c1 = new Sort("Eclair de givre",2,new AttaqueCible("Attaque du givre",3),null);
 		deck.add(c1);
-		Icarte c2 = new Sort("Inteligence des arcanes",2,new Piocher(2),null);
+		Icarte c2 = new Sort("Intelligence des arcanes",2,new Piocher(2),null);
 		deck.add(c2);
 		Icarte c3 = new Sort("Image mirroir",1,new ImageMirroir("Image mirroir",0,2,new Provocation(),null),null);
 		deck.add(c3);

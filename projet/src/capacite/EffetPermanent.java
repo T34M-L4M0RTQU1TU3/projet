@@ -32,6 +32,8 @@ public class EffetPermanent extends Capacite {
 	 * @param bPDV the bPDV to set
 	 */
 	protected void setbPDV(int bPDV) {
+		if(bPDV < 0)
+			throw new IllegalArgumentException("Boost PDV invalide");
 		this.bPDV = bPDV;
 	}
 
@@ -46,6 +48,8 @@ public class EffetPermanent extends Capacite {
 	 * @param bPAT the bPAT to set
 	 */
 	protected void setbPAT(int bPAT) {
+		if(bPAT < 0)
+			throw new IllegalArgumentException("Boost PATT invalide");
 		this.bPAT = bPAT;
 	}
 
@@ -70,8 +74,8 @@ public class EffetPermanent extends Capacite {
 		{
 			((Serviteur) c).setVie(((Serviteur) c).getVie() - getbPDV()) ;
 			((Serviteur) c).setAttaque(((Serviteur) c).getAttaque() - getbPAT()) ;
+					
 		}
-		
 	}
 
 	@Override

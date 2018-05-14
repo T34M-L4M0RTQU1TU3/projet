@@ -10,17 +10,12 @@ public class Provocation extends Capacite {
 	
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) {
-		/*if (!(cible instanceof Serviteur))
-				throw new  IllegalArgumentException(cible+"pas possible de metre cette capacité a cette cible");
-			((Serviteur) cible).setCapacite(new Provocation());*/
-		
+		//nothing
 	}
 
 	@Override
 	public void executerAction(Object cible) {
-		/*if (!(cible instanceof Serviteur))
-			throw new  IllegalArgumentException("pas possible de metre cette capacité a cette cible");
-		((Serviteur) cible).setCapacite(new Provocation());*/
+		//nothing
 	}
 
 	@Override

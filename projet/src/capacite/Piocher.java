@@ -18,13 +18,17 @@ public class Piocher extends Capacite {
 	 * @param nombre the nombre to set
 	 */
 	public void setNombre(int nombre) {
+		if(nombre <= 0)
+			throw new IllegalArgumentException("Nombre pioche Invalide");
 		this.nombre = nombre;
 	}
 	@Override
 	public void executerAction(Object cible) {
-		int i ;
+
+		if ( getNombre() > ((Joueur)cible).getDeck().size())
+			throw new IllegalArgumentException("Impossible de piocher ce nombre de carte "); 
 		
-		for ( i=0;i< getNombre();  i++)
+		for (int  i=0;i< getNombre();  i++)
 			{((Joueur)cible).piocher();
 			
 			}
@@ -41,11 +45,12 @@ public class Piocher extends Capacite {
 	}
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) {
-		int i ;
+		if ( getNombre() > ((Joueur)cible).getDeck().size())
+			throw new IllegalArgumentException("Impossible de piocher ce nombre de carte "); 
 		
-		for ( i=0;i< getNombre();  i++)
-			{((Joueur)cible).piocher();
-			
+		for (int i=0;i< getNombre();  i++)
+			{
+				((Joueur)cible).piocher();
 			}
 		
 	}
