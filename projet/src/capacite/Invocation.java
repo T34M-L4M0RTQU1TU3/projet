@@ -21,6 +21,8 @@ public abstract class Invocation extends Capacite {
 	 * @param s the s to set
 	 */
 	public void setServiteur(Serviteur s) {
+		if(s == null)
+			throw new IllegalArgumentException("Serviteur invoque invalide");
 		this.serviteur= s;
 	}
 

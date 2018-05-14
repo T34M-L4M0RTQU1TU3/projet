@@ -22,6 +22,8 @@ public abstract class Carte implements Icarte {
 	 * @param nom the nom to set
 	 */
 	public void setNom(String nom) {
+		if (nom == null || nom.isEmpty() || nom.trim().isEmpty() )
+			throw new IllegalArgumentException("Nom Carte invalide");
 		this.nom = nom;
 	}
 
@@ -34,6 +36,8 @@ public abstract class Carte implements Icarte {
 	 * @param cout the cout to set
 	 */
 	public void setCout(int cout) {
+		if ( cout < 0 )
+			throw new IllegalArgumentException("Cout Invalide");
 		this.cout = cout;
 	}
 
@@ -57,9 +61,6 @@ public abstract class Carte implements Icarte {
 	public void setJoueur(Ijoueur joueur) {
 		this.joueur = joueur;
 	}
-
-
-
 
 
 	@Override

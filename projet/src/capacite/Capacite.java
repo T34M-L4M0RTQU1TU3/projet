@@ -11,10 +11,7 @@ public abstract class Capacite implements Icapacite {
 	
 	private String nom ;
 	private String description;
-	
 
-
-	
 	/**
 	 * 
 	 * @param nom
@@ -30,6 +27,8 @@ public abstract class Capacite implements Icapacite {
 	 *
 	 */
 	public void setNom(String nom) {
+		if (nom == null || nom.isEmpty() || nom.trim().isEmpty() )
+			throw new IllegalArgumentException("Nom capacite invalide");
 		this.nom = nom;
 	}
 	@Override
@@ -41,6 +40,8 @@ public abstract class Capacite implements Icapacite {
 	 *
 	 */
 	public void setDescription(String description) {
+		if (description == null || description.isEmpty() || description.trim().isEmpty() )
+			throw new IllegalArgumentException("Nom capacite invalide");
 		this.description = description;
 	}
 	@Override
@@ -50,9 +51,6 @@ public abstract class Capacite implements Icapacite {
 
 
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

@@ -1,8 +1,6 @@
 package capacite;
 
 import cartes.*;
-import cartes.Serviteur;
-import player.Hero;
 import player.Joueur;
 
 
@@ -26,38 +24,100 @@ public class AttaqueCible extends Attaque {
 
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) {
+		if( cible == null )
+			throw new IllegalArgumentException("cible null ");
+		
 		if (cible instanceof Joueur)
 		{
 			for(  Icarte c : ((Joueur) cible).getJeu() )
 				if ( ((Serviteur)c).getCapacite() instanceof Provocation )
 					throw new IllegalArgumentException("vous ne pouvez pas attaquer le hero tant qu'il a un serviteur ayant Provocation");
+			
 			((Joueur) cible).getHero().setVie(((Joueur) cible).getHero().getVie()-getDegats());
+
+			if(((Joueur) cible).getHero().getVie() <= 0)
+				((Joueur) cible).getPlateau().gagnePartie(((Joueur) cible).getPlateau().getAdversaire(((Joueur) cible)));
+				
 			
 		}
-		if (cible instanceof Serviteur)
+		if(cible instanceof Serviteur)
 		{
-			for(  Icarte c : ((Serviteur) cible).getProprietaire().getJeu() )
-				if ( ((Serviteur)c).getCapacite() instanceof Provocation )
-					throw new IllegalArgumentException("vous ne pouvez pas attaquer ce serviteur  tant qu'il a un autre serviteur ayant Provocation dans le plateau adverse ");
+		if(((Serviteur) cible).getCapacite() instanceof Provocation)
+			{ // La cible a Provocation
+				((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getDegats());
 			
-			
-			((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getDegats());
-				if(((Serviteur) cible).disparait() ) 
-					((Serviteur) cible).getProprietaire().getJeu().remove(((Serviteur) cible)) ;
+				
+				if(((Serviteur) cible).disparait())
+					{
+						executerEffetDisparition(((Serviteur) cible));
+						((Serviteur)cible).getProprietaire().perdreCarte(((Serviteur) cible));
+		
+					}
+			}else { // La cible n'a pas provocation
+				for(  Icarte c : ((Serviteur)cible).getProprietaire().getJeu() )
+					if ( ((Serviteur)c).getCapacite() instanceof Provocation )
+						// Un des serviteurs de l'adversaire a Provocation
+						throw new IllegalArgumentException("vous ne pouvez pas attaquer le hero tant qu'il a un serviteur ayant Provocation");
+					// Aucun serviteur de l'adversaire possede Provocation
+					((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getDegats());
+
+					if(((Serviteur) cible).disparait())
+						{
+							executerEffetDisparition(((Serviteur) cible));
+							((Serviteur)cible).getProprietaire().perdreCarte(((Serviteur) cible));
+				
+						}
+				
+			}
 		}
 	}
 
 	@Override
 	public void executerAction(Object cible) {
+		if( cible == null )
+			throw new IllegalArgumentException("cible null ");
+		
 		if (cible instanceof Joueur)
 		{
+			for(  Icarte c : ((Joueur) cible).getJeu() )
+				if ( ((Serviteur)c).getCapacite() instanceof Provocation )
+					throw new IllegalArgumentException("vous ne pouvez pas attaquer le hero tant qu'il a un serviteur ayant Provocation");
+			
 			((Joueur) cible).getHero().setVie(((Joueur) cible).getHero().getVie()-getDegats());
+
+			if(((Joueur) cible).getHero().getVie() <= 0)
+				((Joueur) cible).getPlateau().gagnePartie(((Joueur) cible).getPlateau().getAdversaire(((Joueur) cible)));
+	
 		}
-		if (cible instanceof Serviteur)
+		if(cible instanceof Serviteur)
 		{
-			((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getDegats());
-			if(((Serviteur) cible).disparait() ) 
-				((Serviteur) cible).getProprietaire().getJeu().remove(((Serviteur) cible)) ;
+		if(((Serviteur) cible).getCapacite() instanceof Provocation)
+			{ // La cible a Provocation
+				((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getDegats());
+			
+				
+				if(((Serviteur) cible).disparait())
+					{
+						executerEffetDisparition(((Serviteur) cible));
+						((Serviteur)cible).getProprietaire().perdreCarte(((Serviteur) cible));
+		
+					}
+			}else { // La cible n'a pas provocation
+				for(  Icarte c : ((Serviteur)cible).getProprietaire().getJeu() )
+					if ( ((Serviteur)c).getCapacite() instanceof Provocation )
+						// Un des serviteurs de l'adversaire a Provocation
+						throw new IllegalArgumentException("vous ne pouvez pas attaquer le hero tant qu'il a un serviteur ayant Provocation");
+					// Aucun serviteur de l'adversaire possede Provocation
+					((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getDegats());
+
+					if(((Serviteur) cible).disparait())
+						{
+							executerEffetDisparition(((Serviteur) cible));
+							((Serviteur)cible).getProprietaire().perdreCarte(((Serviteur) cible));
+				
+						}
+				
+			}
 		}
 	}
 

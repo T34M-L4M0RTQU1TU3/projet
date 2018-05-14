@@ -20,11 +20,8 @@ public abstract class Attaque extends Capacite {
 	 * @param degats the degats to set
 	 */
 	public void setDegats(int degats) {
+		if( degats < 0)
+				throw new IllegalArgumentException("Degats capacite invalide");
 		this.degats = degats;
-	}
-
-
-
-	
-	
+	}	
 }

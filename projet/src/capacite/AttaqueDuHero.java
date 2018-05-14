@@ -1,8 +1,7 @@
 package capacite;
 
-import cartes.Icarte;
-import cartes.Serviteur;
-import player.Hero;
+
+import player.Ijoueur;
 import player.Joueur;
 
 public class AttaqueDuHero extends Attaque {
@@ -21,11 +20,14 @@ public class AttaqueDuHero extends Attaque {
 
 	@Override
 	public void executerAction(Object cible) {
-		for(  Icarte c : ((Joueur) cible).getJeu() )
-			if ( ((Serviteur)c).getCapacite() instanceof Provocation )
-				throw new IllegalArgumentException("vous ne pouvez pas attaquer le hero tant qu'il a un serviteur ayant Provocation");
-		((Joueur) cible).getHero().setVie(((Joueur) cible).getHero().getVie()-getDegats());
 		
+		
+		
+		Ijoueur adversaire = ((Joueur) cible).getPlateau().getAdversaire((Ijoueur) cible);
+		
+		adversaire.getHero().setVie(adversaire.getHero().getVie()-getDegats());
+		if(adversaire.getHero().getVie() <= 0)
+			((Joueur) cible).getPlateau().gagnePartie(((Joueur) cible));
 	}
 
 
@@ -45,11 +47,11 @@ public class AttaqueDuHero extends Attaque {
 
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) {
-		for(  Icarte c : ((Joueur) cible).getJeu() )
-			if ( ((Serviteur)c).getCapacite() instanceof Provocation )
-				throw new IllegalArgumentException("vous ne pouvez pas attaquer le hero tant qu'il a un serviteur ayant Provocation");
-		((Joueur) cible).getHero().setVie(((Joueur) cible).getHero().getVie()-getDegats());
-	
+				
+		Ijoueur adversaire = ((Joueur) cible).getPlateau().getAdversaire((Ijoueur) cible);
+		adversaire.getHero().setVie(adversaire.getHero().getVie()-getDegats());
+		if(adversaire.getHero().getVie() <= 0)
+			((Joueur) cible).getPlateau().gagnePartie(((Joueur) cible));	
 	}
 
 
