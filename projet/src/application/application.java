@@ -17,8 +17,8 @@ public class application {
 		 Plateau TerrainDeJeu = Plateau.getPlateauCourant() ;
 		
 
-		Joueur j = new Joueur("Joueur1",new Chasseur());	
-		Joueur j2 = new Joueur("Joueur2",new Chasseur());	
+		Joueur j = new Joueur("Joueur1",new Mage());	
+		Joueur j2 = new Joueur("Joueur2",new Mage());	
 		
 
 		 TerrainDeJeu.ajouterJoueur(j);
@@ -35,7 +35,7 @@ public class application {
 	
 		 TerrainDeJeu.getJoueurCourant().prendreTour();
 		//pouvoir
-		TerrainDeJeu.getJoueurCourant().utiliserPouvoir(TerrainDeJeu.getJoueurCourant()); 
+		//TerrainDeJeu.getJoueurCourant().utiliserPouvoir(TerrainDeJeu.getJoueurCourant()); 
 		//serviteur qui attaque serviteur ou Joueur
 		//TerrainDeJeu.getJoueurCourant().utiliserCarte(TerrainDeJeu.getJoueurCourant().getCarteEnJeu("Archimage"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()));
 
@@ -48,12 +48,14 @@ public class application {
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Garde de Baie-du-butin"));		
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("La missilière téméraire"));		
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("L'ogre-magi"));		
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Archimage"));
+		TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Archimage"));
+		//TerrainDeJeu.getJoueurCourant().utiliserCarte(TerrainDeJeu.getJoueurCourant().getCarteEnJeu("Archimage"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()));
+
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Gnôme Lépreux"));		 
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Golem des moissons"));		
 		//Mage 
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Choc de flamme"));		 
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Eclair de givre"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()));		 
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Choc de flamme"));	
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Eclair de givre"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()).getCarteEnJeu("Archimage"));		 
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Intelligence des arcanes"));		 
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Image mirroir"));		
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Explosion pyrotechnique"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()).getCarteEnJeu("Champion de Hurlevent"));
@@ -67,16 +69,12 @@ public class application {
 		 
 		 TerrainDeJeu.getJoueurCourant().finirTour();
 		TerrainDeJeu.getJoueurCourant().prendreTour();
+		TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Eclair de givre"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()).getCarteEnJeu("Archimage"));		 
+		
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Eclair de givre"),);		 
+		
 		 TerrainDeJeu.getJoueurCourant().finirTour();
 			TerrainDeJeu.getJoueurCourant().prendreTour();
-		
-
-			
-	
-	
-		 	
-		 	
-		 	
 
 	
 		 	System.out.println(TerrainDeJeu);

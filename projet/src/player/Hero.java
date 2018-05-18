@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import capacite.Capacite;
 import cartes.Icarte;
 
+/**
+ * Classe abstraite : pour un héros séléctionné par un joueur
+ * @author JHIDRI GILLOT
+ * @see Chasseur Mage
+ */
 public abstract class Hero {
 
 	private String nom;
@@ -12,8 +17,7 @@ public abstract class Hero {
 	static final int PDVMAX = 15;
 
 	/**
-	 * @param nom
-	 * @param vie
+	 * @param nom : nom du héros
 	 */
 	public Hero(String nom) {
 		setNom(nom);
@@ -21,15 +25,16 @@ public abstract class Hero {
 	}
 
 	/**
-	 * @return the nom
+	 * Donne le nom du héros
+	 * @return nom
 	 */
 	public String getNom() {
 		return nom;
 	}
 
 	/**
-	 * @param nom
-	 *            the nom to set
+	 * Définit le nom du héros
+	 * @param nom : nom du héros
 	 */
 	public void setNom(String nom) {
 		if (nom == null || nom.isEmpty() || nom.trim().isEmpty())
@@ -38,20 +43,24 @@ public abstract class Hero {
 	}
 
 	/**
-	 * @return the vie
+	 * Donne la vie du héros
+	 * @return vie
 	 */
 	public int getVie() {
 		return vie;
 	}
 
 	/**
-	 * @param vie
-	 *            the vie to set
+	 * Définit la vie du héros
+	 * @param vie : vie du héros
 	 */
 	public void setVie(int vie) {
 		this.vie = vie;
 	}
 
+	/**
+	 * Donne la capacité du héros 
+	 */
 	public abstract Capacite getCapacite();
 
 	/*
@@ -59,11 +68,19 @@ public abstract class Hero {
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
+	
+	/**
+	 * Affichage
+	 */
 	@Override
 	public String toString() {
 		return "Hero [nom=" + nom + ", pointsDeVieCourant=" + vie + ",pointsDeVieMax=" + PDVMAX + "]";
 	}
-
+	
+	/**
+	 * Ajoute au deck les cartes spécifiques au héros
+	 * @return
+	 */
 	public abstract ArrayList<Icarte> deckSpecial();
 
 }

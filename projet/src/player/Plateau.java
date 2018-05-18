@@ -6,6 +6,10 @@ import java.util.Random;
 import cartes.Icarte;
 import cartes.Serviteur;
 
+/**
+ * Plateau de jeu
+ * @author JHIDRI GILLOT
+ */
 public class Plateau implements Iplateau {
 
 	private ArrayList<Ijoueur> players = new ArrayList<Ijoueur>();
@@ -14,12 +18,16 @@ public class Plateau implements Iplateau {
 	private boolean demarree = false;
 
 	/**
-	 * @return the plateauCourant
+	 * Donne le plateau actuel
+	 * @return plateauCourant
 	 */
 	public static Plateau getPlateauCourant() {
 		return plateauCourant;
 	}
 
+	/**
+	 * Ajoute un joueur au plateau
+	 */
 	@Override
 	public void ajouterJoueur(Ijoueur joueur) {
 		if (joueur == null)
@@ -27,42 +35,47 @@ public class Plateau implements Iplateau {
 		if (players.size() >= 2)
 			throw new IllegalArgumentException("un battle est entre 2 guerrier et non pas plus !");
 		if (players.contains(joueur))
-			throw new IllegalArgumentException("ajouterJoueur ce joueur à déjà été ajouté a la partie ");
+			throw new IllegalArgumentException("ajouterJoueur ce joueur Ã  dÃ©jÃ  Ã©tÃ© ajoutÃ© a la partie ");
 		players.add(joueur);
 		((Joueur) joueur).setPlateau(this);
 	}
 
+	/**
+	 * Donne le joueur actuel
+	 * @return joueurCourant
+	 */
 	@Override
 	public Ijoueur getJoueurCourant() {
 		if (!estDermarree())
 			return null;
-
 		if (players.size() != 2)
 			throw new IllegalArgumentException("faut qu'il y es 2 joueur pour pouvoir savoir le jour courant ");
-
 		if (joueurCourant == null)
 			throw new IllegalArgumentException("Joueur courant null ");
-
 		return joueurCourant;
 	}
 
+	/**
+	 * Définit le joueur courant
+	 * @param joueur : joueur courant
+	 */
 	@Override
 	public void setJoueurCourant(Ijoueur joueur) {
 		if (joueur == null)
 			throw new IllegalArgumentException("joueurCourant null ");
-
 		if (!players.contains(joueur))
 			throw new IllegalArgumentException("setJoueurCourant le joueur n'est pas dans cette partie");
-
 		if (!estDermarree())
-			throw new IllegalArgumentException("La partie n'a pas encore démarrer pour appeler setJoueurCourant");
-
+			throw new IllegalArgumentException("La partie n'a pas encore dÃ©marrer pour appeler setJoueurCourant");
 		if (joueur == joueurCourant)
 			throw new IllegalArgumentException("il est deja le joueur courant");
-
 		joueurCourant = joueur;
 	}
 
+	/**
+	 * Donne l'adversaire du joueur courant
+	 * @param joueur : joueur courant
+	 */
 	@Override
 	public Ijoueur getAdversaire(Ijoueur joueur) {
 		if (!estDermarree())
@@ -80,55 +93,64 @@ public class Plateau implements Iplateau {
 		return players.get(0);
 	}
 
+	/**
+	 * Lance la partie
+	 */
 	@Override
 	public void demarrerPartie() {
 		if (players.size() != 2)
-			throw new IllegalArgumentException("La partie ne px pas etre démarrer tant qu'il n'y a pas 2 joueurs");
+			throw new IllegalArgumentException("La partie ne px pas etre dÃ©marrer tant qu'il n'y a pas 2 joueurs");
 
 		setDemarree(true);
 		int x = new Random().nextInt(2);
 		setJoueurCourant(players.get(x));
-
 	}
 
+	/**
+	 * true si la partie est lancée, false sinon
+	 */
 	@Override
 	public boolean estDermarree() {
 		return demarree;
 	}
 
 	/**
+	 * Définit si la partie est démarrée
 	 * @param demarree
-	 *            the demarree to set
 	 */
 	public void setDemarree(boolean demarree) {
 		this.demarree = demarree;
 	}
 
+	/**
+	 * Finit le tour du joueur courant
+	 */
 	@Override
 	public void finTour(Ijoueur joueur) {
 		if (joueur == null)
 			throw new IllegalArgumentException("un null ne px pas finir son tour ");
-
 		if (!players.contains(joueur))
 			throw new IllegalArgumentException("finTour le joueur n'est pas dans cette partie");
-
 		if (joueur == getJoueurCourant()) {
 			setJoueurCourant(((Joueur) joueur).getPlateau().getAdversaire(joueur));
-
 		}
-
 		else
 			throw new IllegalArgumentException(" ne t'excite pas trop fdp c'est pas a toi de jouer putain ");
 	}
 
+	/**
+	 * Met fin à la partie avec le joueur gagnant
+	 * @param joueur : joueur gagnant
+	 */
 	@Override
 	public void gagnePartie(Ijoueur joueur) {
-
-		System.out.println(joueur.getPseudo() + " est le gagnant de ce combat acharné qui a duré 8 nuits et 7 jours ");
+		System.out.println(joueur.getPseudo() + " est le gagnant de ce combat acharnÃ© qui a durÃ© 8 nuits et 7 jours ");
 		System.exit(0);
-
 	}
 
+	/**
+	 * Affichage
+	 */
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -172,34 +194,7 @@ public class Plateau implements Iplateau {
 				s+="### "+carte.toString()+(((Serviteur)carte).isJouable()?"(jouable)":"(en attente)")+"\n";
 		   s+="==================================\n";
 		}
-
 		return s ;
 	}
-
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,41 +1,47 @@
-/**
- * contiens toute les capacités du jeu
- */
 package capacite;
 
 /**
- * @author achraf
- *
+ * Interface : Interface des différentes capacités nécéssaires pour le jeu
+ * @author JHIDRI GILLOT
+ * @see Capacite 
  */
-public interface Icapacite {
-	
-	
+public interface Icapacite {	
 	
 	/**
-	 * execution quand elle est en plateau
-	 * 
+	 * Effet à la demande du joueur  
+	 * @param cible : cible à attaquer
 	 */
- void executerAction(Object cible );
+	void executerAction(Object cible );
  
 	/**
-	 * execution au debut de chaque tour
-	 *
+	 * Effet en début de tour
 	 */
- void executerEffetDebutTour();
+	void executerEffetDebutTour();
  
 	/**
-	 * effet apres disparition
-	 *
+	 * Effet à la disparition de la carte
+	 * @param cible : cible à attaquer
 	 */
- void executerEffetDisparition(Object cible );
+	void executerEffetDisparition(Object cible );
+ 
 	/**
-	 * 
-	 * effet mise en jeu par exemple invocation ou inflige dégats 
-	 *
+	 * Effet lors de la mise en jeu de la carte 
+	 * @param cible : cible à attaquer
 	 */
- void executerEffetMiseEnJeu(Object cible );
- void executerEffetFinTour(); 
- String getDescription();
- String getNom();
+	void executerEffetMiseEnJeu(Object cible );
+ 	
+	/**
+	 * Effet en fin de tour
+	 */
+	void executerEffetFinTour(); 
+	
+	/**
+	 * Donne la description de la capacité
+	 */
+	String getDescription();
+	/**
+	 * Donne le nom de la capacité
+	 */
+	String getNom();
  
 }
