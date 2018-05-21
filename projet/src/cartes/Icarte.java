@@ -1,5 +1,7 @@
 package cartes;
 
+import exceptions.CibleNullException;
+import exceptions.HeartStoneException;
 import player.Ijoueur;
 
 /**
@@ -11,7 +13,7 @@ public interface Icarte {
 	
 	/**
 	 * True si la carte disparaît, false sinon
-	 * @return
+	 * @return true or false 
 	 */
 	Boolean disparait();
 	
@@ -19,13 +21,13 @@ public interface Icarte {
 	 * L'effet de la carte lorsqu'elle est utilisée par le joueur
 	 * @param cible : cible affectée par l'effet
 	 */
-	void executerAction(Object cible);
+	void executerAction(Object cible)throws HeartStoneException;
 	
 	/**
 	 * Lance l'effet de mise en jeu de la capacité de la carte
 	 * @param cible : cible affectée par l'effet
 	 */
-	void executerEffetDebutMiseEnJeu(Object cible);
+	void executerEffetDebutMiseEnJeu(Object cible) throws HeartStoneException;
 	
 	/**
 	 * Lance l'effet dedébut de tour de la capacité de la carte
@@ -37,7 +39,7 @@ public interface Icarte {
 	 * Lance l'effet de disparition de la capacité de la carte
 	 * @param cible : cible affectée par l'effet
 	 */
-	void executerEffetDisparition(Object cible);
+	void executerEffetDisparition(Object cible)throws HeartStoneException;
 	
 	/**
 	 * Lance l'effet de fin de tour de la capacité de la carte

@@ -27,6 +27,7 @@ public abstract class Carte implements Icarte {
 	/**
 	 * Définit le nom de la carte
 	 * @param nom : nom de la carte
+	 * @throws IllegealArgumentException : en cas de nom null,vide ou uniquement constitué d'espaces 
 	 */
 	public void setNom(String nom) {
 		if (nom == null || nom.isEmpty() || nom.trim().isEmpty() )
@@ -45,9 +46,10 @@ public abstract class Carte implements Icarte {
 	/**
 	 * Définit le cout de la carte
 	 * @param cout : coût de la carte
+	 * @throws IllegealArgumentException : cout de la carte invalide < 0 ou > 10
 	 */
 	public void setCout(int cout) {
-		if ( cout < 0 )
+		if ( cout < 0 || cout > 10 )
 			throw new IllegalArgumentException("Cout Invalide");
 		this.cout = cout;
 	}

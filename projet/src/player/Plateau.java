@@ -66,7 +66,7 @@ public class Plateau implements Iplateau {
 		if (!players.contains(joueur))
 			throw new IllegalArgumentException("setJoueurCourant le joueur n'est pas dans cette partie");
 		if (!estDermarree())
-			throw new IllegalArgumentException("La partie n'a pas encore dÃ©marrer pour appeler setJoueurCourant");
+			throw new IllegalArgumentException("La partie n'a pas encore démarrer pour appeler setJoueurCourant");
 		if (joueur == joueurCourant)
 			throw new IllegalArgumentException("il est deja le joueur courant");
 		joueurCourant = joueur;
@@ -99,7 +99,7 @@ public class Plateau implements Iplateau {
 	@Override
 	public void demarrerPartie() {
 		if (players.size() != 2)
-			throw new IllegalArgumentException("La partie ne px pas etre dÃ©marrer tant qu'il n'y a pas 2 joueurs");
+			throw new IllegalArgumentException("La partie ne px pas etre démarrer tant qu'il n'y a pas 2 joueurs");
 
 		setDemarree(true);
 		int x = new Random().nextInt(2);
@@ -135,7 +135,7 @@ public class Plateau implements Iplateau {
 			setJoueurCourant(((Joueur) joueur).getPlateau().getAdversaire(joueur));
 		}
 		else
-			throw new IllegalArgumentException(" ne t'excite pas trop fdp c'est pas a toi de jouer putain ");
+			throw new IllegalArgumentException(" ce n'est pas a toi de jouer ");
 	}
 
 	/**
@@ -144,6 +144,9 @@ public class Plateau implements Iplateau {
 	 */
 	@Override
 	public void gagnePartie(Ijoueur joueur) {
+		if ( joueur == null )
+			throw new IllegalArgumentException("joueur null dans gagnePartie ");
+		
 		System.out.println(joueur.getPseudo() + " est le gagnant de ce combat acharnÃ© qui a durÃ© 8 nuits et 7 jours ");
 		System.exit(0);
 	}

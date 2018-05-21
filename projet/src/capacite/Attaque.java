@@ -32,7 +32,7 @@ public abstract class Attaque extends Capacite {
 	 */
 	public void setDegats(int degats) {
 		if( degats < 0)
-				throw new IllegalArgumentException("Degats capacite invalide");
+				throw new IllegalArgumentException("Degats attaque capacite invalide");
 		this.degats = degats;
 	}	
 	

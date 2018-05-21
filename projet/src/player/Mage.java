@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import capacite.*;
 import cartes.Icarte;
 import cartes.Sort;
+import exceptions.HeartStoneException;
 
 /**
  * Un héros de type Mage
@@ -15,6 +16,7 @@ public class Mage extends Hero {
 	
 	/**
 	 * @see Hero
+	 * Mage est une classe de hero qui a la capacité de type AttaqueCible qui inflige 1 mana
 	 */
 	public Mage() {
 		super("Jayna Porvaint");
@@ -39,12 +41,13 @@ public class Mage extends Hero {
 	
 	/**
 	 * Créée et ajoute au deck les cartes spécifiques du mage
+	 * @throws HeartStoneException 
 	 */
 	/* (non-Javadoc)
 	 * @see player.Hero#deckSpecial()
 	 */
 	@Override
-	public ArrayList<Icarte> deckSpecial() {
+	public ArrayList<Icarte> deckSpecial() throws HeartStoneException {
 		ArrayList<Icarte> deck = new ArrayList<Icarte>();
 		Icarte c  = new Sort("Choc de flamme",7,new AttaqueTotal("Attaque massive",4),null);
 		deck.add(c);

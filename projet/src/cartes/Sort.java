@@ -1,6 +1,7 @@
 package cartes;
 
 import capacite.*;
+import exceptions.HeartStoneException;
 import player.*;
 
 /**
@@ -33,6 +34,7 @@ public class Sort extends Carte {
 	/**
 	 * Définit la capacité du sort
 	 * @param capacite : capacité du sort
+	 * @throws IllegalArgumentException : en cas de capacité null pour un sort ce qui le rend inutile , au moins pour cette version du jeu
 	 */
 	public void setCapacite(Capacite capacite) {
 		if(capacite == null)
@@ -62,7 +64,7 @@ public class Sort extends Carte {
 	 * @param cible : cible de la capacité
 	 */
 	@Override
-	public void executerAction(Object cible) {
+	public void executerAction(Object cible)throws HeartStoneException {
 		capacite.executerAction(cible);
 	}
 
@@ -71,7 +73,7 @@ public class Sort extends Carte {
 	 * @param cible : cible de la capacité
 	 */
 	@Override
-	public void executerEffetDebutMiseEnJeu(Object cible) {
+	public void executerEffetDebutMiseEnJeu(Object cible) throws HeartStoneException{
 		capacite.executerEffetMiseEnJeu(cible);			
 	}
 
@@ -89,7 +91,7 @@ public class Sort extends Carte {
 	 * @param cible : cible de la capacité
 	 */
 	@Override
-	public void executerEffetDisparition(Object cible) {
+	public void executerEffetDisparition(Object cible) throws HeartStoneException{
 		capacite.executerEffetDisparition(cible);		
 	}
 

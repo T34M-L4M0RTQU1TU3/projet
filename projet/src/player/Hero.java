@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import capacite.Capacite;
 import cartes.Icarte;
+import exceptions.HeartStoneException;
 
 /**
  * Classe abstraite : pour un héros séléctionné par un joueur
@@ -35,6 +36,7 @@ public abstract class Hero {
 	/**
 	 * Définit le nom du héros
 	 * @param nom : nom du héros
+	 * @throws illegalArgumentException : nom du hero null , vide ou chaine d'espaces
 	 */
 	public void setNom(String nom) {
 		if (nom == null || nom.isEmpty() || nom.trim().isEmpty())
@@ -79,8 +81,8 @@ public abstract class Hero {
 	
 	/**
 	 * Ajoute au deck les cartes spécifiques au héros
-	 * @return
+	 * @return ArrayList de carte
 	 */
-	public abstract ArrayList<Icarte> deckSpecial();
+	public abstract ArrayList<Icarte> deckSpecial() throws HeartStoneException;
 
 }

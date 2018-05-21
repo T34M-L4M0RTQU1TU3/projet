@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 
 import cartes.*;
+import exceptions.HeartStoneException;
 
 /**
  * Interface : base d'un joueur pour le jeu
@@ -30,13 +31,13 @@ public interface Ijoueur {
 	 * Retourne la carte demandée présente dans le jeu du joueur
 	 * @param nomCarte : nom de la carte
 	 */
-	Icarte getCarteEnJeu(String nomCarte) ;
+	Icarte getCarteEnJeu(String nomCarte)throws HeartStoneException ;
 	
 	/**
 	 * Retourne la carte demandée présente dans la main du joueur
 	 * @param nomCarte : nom de la carte
 	 */
-	Icarte getCarteEnMain(String nomCarte) ;
+	Icarte getCarteEnMain(String nomCarte)throws HeartStoneException ;
 	
 	/**
 	 * Donne le héros du joueur
@@ -73,19 +74,19 @@ public interface Ijoueur {
 	 * @param carte : carte à jouer
 	 * @param cible : cible pour la capacité ( si EffetMiseEnJeu )
 	 */
-	void jouerCarte(Icarte carte,Object cible);
+	void jouerCarte(Icarte carte,Object cible) throws HeartStoneException;
 	
 	/**
 	 * Retire une carte de la main, la place sur le jeu 
 	 * @param carte : carte à jouer
 	 */
-	void jouerCarte(Icarte carte);
+	void jouerCarte(Icarte carte)throws HeartStoneException;
 	
 	/**
 	 * Retire la carte du jeu du joueur
 	 * @param carte : carte à retirer
 	 */
-	void perdreCarte(Icarte carte);
+	void perdreCarte(Icarte carte) throws HeartStoneException;
 	
 	/**
 	 * Retire une carte de la pioche et la place dans la main du joueur
@@ -103,12 +104,12 @@ public interface Ijoueur {
 	 * @param carte : carte à utiliser
 	 * @param cible : cible à attaquer
 	 */
-	void utiliserCarte(Icarte carte ,Object cible);
+	void utiliserCarte(Icarte carte ,Object cible) throws HeartStoneException;
 	
 	/**
 	 * Utilise le pouvoir du héros
 	 * @param cible : cible du pouvoir
 	 */
-	void utiliserPouvoir(Object cible);
+	void utiliserPouvoir(Object cible) throws HeartStoneException;
 
 }

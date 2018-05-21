@@ -1,7 +1,9 @@
 package capacite;
 
 /**
- * Oblige le camp adverse à détruire ce serviteur avant d'attaquer le héros ou un autre serviteur
+ * Oblige le camp adverse à détruire ce serviteur avant d'attaquer le héros
+ * ou un autre serviteur
+ * 
  * @author JHIDRI GILLOT
  *
  */
@@ -11,25 +13,29 @@ public class Provocation extends Capacite {
 	 * @see Capacite
 	 */
 	public Provocation() {
-		super("Provocation","Les attaques n'atteindront pas votre HÃ©ros");		
+		super("Provocation", "Les attaques n'atteindront pas votre HÃ©ros");
 	}
-	
+
 	/**
 	 * Aucun effet pour Provocation à la mise en jeu de la carte
-	 * @param cible : serviteur affecté par Provocation
+	 * 
+	 * @param cible
+	 *            : serviteur affecté par Provocation
 	 */
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) {
-		//nothing
+		// nothing
 	}
 
 	/**
 	 * Aucun effet pour Provocation à la demande du joueur
-	 * @param cible : serviteur affecté par Provocation
+	 * 
+	 * @param cible
+	 *            : serviteur affecté par Provocation
 	 */
 	@Override
 	public void executerAction(Object cible) {
-		//nothing
+		// nothing
 	}
 
 	/**
@@ -37,16 +43,18 @@ public class Provocation extends Capacite {
 	 */
 	@Override
 	public void executerEffetDebutTour() {
-		//nothing		
+		// nothing
 	}
 
 	/**
 	 * Aucun effet pour Provocation à la disparition de la carte
-	 * @param cible : serviteur affecté par Provocation
+	 * 
+	 * @param cible
+	 *            : serviteur affecté par Provocation
 	 */
 	@Override
 	public void executerEffetDisparition(Object cible) {
-		//nothing		
+		// nothing
 	}
 
 	/**
@@ -54,7 +62,7 @@ public class Provocation extends Capacite {
 	 */
 	@Override
 	public void executerEffetFinTour() {
-		//nothing		
+		// nothing
 	}
 
 }

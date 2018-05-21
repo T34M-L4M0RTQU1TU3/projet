@@ -6,6 +6,8 @@ import java.util.Random;
 import application.application;
 import capacite.AttaqueCible;
 import cartes.*;
+import exceptions.CibleNullException;
+import exceptions.HeartStoneException;
 
 /**
  * Classe abstraite : pour un joueur
@@ -29,8 +31,9 @@ public class Joueur implements Ijoueur {
 	/**
 	 * @param pseudo : pseudo du joueur
 	 * @param hero : héros du joueur
+	 * @throws HeartStoneException 
 	 */
-	public Joueur(String pseudo, Hero hero) {
+	public Joueur(String pseudo, Hero hero) throws HeartStoneException {
 		setPseudo(pseudo);
 		setHero(hero);
 		setMana(0);
@@ -52,6 +55,7 @@ public class Joueur implements Ijoueur {
 	/**
 	 * Définit le plateau du joueur 
 	 * @param plateau : plateau auquel appartient le joueur 
+	 * @throws IllegalArgumentException : plateau null 
 	 */
 	public void setPlateau(Iplateau plateau) {
 		if (plateau == null)
@@ -62,6 +66,9 @@ public class Joueur implements Ijoueur {
 	/**
 	 * Ajoute une carte au deck du joueur
 	 * @param c : carte à ajouter au deck
+	 * @throws IllegalArgumentException :
+	 * 									ajout d'une carte null au deck,
+	 * 									taille du deck > TAILLE_DECK
 	 */
 	public void addDeck(Icarte c ) {
 		if ( c==null )
@@ -72,9 +79,12 @@ public class Joueur implements Ijoueur {
 	}
 	
 	/**
+	 * cette methode sert a ajouter les carte de bases au deck du joueur
+	 * @throws HeartStoneException 
+	 * @throws IllegalArgumentException : taille du deck > TAILLE_DECK
 	 * @deprecated
 	 */
-	public void addDeck() {	
+	public void addDeck() throws HeartStoneException {	
 		ArrayList<Icarte> A = application.deckBase();
 		if(deck.size() + A.size() > TAILLE_DECK)
 			throw new IllegalArgumentException("taille du deck > "+TAILLE_DECK);
@@ -85,17 +95,19 @@ public class Joueur implements Ijoueur {
     
 	/**
 	 * Ajoute une carte au jeu du joueur
-	 * @param c : carte à ajouter
+	 * @param carte : carte à ajouter au jeu du joueur
+	 * @throws IllegalArgumentException : l'ajout d'une carte null ;
 	 */
-	public void addJeu(Icarte c ) {
-		if ( c==null )
+	public void addJeu(Icarte carte ) {
+		if ( carte==null )
 			throw new IllegalArgumentException("ajout d'une carte null au jeu");
-		jeu.add(c);
+		jeu.add(carte);
 	}	
 	
 		/**
 		 * Définit le pseudo du joueur
 		 * @param pseudo : pseudo du joueur 
+		 * @throws IllegalArgumentException  pseudo du joueur null,vide ou chaine d'espace
 		 */
 	public void setPseudo(String pseudo) {
 		if ( pseudo == null || pseudo.isEmpty() || pseudo.trim().isEmpty() )
@@ -114,7 +126,8 @@ public class Joueur implements Ijoueur {
 
 	/**
 	 * Définit le héros du joueur 
-	 * @param hero : héros du joueur
+	 * @param hero : héros du joueur 
+	 * @throws IllegalArgumentException hero null 
 	 */
 	public void setHero(Hero hero) {
 		if ( hero == null)
@@ -132,7 +145,7 @@ public class Joueur implements Ijoueur {
 	}
 	
 	/**
-	 * Donne mana max du joueur au tour actuel
+	 * renvoi mana max du joueur au tour actuel
 	 * @return mana
 	 */
 	@Override
@@ -143,6 +156,7 @@ public class Joueur implements Ijoueur {
 	/**
 	 * Définit le mana max du joueur au tour actuel
 	 * @param mana : mana max du joueur
+	 * @throws IllegalArgumentException mana < 0 
 	 */
 	public void setMana(int mana) {
 		if ( mana < 0)
@@ -152,7 +166,7 @@ public class Joueur implements Ijoueur {
 
 
 	/**
-	 * Donne le nombre d'utilisation du pouvoir restant par tour
+	 * Donne le nombre d'utilisation du pouvoir  par tour
 	 * @return utilisationPouvoirParTour
 	 */
 	public int getUtilisationPouvoirParTour() {
@@ -161,16 +175,19 @@ public class Joueur implements Ijoueur {
 
 
 	/**
-	 * Définit le nombre d'utilisation du pouvoir restant par tour
-	 * @param utilisationPouvoirParTour : nombre d'utilisation du pouvoir restant par tour
+	 * Définit le nombre d'utilisation du pouvoir  par tour
+	 * @param utilisationPouvoirParTour : nombre d'utilisation du pouvoir  par tour
+	 * @throws	IllegalArgumentException : utilisationPouvoirParTour < 0 ou > 1 pour le pouvoir hero dans le joueur
 	 */
 	public void setUtilisationPouvoirParTour(int utilisationPouvoirParTour) {
+		if ( utilisationPouvoirParTour < 0 || utilisationPouvoirParTour > 1 )
+			throw new IllegalArgumentException("utilisationPouvoirParTour < 0 ou > 1 pour le pouvoir hero dans le joueur");
 		this.utilisationPouvoirParTour = utilisationPouvoirParTour;
 	}
 
 	/**
 	 * Donne la liste des cartes en jeu du joueur
-	 * @return jeu
+	 * @return jeu : le jeu du joueur
 	 */
 	@Override
 	public ArrayList<Icarte> getJeu() {
@@ -179,7 +196,7 @@ public class Joueur implements Ijoueur {
 
 	/**
 	 * Donne la liste des cartes en main du joueur
-	 * @return main
+	 * @return main : la main du joueur
 	 */
 	@Override
 	public ArrayList<Icarte> getMain() {
@@ -189,7 +206,7 @@ public class Joueur implements Ijoueur {
 	
 	/**
 	 * Donne le deck du joueur
-	 * @return the deck : deck du joueur
+	 * @return  deck : le deck du joueur
 	 */
 	public ArrayList<Icarte> getDeck() {
 		return deck;
@@ -201,36 +218,44 @@ public class Joueur implements Ijoueur {
 	@Override
 	public void piocher() {
 		if(deck.size()>0)
-		{int x = new Random().nextInt(deck.size());
-		main.add(deck.remove(x));}
+		{
+			int x = new Random().nextInt(deck.size());
+			main.add(deck.remove(x));
+		}
 	}
 
 	/**
 	 * Retourne la carte demandée présente dans le jeu du joueur
 	 * @param nomCarte : nom de la carte
+	 * @throws 
+	 * 			IllegalArgumentException  : nom de la carte rechercher null,vide ou chaine d'espaces
+	 * 			HeartStoneException : la carte recherché n'est pas dans le jeu du joueur
 	 */
 	@Override
-	public Icarte getCarteEnJeu(String nomCarte) {
+	public Icarte getCarteEnJeu(String nomCarte) throws HeartStoneException {
 		if ( pseudo == null || pseudo.isEmpty() || pseudo.trim().isEmpty() )
 			throw new IllegalArgumentException("nom de la carte rechercher en jeu invalide");
 		for (Icarte c : getJeu() )
 			if ( c.getNom().equals(nomCarte) )
 					return c ;
-		throw new IllegalArgumentException("cette carte n'est pas dans votre jeu !");
+		throw new HeartStoneException("cette carte n'est pas dans votre jeu !");
 	}
 
 	/**
 	 * Retourne la carte demandée présente dans la main du joueur
 	 * @param nomCarte : nom de la carte
+	 * @throws 
+	 * 			IllegalArgumentException  : nom de la carte rechercher null,vide ou chaine d'espaces
+	 * 			HeartStoneException : la carte recherché n'est pas dans la main du joueur
 	 */
 	@Override
-	public Icarte getCarteEnMain(String nomCarte) {
+	public Icarte getCarteEnMain(String nomCarte) throws HeartStoneException {
 		if ( pseudo == null || pseudo.isEmpty() || pseudo.trim().isEmpty() )
 			throw new IllegalArgumentException("nom de la carte rechercher en main invalide");
 		for (Icarte c : getMain() )
 			if ( c.getNom().equals(nomCarte) )
 					return c ;
-		throw new IllegalArgumentException("cette carte n'est pas dans votre main !");
+		throw new HeartStoneException("cette carte n'est pas dans votre main !");
 	}
 	public void setStockMana(int stockMana) {
 		 if( stockMana < 0)
@@ -250,11 +275,12 @@ public class Joueur implements Ijoueur {
 	/**
 	 * Démarre le tour du joueur, pioche une carte, augmente de 1 le mana total ( si < MAX_MANA ) et lance l' EffetDebutTour
 	 * de la capacité de chaque serviteur en jeu
+	 * @throws IllegalArgumentException : la partie n'est 
 	 */
 	@Override
 	public void prendreTour() {
 		if(!plateau.estDermarree())
-			throw new IllegalArgumentException("vous ne pouvez pas jouer tant que la partie n'est pas dÃ©marÃ©e");		
+			throw new IllegalArgumentException("vous ne pouvez pas jouer tant que la partie n'est pas démarée");		
 	//	if (  plateau.getJoueurCourant() == null )
 		//	throw new IllegalArgumentException("joueur courent null");		
 		if ( this != plateau.getJoueurCourant() )
@@ -285,13 +311,13 @@ public class Joueur implements Ijoueur {
 	 * @param cible : cible pour la capacité ( si EffetMiseEnJeu )
 	 */
 	@Override
-	public void jouerCarte(Icarte carte, Object cible) {
+	public void jouerCarte(Icarte carte, Object cible)throws HeartStoneException {
 		if ( this.getStockMana() < carte.getCout())
-			throw new IllegalArgumentException("vous n'avez pas assez de Mana !");
+			throw new HeartStoneException("vous n'avez pas assez de Mana !");
 		if ( cible == null )
-			throw new IllegalArgumentException("Cible null dans jouer Carte avec cible ");
+			throw new HeartStoneException("Cible null dans jouer Carte avec cible ");
 		if (!main.contains(carte))
-			throw new IllegalArgumentException("cette carte n'est pas dans votre main");
+			throw new HeartStoneException("cette carte n'est pas dans votre main");
 		carte.executerEffetDebutMiseEnJeu(cible);	
 		setStockMana(getStockMana()-carte.getCout());
 		main.remove(carte);	
@@ -302,15 +328,17 @@ public class Joueur implements Ijoueur {
 	 * @param carte : carte à jouer
 	 */
 	@Override
-	public void jouerCarte(Icarte carte) {
+	public void jouerCarte(Icarte carte)throws HeartStoneException {
+		if( carte == null )
+			throw new HeartStoneException("vous ne pouvez pas jouer carte null , saisissez le nom d'une carte  ");
 		if(carte instanceof Sort)
 			if ( ((Sort)carte).getCapacite() instanceof AttaqueCible)
-				throw new IllegalArgumentException("CIBLE NULL EXCEPTION ! ");
+				throw new CibleNullException("CIBLE NULL EXCEPTION ! ");
 				
 		if ( this.getStockMana() < carte.getCout())
-			throw new IllegalArgumentException("vous n'avez pas assez de Mana !");
+			throw new HeartStoneException("vous n'avez pas assez de Mana !");
 		if (!main.contains(carte))
-			throw new IllegalArgumentException("cette carte n'est pas dans votre main");
+			throw new HeartStoneException("cette carte n'est pas dans votre main");
 		carte.executerEffetDebutMiseEnJeu(carte.getProprietaire());
 		setStockMana(getStockMana()-carte.getCout());
 		main.remove(carte);	
@@ -319,11 +347,15 @@ public class Joueur implements Ijoueur {
 	/**
 	 * Retire la carte du jeu du joueur
 	 * @param carte : carte à retirer
+	 * @throws HeartStoneException 
 	 */
 	@Override
-	public void perdreCarte(Icarte carte) {
-		for (Icarte c : getJeu())
-			c.executerEffetDisparition(this);
+	public void perdreCarte(Icarte carte) throws HeartStoneException {
+		//for (Icarte c : getJeu())
+			//c.executerEffetDisparition(this);
+		if( carte == null )
+			throw new IllegalArgumentException("carte null dans perdre Carte");
+		carte.executerEffetDisparition(this);
 		jeu.remove(carte);	
 	}	
 	
@@ -331,9 +363,12 @@ public class Joueur implements Ijoueur {
 	 * Utilise une carte en jeu
 	 * @param carte : carte à utiliser
 	 * @param cible : cible à attaquer
+	 * @throws HeartStoneException 
 	 */
 	@Override
-	public void utiliserCarte(Icarte carte, Object cible) {
+	public void utiliserCarte(Icarte carte, Object cible) throws HeartStoneException {
+		if (carte == null || cible == null )
+			throw new HeartStoneException("carte ou cible null ");
 			carte.executerAction(cible);
 	}
 
@@ -342,9 +377,9 @@ public class Joueur implements Ijoueur {
 	 * @param cible : cible du pouvoir
 	 */
 	@Override
-	public void utiliserPouvoir(Object cible) {
+	public void utiliserPouvoir(Object cible)throws HeartStoneException {
 		if(getUtilisationPouvoirParTour() != 0 ) 
-			throw new IllegalArgumentException("vous avez dÃ©ja utiliser votre pouvoir à ce tour !");		
+			throw new HeartStoneException("vous avez déjà utiliser votre pouvoir à ce tour !");		
 			getHero().getCapacite().executerAction(cible);
 			setUtilisationPouvoirParTour(1);
 	}

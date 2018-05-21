@@ -1,6 +1,8 @@
 package cartes;
 
 import capacite.*;
+import exceptions.CibleNullException;
+import exceptions.HeartStoneException;
 import player.*;
 
 /**
@@ -21,8 +23,9 @@ public class Serviteur extends Carte {
 	 * @param vie : vie du serviteur
 	 * @param capacite : capacité du au serviteur
 	 * @param j : joueur propriétaire de la carte
+	 * @throws HeartStoneException 
 	 */
-	public Serviteur(String nom, int cout,int attaque,int vie,Capacite capacite,Ijoueur j) {
+	public Serviteur(String nom, int cout,int attaque,int vie,Capacite capacite,Ijoueur j) throws HeartStoneException {
 		super(nom, cout,j);
 		setVie(vie);
 		setAttaque(attaque);
@@ -35,9 +38,14 @@ public class Serviteur extends Carte {
 	 * Donne une copie du serviteur
 	 * @return clone
 	 */
-	public Serviteur clone(){
-
-		Serviteur clone = new Serviteur(this.getNom(),this.getCout(),this.attaque,this.getVie(),this.getCapacite(),this.getProprietaire());
+	public Serviteur clone()  {
+		Serviteur clone = null ;
+		try {
+		 clone = new Serviteur(this.getNom(),this.getCout(),this.attaque,this.getVie(),this.getCapacite(),this.getProprietaire());
+		}catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 		return clone;
 	}
 
@@ -52,10 +60,12 @@ public class Serviteur extends Carte {
 	/**
 	 * Définit la vie du serviteur
 	 * @param vie : vie du serviteur
+	 * @throws HeartStoneException 
 	 */
-	public void setVie(int vie) {
-		// A revoir pour vie < 0		
+	public void setVie(int vie) throws HeartStoneException {		
 		this.vie = vie;
+		//if (this.vie <= 0)
+			//getProprietaire().perdreCarte(this);
 	}
 
 	/**
@@ -63,12 +73,14 @@ public class Serviteur extends Carte {
 	 * @return attaque
 	 */
 	public int getAttaque() {
+		
 		return attaque;
 	}
 
 	/**
 	 * Définit les points d'attaque du serviteur
 	 * @param attaque : attaque du serviteur
+	 * @throws IllegalArgumentException : en cas de point d'attaque d'un serviteur < 0 
 	 */
 	public void setAttaque(int attaque) {
 		if(attaque < 0)
@@ -92,9 +104,7 @@ public class Serviteur extends Carte {
 		this.capacite = capacite;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+	
 	/**
 	 * true si le serviteur peux attaquer, false sinon
 	 * @return jouable
@@ -132,20 +142,26 @@ public class Serviteur extends Carte {
 	/**
 	 * Fait attaquer le serviteur à la demande du joueur 
 	 * @param cible : le héros adverse ou un serviteur adverse
+	 * @throws :
+	 * 			IllegalArgumentException :
+	 * 										 la cible est null
+	 * 			HeartStoneException : 
+	 * 								 le Serviteur est en état Zombie , ou le serviteur a déjà attaquer pour le tour courant 
 	 */
 	@Override
-	public void executerAction(Object cible) {
+	public void executerAction(Object cible) throws HeartStoneException {
 		if( cible == null )
 			throw new IllegalArgumentException("cible null");
 		if(!jouable)
-			throw new IllegalArgumentException("ce serviteur est en etat Zombie !");
+			throw new HeartStoneException("ce serviteur est en etat Zombie !");
 		if ( this.frappeParTour  != 0)
-			throw new IllegalArgumentException("Ce serviteur Ã  dÃšja cracher le morceau");
+			throw new HeartStoneException("ce serviteur à déjà attaquer dans ce tour ");
 		if (cible instanceof Joueur )
 		{
 			for(  Icarte c : ((Joueur) cible).getJeu() )
 				if ( ((Serviteur)c).getCapacite() instanceof Provocation )
-					throw new IllegalArgumentException("vous ne pouvez pas attaquer le hero tant qu'il a un serviteur ayant Provocation");
+					throw new HeartStoneException("vous ne pouvez pas attaquer le hero tant qu'il a un serviteur ayant Provocation");
+			
 			((Joueur) cible).getHero().setVie(((Joueur) cible).getHero().getVie()-getAttaque());
 			this.frappeParTour++;
 			if (((Joueur) getProprietaire()).getPlateau().getAdversaire(getProprietaire()).getHero().getVie() <= 0)
@@ -166,14 +182,14 @@ public class Serviteur extends Carte {
 
 				if(((Serviteur) cible).disparait())
 				{
-					executerEffetDisparition(((Serviteur) cible));
+					((Serviteur) cible).executerEffetDisparition(((Serviteur) cible).getProprietaire());
 					((Serviteur)cible).getProprietaire().perdreCarte(((Serviteur) cible));
 				}
 			}else { // La cible n'a pas provocation
 				for(  Icarte c : ((Serviteur)cible).getProprietaire().getJeu() )
 					if ( ((Serviteur)c).getCapacite() instanceof Provocation )
 						// Un des serviteurs de l'adversaire a Provocation
-						throw new IllegalArgumentException("vous ne pouvez pas attaquer le hero tant qu'il a un serviteur ayant Provocation");
+						throw new HeartStoneException("vous ne pouvez pas attaquer ce Serviteur tant qu'il y a un autre serviteur ayant Provocation");
 				// Aucun serviteur de l'adversaire possede Provocation
 				((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getAttaque());
 				setVie(getVie()-((Serviteur) cible).getAttaque());
@@ -185,8 +201,8 @@ public class Serviteur extends Carte {
 				this.frappeParTour++;
 				if(((Serviteur) cible).disparait())
 				{
-					executerEffetDisparition(((Serviteur) cible));
-					((Serviteur)cible).getProprietaire().perdreCarte(((Serviteur) cible));
+					executerEffetDisparition(getProprietaire());
+					getProprietaire().perdreCarte(((Serviteur) cible));
 				}
 			}
 		}
@@ -195,11 +211,25 @@ public class Serviteur extends Carte {
 	/**
 	 * Ajoute le serviteur au jeu du joueur et lance l'effet de mise en jeu de sa capacité
 	 * @param cible : cible de la capacité
+	 * @throws IllegalArgumentException : au cas ou la cible est null
 	 */
 	@Override
-	public void executerEffetDebutMiseEnJeu(Object cible) {
+	public void executerEffetDebutMiseEnJeu(Object cible)throws HeartStoneException {
+		
+		
+		for (Icarte c : ((Joueur) cible).getJeu()) {
+			if (((Serviteur) c).getCapacite() instanceof EffetPermanent) {
+				int boosteVie = ((EffetPermanent) ((Serviteur) c).getCapacite()).getbPDV();
+				this.setVie(this.getVie() + boosteVie);
+				int boosteAttaque = ((EffetPermanent) ((Serviteur) c).getCapacite()).getbPAT();
+				this.setAttaque(this.getAttaque() + boosteAttaque);
+			}
+		}
+
 		((Joueur)getProprietaire()).addJeu(this);
 		if( capacite != null)
+			if (cible == null)
+				throw new IllegalArgumentException("cible null");
 			capacite.executerEffetMiseEnJeu(cible);
 		}
 
@@ -219,8 +249,7 @@ public class Serviteur extends Carte {
 	 * @param cible : cible de la capacité
 	 */
 	@Override
-	public void executerEffetDisparition(Object cible) {
-		
+	public void executerEffetDisparition(Object cible) throws HeartStoneException{
 		if( capacite != null)
 			capacite.executerEffetDisparition(this);		
 	}
@@ -249,6 +278,7 @@ public class Serviteur extends Carte {
 	/**
 	 * Définit le nombre de frappe par tour du serviteur
 	 * @param nbre : nombre de frappe par tour
+	 * @throws IllegalArgumentException : nombre de frappe par tour invalide
 	 */
 	public void setNbre(int nbre) {
 		if( nbre < 0)

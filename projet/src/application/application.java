@@ -3,22 +3,39 @@ package application;
 import java.util.ArrayList;
 import java.util.Random;
 
+import IHM.CibleHeros;
+import IHM.CibleServiteur;
+import IHM.Interaction;
 import capacite.*;
 import cartes.*;
-
+import console.Console;
+import exceptions.HeartStoneException;
 import player.*;
 
 public class application {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		 Plateau TerrainDeJeu = Plateau.getPlateauCourant() ;
+	public static Console es = new Console();
+	public static Interaction ihm = null;
+	public static void main(String[] args)  {
 		
+		
+		  Console es = new Console();
+		    //saisie :
+		    es.print("Nom : ?");
+		    String nom = es.readLine();
+		    es.println("Bonjour "+nom);
 
-		Joueur j = new Joueur("Joueur1",new Mage());	
-		Joueur j2 = new Joueur("Joueur2",new Mage());	
+		    
+		 Plateau TerrainDeJeu = Plateau.getPlateauCourant() ;
+		 Joueur j = null ;
+		 Joueur j2 =null ;
+		 try {
+		j = new Joueur("Joueur1",new Mage());	
+		 j2 = new Joueur("Joueur2",new Mage());	
+		 }catch (Exception e )
+		 {
+			 e.printStackTrace();
+		 }
 		
 
 		 TerrainDeJeu.ajouterJoueur(j);
@@ -48,11 +65,22 @@ public class application {
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Garde de Baie-du-butin"));		
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("La missilière téméraire"));		
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("L'ogre-magi"));		
-		TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Archimage"));
+		// TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Archimage"));
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Gnôme Lépreux"));		 
+			//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Golem des moissons"));		
+		 //TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Image mirroir"));
+			
+		 try {
+			TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Champion de Hurlevent"));
+		}catch (Exception E)
+		{
+			E.printStackTrace();
+		}
+		
+	
 		//TerrainDeJeu.getJoueurCourant().utiliserCarte(TerrainDeJeu.getJoueurCourant().getCarteEnJeu("Archimage"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()));
 
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Gnôme Lépreux"));		 
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Golem des moissons"));		
+	
 		//Mage 
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Choc de flamme"));	
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Eclair de givre"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()).getCarteEnJeu("Archimage"));		 
@@ -69,14 +97,55 @@ public class application {
 		 
 		 TerrainDeJeu.getJoueurCourant().finirTour();
 		TerrainDeJeu.getJoueurCourant().prendreTour();
-		TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Eclair de givre"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()).getCarteEnJeu("Archimage"));		 
+		try {
+			TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Archimage"));
+			
+		}catch (Exception E)
+		{
+			E.printStackTrace();
+		}
+		try {
+			TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("L'ogre-magi"));
+			
+		}catch (Exception E)
+		{
+			E.printStackTrace();
+		}
+		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Eclair de givre"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()).getCarteEnJeu("Archimage"));		 
 		
 		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Eclair de givre"),);		 
 		
 		 TerrainDeJeu.getJoueurCourant().finirTour();
 			TerrainDeJeu.getJoueurCourant().prendreTour();
+			 try {
+					TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("La missilière téméraire"));
+				}catch (Exception E)
+				{
+					E.printStackTrace();
+				}
+			 TerrainDeJeu.getJoueurCourant().finirTour();
+				TerrainDeJeu.getJoueurCourant().prendreTour();
+				 TerrainDeJeu.getJoueurCourant().finirTour();
+					TerrainDeJeu.getJoueurCourant().prendreTour();
+				 try {
+						TerrainDeJeu.getJoueurCourant().utiliserCarte(TerrainDeJeu.getJoueurCourant().getCarteEnJeu("La missilière téméraire"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()).getCarteEnJeu("L'ogre-magi"));
+							}catch (Exception E)
+							{
+								E.printStackTrace();
+							}
+				 TerrainDeJeu.getJoueurCourant().finirTour();
+					TerrainDeJeu.getJoueurCourant().prendreTour();
+					try {
+						TerrainDeJeu.getJoueurCourant().utiliserCarte(TerrainDeJeu.getJoueurCourant().getCarteEnJeu("Archimage"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()).getCarteEnJeu("Champion de Hurlevent"));
+							}catch (Exception E)
+							{
+								E.printStackTrace();
+							}
+					
 
-	
+			
+					
+					
 		 	System.out.println(TerrainDeJeu);
 	}
 
@@ -108,7 +177,7 @@ public class application {
 	
 
 	
-	public static ArrayList<Icarte> deckBase(){
+	public static ArrayList<Icarte> deckBase() throws HeartStoneException{
 		ArrayList<Icarte> deck = new ArrayList<Icarte>();
 		Icarte c5 = new Serviteur("Chasse-marée murloc",2, 2, 1,new InvocationDeServiteur("Cri de guerre",1,1,null,null),null);
 		deck.add(c5);
@@ -122,7 +191,7 @@ public class application {
 		deck.add(c14);
 		Icarte c7 = new Serviteur("Garde de Baie-du-butin",5, 5, 4, new Provocation(),null);
 		deck.add(c7);
-		Icarte c8 = new Serviteur("La missilière téméraire",6,5, 2, new Charge(),null);
+		Icarte c8 = new Serviteur("La missilière téméraire",6,5,2, new Charge(),null);
 		deck.add(c8);
 		Icarte c9 = new Serviteur("L'ogre-magi",4, 4, 4, new Provocation(),null);
 		deck.add(c9);
@@ -144,6 +213,28 @@ public class application {
 				}
 			}
 		return  (ArrayList<Icarte>) deck.clone();
+	}
+	public static Interaction initialiserSousInterface() {
+		Interaction sousInterface = null;
+		sousInterface = new CibleHeros(sousInterface);
+		sousInterface = new CibleServiteur(sousInterface);
+		return sousInterface;
+	}
+	public static String sousMenu(Interaction ihm) {
+		ArrayList <String> sousMenu = new ArrayList<String>();
+		Interaction i = ihm;
+		while (i != null) {
+			sousMenu.add(i.getDescription());
+			i=i.getSuivant();
+		}
+		int n = 0;
+		for (String s : sousMenu) {
+			es.println(""+n+". "+s);
+			n++;
+		}
+		es.println("Choisissez une cible:");
+		int c = es.readInt();
+		return sousMenu.get(c);
 	}
 
 }

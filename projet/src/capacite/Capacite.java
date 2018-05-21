@@ -4,55 +4,68 @@
 package capacite;
 
 /**
- * Classe abstraite qui implémente Icapacité
- * @author JHIDRI GILLOT
- * exemple @see Charge @see Marque
+ * Classe abstraite qui implÃ©mente IcapacitÃ©
+ * 
+ * @author JHIDRI GILLOT exemple @see Charge @see Marque
  */
 public abstract class Capacite implements Icapacite {
-	
-	private String nom ;
+
+	private String nom;
 	private String description;
 
 	/**
-	 * @param nom : nom de la capacité
-	 * @param description : description de la capacité
+	 * @param nom
+	 *            : nom de la capacitÃ©
+	 * @param description
+	 *            : description de la capacitÃ©
+	 * @throws IllegalArgumentException
+	 *             : en cas de nom null, vide ou uniquement constitué d'espaces
 	 */
 	public Capacite(String nom, String description) {
 		setNom(nom);
 		setDescription(description);
 	}
-	
+
 	/**
-	 * Définit le nom de la capacité
-	 * @param nom : nom de la capacité
+	 * DÃ©finit le nom de la capacitÃ©
+	 * 
+	 * @param nom
+	 *            : nom de la capacitÃ©
 	 */
 	public void setNom(String nom) {
-		if (nom == null || nom.isEmpty() || nom.trim().isEmpty() )
+		if (nom == null || nom.isEmpty() || nom.trim().isEmpty())
 			throw new IllegalArgumentException("Nom capacite invalide");
 		this.nom = nom;
 	}
-	
+
 	/**
-	 * Donne le nom de la capacité
+	 * Donne le nom de la capacitÃ©
+	 * 
 	 * @return nom
 	 */
 	@Override
 	public String getNom() {
 		return nom;
 	}
-	
+
 	/**
-	 * Définit la description de la capacité
-	 * @param description : description de la capacité
+	 * DÃ©finit la description de la capacitÃ©
+	 * 
+	 * @param description
+	 *            : description de la capacitÃ©
+	 * @throws IllegalArgumentException
+	 *             : en cas de description nulle, vide ou uniquement constituée
+	 *             d'espaces
 	 */
 	public void setDescription(String description) {
-		if (description == null || description.isEmpty() || description.trim().isEmpty() )
+		if (description == null || description.isEmpty() || description.trim().isEmpty())
 			throw new IllegalArgumentException("Nom capacite invalide");
 		this.description = description;
 	}
-	
+
 	/**
-	 * Donne la description de la capacité
+	 * Donne la description de la capacitÃ©
+	 * 
 	 * @return description
 	 */
 	@Override
@@ -60,9 +73,6 @@ public abstract class Capacite implements Icapacite {
 		return description;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	/**
 	 * Affichage
 	 */
