@@ -18,7 +18,7 @@ public class Abandon extends Interaction {
 	 */
 	@Override
 	public void executerInteraction(Object o ) {
-		application.es.println("Etes vous sur de vouloir abondonner?");
+		application.es.print("Etes vous sur de vouloir abondonner?\n--->");
 		String reponse = application.es.readLine();
 		
 		if(reponse.charAt(0)=='o' || reponse.charAt(0)=='O')

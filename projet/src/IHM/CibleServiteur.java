@@ -23,7 +23,7 @@ public class CibleServiteur extends Interaction {
 
 	@Override
 	public void executerInteraction(Object o) throws HeartStoneException {
-		application.es.print("saisissez le nom du serviteur à attaquer");		
+		application.es.print("saisissez le nom du serviteur à attaquer :\n--->");		
 		String nomCarte = application.es.readLine();
 		if( o instanceof Plateau) // utilisation du pouvoir du heros sur un serviteur 
 		{	

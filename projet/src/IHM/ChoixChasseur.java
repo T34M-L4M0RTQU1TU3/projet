@@ -33,7 +33,7 @@ public class ChoixChasseur extends Interaction {
 		
 		while (true) {
 			
-			application.es.println("Joueur "+n+" veuillez choisir votre nom (caractère de [A-Za-z0-9]) :");
+			application.es.print("Joueur "+n+" veuillez choisir votre nom (caractère de [A-Za-z0-9]) :\n-->");
 			String nomJoueur1 = application.es.readLine();
 			try{
 				((Plateau ) o ).ajouterJoueur((Ijoueur) new Joueur(nomJoueur1,new Chasseur()));

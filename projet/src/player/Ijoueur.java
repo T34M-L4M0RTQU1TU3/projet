@@ -9,7 +9,7 @@ import exceptions.HeartStoneException;
 /**
  * Interface : base d'un joueur pour le jeu
  * @author JHIDRI GILLOT
- * @see Joueur
+ * @see player.Joueur
  */
 public interface Ijoueur {
 	

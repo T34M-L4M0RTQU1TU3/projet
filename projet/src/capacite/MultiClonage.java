@@ -59,8 +59,10 @@ public class MultiClonage extends Invocation {
 					s.setAttaque(s.getAttaque() + boosteAttaque);
 				}
 			}
+			s.setJoueur(((Joueur) cible));
 			((Joueur) cible).addJeu(s);
 		}
+
 	}
 
 	/**
@@ -105,6 +107,7 @@ public class MultiClonage extends Invocation {
 					s.setAttaque(s.getAttaque() + boosteAttaque);
 				}
 			}
+			s.setJoueur(((Joueur) cible));
 			((Joueur) cible).addJeu(s);
 		}
 	}

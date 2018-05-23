@@ -2,9 +2,9 @@ package player;
 
 import java.util.ArrayList;
 import java.util.Random;
-
 import cartes.Icarte;
 import cartes.Serviteur;
+import application.application;
 
 /**
  * Plateau de jeu
@@ -147,7 +147,13 @@ public class Plateau implements Iplateau {
 		if ( joueur == null )
 			throw new IllegalArgumentException("joueur null dans gagnePartie ");
 		
-		System.out.println(joueur.getPseudo() + " est le gagnant de ce combat acharné qui a duré 8 nuits et 7 jours ");
+		System.out.println(joueur.getPseudo() + " est le gagnant de ce combat ");
+		application.es.println("------------->Fin de la partie<------------");
+		application.es.println("===============>===========<===============");
+		application.es.println("===============>           <===============");
+		application.es.println("===============>HearthStone<===============");
+		application.es.println("===============>           <===============");
+		application.es.println("===============>===========<===============");
 		System.exit(0);
 	}
 

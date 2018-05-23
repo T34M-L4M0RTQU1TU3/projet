@@ -36,7 +36,7 @@ public class PouvoirDuHeros extends Interaction {
 			sousIhm.interagir(choix, ((Plateau)	o));
 		}catch(HeartStoneException e)
 		{
-			application.es.print(e.getMessage());;
+			System.err.println(e.getMessage());
 		}
 
 		

@@ -7,7 +7,7 @@ import player.Ijoueur;
 /**
  * Interfarce : base des différentes cartes nécéssaires au jeu
  * @author JHIDRI GILLOT
- * @see Carte
+ * @see cartes.Carte
  */
 public interface Icarte {
 	

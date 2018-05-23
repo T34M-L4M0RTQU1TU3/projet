@@ -157,54 +157,67 @@ public class Serviteur extends Carte {
 			throw new HeartStoneException("ce serviteur à déjà attaquer dans ce tour ");
 		if (cible instanceof Joueur )
 		{
-			for(  Icarte c : ((Joueur) cible).getJeu() )
-				if ( ((Serviteur)c).getCapacite() instanceof Provocation )
-					throw new HeartStoneException("vous ne pouvez pas attaquer le hero tant qu'il a un serviteur ayant Provocation");
-			
-			((Joueur) cible).getHero().setVie(((Joueur) cible).getHero().getVie()-getAttaque());
-			this.frappeParTour++;
-			if (((Joueur) getProprietaire()).getPlateau().getAdversaire(getProprietaire()).getHero().getVie() <= 0)
-				((Joueur) getProprietaire()).getPlateau().gagnePartie(getProprietaire());
+			attaquerUnHero(cible);
 		}
 		if(cible instanceof Serviteur)
 		{
 			if(((Serviteur) cible).getCapacite() instanceof Provocation)
 			{ // La cible a Provocation
-				((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getAttaque());
-				setVie(getVie()-((Serviteur) cible).getAttaque());
-				if(disparait() ) 
-				{
-					executerEffetDisparition(this);
-					getProprietaire().perdreCarte(this) ;							
-				}
-				this.frappeParTour++;
-
-				if(((Serviteur) cible).disparait())
-				{
-					((Serviteur) cible).executerEffetDisparition(((Serviteur) cible).getProprietaire());
-					((Serviteur)cible).getProprietaire().perdreCarte(((Serviteur) cible));
-				}
+				attaquerUnServiteurQuiAProvocation(cible);
 			}else { // La cible n'a pas provocation
-				for(  Icarte c : ((Serviteur)cible).getProprietaire().getJeu() )
-					if ( ((Serviteur)c).getCapacite() instanceof Provocation )
-						// Un des serviteurs de l'adversaire a Provocation
-						throw new HeartStoneException("vous ne pouvez pas attaquer ce Serviteur tant qu'il y a un autre serviteur ayant Provocation");
-				// Aucun serviteur de l'adversaire possede Provocation
-				((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getAttaque());
-				setVie(getVie()-((Serviteur) cible).getAttaque());
-				if(disparait() ) 
-				{
-					executerEffetDisparition(this);
-					getProprietaire().perdreCarte(this) ;							
-				}
-				this.frappeParTour++;
-				if(((Serviteur) cible).disparait())
-				{
-					executerEffetDisparition(getProprietaire());
-					getProprietaire().perdreCarte(((Serviteur) cible));
-				}
+				attaquerUnServiteurQuiNAPasProvocation(cible);
 			}
 		}
+	}
+
+	
+	public void attaquerUnServiteurQuiNAPasProvocation(Object cible) throws HeartStoneException {
+		for(  Icarte c : ((Serviteur)cible).getProprietaire().getJeu() )
+			if ( ((Serviteur)c).getCapacite() instanceof Provocation )
+				// Un des serviteurs de l'adversaire a Provocation
+				throw new HeartStoneException("vous ne pouvez pas attaquer ce Serviteur tant qu'il y a un autre serviteur ayant Provocation");
+		// Aucun serviteur de l'adversaire possede Provocation
+		((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getAttaque());
+		setVie(getVie()-((Serviteur) cible).getAttaque());
+		if(disparait() ) 
+		{
+			executerEffetDisparition(this);
+			getProprietaire().perdreCarte(this) ;							
+		}
+		this.frappeParTour++;
+		if(((Serviteur) cible).disparait())
+		{
+			executerEffetDisparition(getProprietaire());
+			getProprietaire().perdreCarte(((Serviteur) cible));
+		}
+	}
+
+	public void attaquerUnServiteurQuiAProvocation(Object cible) throws HeartStoneException {
+		((Serviteur) cible).setVie(((Serviteur) cible).getVie()-getAttaque());
+		setVie(getVie()-((Serviteur) cible).getAttaque());
+		if(disparait() ) 
+		{
+			executerEffetDisparition(this);
+			getProprietaire().perdreCarte(this) ;							
+		}
+		this.frappeParTour++;
+
+		if(((Serviteur) cible).disparait())
+		{
+			((Serviteur) cible).executerEffetDisparition(((Serviteur) cible).getProprietaire());
+			((Serviteur)cible).getProprietaire().perdreCarte(((Serviteur) cible));
+		}
+	}
+
+	public void attaquerUnHero(Object cible) throws HeartStoneException {
+		for(  Icarte c : ((Joueur) cible).getJeu() )
+			if ( ((Serviteur)c).getCapacite() instanceof Provocation )
+				throw new HeartStoneException("vous ne pouvez pas attaquer le hero tant qu'il a un serviteur ayant Provocation");
+		
+		((Joueur) cible).getHero().setVie(((Joueur) cible).getHero().getVie()-getAttaque());
+		this.frappeParTour++;
+		if (((Joueur) getProprietaire()).getPlateau().getAdversaire(getProprietaire()).getHero().getVie() <= 0)
+			((Joueur) getProprietaire()).getPlateau().gagnePartie(getProprietaire());
 	}
 
 	/**

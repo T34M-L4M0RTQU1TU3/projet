@@ -9,7 +9,8 @@ import player.Joueur;
  * Une attaque inflige  des dégats à une cible donnée (héros ou serviteur)
  * 
  * @author JHIDRI GILLOT
- * @see Marque @see Charge
+ * @see capacite.Marque
+ * @see capacite.Charge
  */
 public class AttaqueCible extends Attaque {
 

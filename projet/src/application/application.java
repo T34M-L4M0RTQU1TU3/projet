@@ -16,6 +16,7 @@ public class application {
 	public static Plateau TerrainDeJeu = Plateau.getPlateauCourant() ;
 	
 	public static void main(String[] args)  {
+
 		es.println("===============>===========<===============");
 		es.println("===============>           <===============");
 		es.println("===============>HearthStone<===============");
@@ -39,8 +40,7 @@ public class application {
 
 		 demarrageDePartie();
 		
-		es.println("Fin de la partie");
-	
+		
 		
 	}
 
@@ -55,12 +55,12 @@ public class application {
 			 
 			 es.println(TerrainDeJeu);
 			 try {
-			 String choix = menu("que voulez vous faire ?");
+			 String choix = menu("que voulez vous faire ?\n--->");
 			 
 			 try {
 				ihm.interagir(choix, TerrainDeJeu);
 			} catch (HeartStoneException e) {
-				es.print(e.getMessage());
+				System.err.println(e.getMessage());
 			}
 			 }catch(IndexOutOfBoundsException e2) {}
  
@@ -70,11 +70,11 @@ public class application {
 		while(true) {
 			es.println("joueur "+(TerrainDeJeu.getPlayers().size()+1)+" choisissez votre Heros :");
 			 try {
-				 String choix = menu("Choisissez :");
+				 String choix = menu("quel numero ?\n--->");
 				 try {
 					 ihm.interagir(choix, TerrainDeJeu);
 				 	} catch (HeartStoneException e) {
-					 es.print(e.getMessage());
+				 		System.err.println(e.getMessage());
 				 	}
 			 	}catch(IndexOutOfBoundsException e2) {}
 			 
@@ -124,10 +124,10 @@ public class application {
 	public static Interaction initialiserInterface() {
 		Interaction monInterface = null;
 		monInterface = new Abandon(monInterface);
-		monInterface = new FinirTour(monInterface);
 		monInterface = new PouvoirDuHeros(monInterface);
 		monInterface = new UtiliserCarte(monInterface);
 		monInterface = new JouerCarte(monInterface);
+		monInterface = new FinirTour(monInterface);
 		return monInterface;
 	}
 	public static Interaction initialiserHero() {
@@ -151,14 +151,14 @@ public class application {
 			menu.add(i.getDescription());
 			i=i.getSuivant();
 		}
-		int n = 0;
+		int n = 1;
 		for (String s : menu) {
 			es.println(""+n+". "+s);
 			n++;
 		}
-		es.println(phrase);
+		es.print(phrase);
 		int c = es.readInt();
-		return menu.get(c);
+		return menu.get(c-1);
 	}
 	public static String sousMenu(Interaction ihm) {
 		ArrayList <String> sousMenu = new ArrayList<String>();
@@ -167,14 +167,14 @@ public class application {
 			sousMenu.add(i.getDescription());
 			i=i.getSuivant();
 		}
-		int n = 0;
+		int n = 1;
 		for (String s : sousMenu) {
 			es.println(""+n+". "+s);
 			n++;
 		}
-		es.println("Choisissez une cible:");
+		es.print("Choisissez une cible:");
 		int c = es.readInt();
-		return sousMenu.get(c);
+		return sousMenu.get(c-1);
 	}
 
 }

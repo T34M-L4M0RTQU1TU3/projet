@@ -67,6 +67,7 @@ public class InvocationDeServiteur extends Invocation {
 	public void executerAction(Object cible) throws HeartStoneException {
 		if (cible == null)
 			throw new HeartStoneException("Propriétaire de l'invocation null");
+		getServiteur().setJoueur(((Joueur) cible));
 		((Joueur) cible).addJeu(getServiteur());
 	}
 
@@ -98,7 +99,8 @@ public class InvocationDeServiteur extends Invocation {
 	public void executerEffetMiseEnJeu(Object cible) throws HeartStoneException {
 		if (cible == null)
 			throw new HeartStoneException("Propriétaire de l'invocation null");
-		Serviteur s = getServiteur().clone();
+		
+		Serviteur s = getServiteur();
 	
 		for (Icarte c : ((Joueur) cible).getJeu()) {
 			if (((Serviteur) c).getCapacite() instanceof EffetPermanent) {
@@ -108,6 +110,7 @@ public class InvocationDeServiteur extends Invocation {
 				s.setAttaque(s.getAttaque() + boosteAttaque);
 			}
 		}
+		s.setJoueur(((Joueur) cible));
 		((Joueur) cible).addJeu(s);
 	}
 

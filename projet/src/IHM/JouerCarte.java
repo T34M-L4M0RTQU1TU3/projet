@@ -2,6 +2,7 @@ package IHM;
 
 import application.application;
 import capacite.Charge;
+import capacite.Marque;
 import cartes.Carte;
 import cartes.Sort;
 import exceptions.CibleNullException;
@@ -25,17 +26,23 @@ public class JouerCarte extends Interaction {
  */
 	@Override
 	public void executerInteraction(Object o) throws HeartStoneException {
-		application.es.println("saisissez le nom de la carte à jouer");		
+		application.es.print("saisissez le nom de la carte à jouer :\n--->");		
 		String nomCarte = application.es.readLine();
 		
 		Joueur joueur = (Joueur) ((Plateau ) o ).getJoueurCourant() ;
 		Carte carteAJouer = (Carte) joueur.getCarteEnMain(nomCarte);
 		if(carteAJouer instanceof Sort &&( ((Sort)carteAJouer).getCapacite() instanceof Charge))
-			{application.es.println("donner le nom du serviteur a cibler ");		
+			{application.es.print("donner le nom du serviteur a cibler :\n--->");		
 			String nomCible = application.es.readLine();
 			Carte carteACibler = (Carte) joueur.getCarteEnJeu(nomCible);
 				joueur.jouerCarte(carteAJouer, carteACibler);	
 					}
+		else if(carteAJouer instanceof Sort &&( ((Sort)carteAJouer).getCapacite() instanceof Marque))
+		{application.es.print("donner le nom du serviteur a cibler :\n--->");		
+		String nomCible = application.es.readLine();
+		Carte carteACibler = (Carte) joueur.getPlateau().getAdversaire(joueur).getCarteEnJeu(nomCible);
+			joueur.jouerCarte(carteAJouer, carteACibler);	
+				}
 		else 
 		try {
 			joueur.jouerCarte(carteAJouer) ;
@@ -49,7 +56,7 @@ public class JouerCarte extends Interaction {
 		}	
 			catch(HeartStoneException e)
 		{
-			application.es.print(e.getMessage());;
+				System.err.println(e.getMessage());
 		}
 		
 	}

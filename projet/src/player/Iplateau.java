@@ -3,7 +3,7 @@ package player;
 /**
  * Interface :  Base du plateau re présentant le jeu
  * @author JHIDRI GILLOT
- * @see Plateau
+ * @see player.Plateau
  */
 public interface Iplateau {
 	

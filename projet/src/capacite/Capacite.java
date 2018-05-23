@@ -1,12 +1,14 @@
-/**
- * 
- */
 package capacite;
 
 /**
  * Classe abstraite qui implémente Icapacite
  * 
- * @author JHIDRI GILLOT exemple @see Charge @see Marque
+ * @author JHIDRI GILLOT  
+ * @see capacite.Provocation
+ * @see capacite.Piocher
+ * @see capacite.Attaque
+ * @see capacite.Invocation
+ * @see capacite.EffetPermanent
  */
 public abstract class Capacite implements Icapacite {
 
@@ -15,7 +17,7 @@ public abstract class Capacite implements Icapacite {
 
 	/**
 	 * @param nom
-	 *            : nom de la capacitÃ©
+	 *            : nom de la capacité
 	 * @param description
 	 *            : description de la capacité
 	 * @throws IllegalArgumentException
@@ -27,7 +29,7 @@ public abstract class Capacite implements Icapacite {
 	}
 
 	/**
-	 * DÃ©finit le nom de la capacité
+	 * Définit le nom de la capacité
 	 * 
 	 * @param nom
 	 *            : nom de la capacité

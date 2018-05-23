@@ -24,7 +24,7 @@ public class UtiliserCarte extends Interaction {
 
 	@Override
 	public void executerInteraction(Object o) throws HeartStoneException {
-		application.es.println("saisissez le nom de la carte à jouer");		
+		application.es.print("saisissez le nom de la carte à jouer :\n--->");		
 		String nomCarte = application.es.readLine();
 		
 		Joueur joueur = (Joueur) ((Plateau ) o ).getJoueurCourant();
@@ -40,7 +40,7 @@ public class UtiliserCarte extends Interaction {
 		try {
 			sousIhm.interagir(choix, carteAJouer);
 			}	catch(HeartStoneException e){	
-			application.es.print(e.getMessage());;
+				System.err.println(e.getMessage());
 			}
 
 	}

@@ -92,8 +92,7 @@ public class ImageMirroir extends Invocation {
 		Serviteur s2 = getServiteur().clone();
 		s2.setNom(s2.getNom() + " 2");
 
-		((Joueur) cible).addJeu(s);
-		((Joueur) cible).addJeu(s2);
+		
 		for (Icarte c : ((Joueur) cible).getJeu()) {
 			if (((Serviteur) c).getCapacite() instanceof EffetPermanent) {
 				int boostVie = ((EffetPermanent) ((Serviteur) c).getCapacite()).getbPDV();
@@ -105,6 +104,10 @@ public class ImageMirroir extends Invocation {
 				s2.setAttaque(s2.getAttaque() + boostAttaque);
 			}
 		}
+		s.setJoueur(((Joueur) cible));
+		s2.setJoueur(((Joueur) cible));
+		((Joueur) cible).addJeu(s);
+		((Joueur) cible).addJeu(s2);
 	}
 
 	/**

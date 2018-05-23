@@ -7,7 +7,7 @@ import exceptions.HeartStoneException;
  * Interface : Interface des différentes capacités nécéssaires pour le jeu
  * 
  * @author JHIDRI GILLOT
- * @see Capacite
+ * @see capacite.Capacite
  */
 public interface Icapacite {
 

@@ -5,7 +5,8 @@ import player.*;
 /**
  * Classe abstraite : pour les différents types de cartes 
  * @author JHIDRI GILLOT
- * @see Serviteur Sort
+ * @see cartes.Serviteur 
+ * @see cartes.Sort
  */
 public abstract class Carte implements Icarte {
 

@@ -3,7 +3,9 @@ package capacite;
 /**
  * Classe abstraite: inflige des dégats
  * @author JHIDRI GILLOT
- * @see AttaqueCible AttaqueDuHero AttaqueTotal
+ * @see capacite.AttaqueCible
+ * @see capacite.AttaqueDuHero 
+ * @see capacite.AttaqueTotal
  */
 public abstract class Attaque extends Capacite {
 	

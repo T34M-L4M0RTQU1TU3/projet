@@ -9,7 +9,8 @@ import exceptions.HeartStoneException;
 /**
  * Classe abstraite : pour un héros séléctionné par un joueur
  * @author JHIDRI GILLOT
- * @see Chasseur Mage
+ * @see player.Chasseur 
+ * @see player.Mage
  */
 public abstract class Hero {
 

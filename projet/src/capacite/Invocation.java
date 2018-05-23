@@ -7,7 +7,9 @@ import exceptions.HeartStoneException;
  * Invoque un/des serviteur(s) sur le jeu
  * 
  * @author JHIDRI GILLOT
- * @see ImageMirroir InvocationDeServiteur Multiclonage
+ * @see capacite.ImageMirroir 
+ * @see capacite.InvocationDeServiteur 
+ * @see capacite.MultiClonage
  */
 public abstract class Invocation extends Capacite {
 
