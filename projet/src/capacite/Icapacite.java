@@ -1,41 +1,68 @@
-/**
- * contiens toute les capacités du jeu
- */
 package capacite;
 
+import exceptions.CibleNullException;
+import exceptions.HeartStoneException;
+
 /**
- * @author achraf
- *
+ * Interface : Interface des différentes capacités nécéssaires pour le jeu
+ * 
+ * @author JHIDRI GILLOT
+ * @see capacite.Capacite
  */
 public interface Icapacite {
-	
-	
-	
+
 	/**
-	 * execution quand elle est en plateau
+	 * Effet à la demande du joueur
 	 * 
+	 * @param cible
+	 *            : cible à attaquer
+	 * @throws HeartStoneException
+	 *             : par ex attaque d'un serviteur alors qu'un autre serviteur a
+	 *             Provocation
+	 * @throws CibleNullException
+	 *             : en cas de cible nulle
 	 */
- void executerAction(Object cible );
- 
+	void executerAction(Object cible) throws HeartStoneException;
+
 	/**
-	 * execution au debut de chaque tour
-	 *
+	 * Effet en début de tour
 	 */
- void executerEffetDebutTour();
- 
+	void executerEffetDebutTour();
+
 	/**
-	 * effet apres disparition
-	 *
-	 */
- void executerEffetDisparition(Object cible );
-	/**
+	 * Effet à la disparition de la carte
 	 * 
-	 * effet mise en jeu par exemple invocation ou inflige dégats 
-	 *
+	 * @param cible
+	 *            : cible à attaquer
 	 */
- void executerEffetMiseEnJeu(Object cible );
- void executerEffetFinTour(); 
- String getDescription();
- String getNom();
- 
+	void executerEffetDisparition(Object cible)  throws HeartStoneException;
+
+	/**
+	 * Effet lors de la mise en jeu de la carte
+	 * 
+	 * @param cible
+	 *            : cible à attaquer
+	 * @throws HeartStoneException
+	 *             : par ex attaque d'un serviteur alors qu'un autre serviteur a
+	 *             Provocation
+	 * @throws CibleNullException
+	 *             : en cas de cible nulle
+	 */
+	void executerEffetMiseEnJeu(Object cible) throws HeartStoneException, CibleNullException;
+
+	/**
+	 * Effet en fin de tour
+	 */
+	void executerEffetFinTour();
+
+	/**
+	 * Donne la description de la capacité
+	 */
+	String getDescription();
+
+	/**
+	 * Donne le nom de la capacité
+	 */
+	String getNom();
+
 }

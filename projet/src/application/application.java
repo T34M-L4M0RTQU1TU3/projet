@@ -2,115 +2,88 @@ package application;
 
 import java.util.ArrayList;
 import java.util.Random;
-
+import IHM.*;
 import capacite.*;
 import cartes.*;
-
+import console.Console;
+import exceptions.HeartStoneException;
 import player.*;
 
 public class application {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		 Plateau TerrainDeJeu = Plateau.getPlateauCourant() ;
-		
+	public static Console es = new Console();
+	public static Interaction ihm = null;
+	public static Plateau TerrainDeJeu = Plateau.getPlateauCourant() ;
+	
+	public static void main(String[] args)  {
 
-		Joueur j = new Joueur("Joueur1",new Chasseur());	
-		Joueur j2 = new Joueur("Joueur2",new Chasseur());	
+		es.println("===============>===========<===============");
+		es.println("===============>           <===============");
+		es.println("===============>HearthStone<===============");
+		es.println("===============>           <===============");
+		es.println("===============>===========<===============");
 		
-
-		 TerrainDeJeu.ajouterJoueur(j);
-		 TerrainDeJeu.ajouterJoueur(j2);
-		 TerrainDeJeu.demarrerPartie();
-		for ( int i = 0 ; i < 12 ; i++)
-		{
-			TerrainDeJeu.getJoueurCourant().prendreTour();
-			TerrainDeJeu.getJoueurCourant().finirTour();
-			TerrainDeJeu.getJoueurCourant().prendreTour();
-			TerrainDeJeu.getJoueurCourant().finirTour();
+		ihm = initialiserHero();
+		if(ihm == null) {
+			es.println("L'application ne fait rien");
+			System.exit(0);
 		}
 		
+		choixJoueurs();
 	
-		 TerrainDeJeu.getJoueurCourant().prendreTour();
-		//pouvoir
-		TerrainDeJeu.getJoueurCourant().utiliserPouvoir(TerrainDeJeu.getJoueurCourant()); 
-		//serviteur qui attaque serviteur ou Joueur
-		//TerrainDeJeu.getJoueurCourant().utiliserCarte(TerrainDeJeu.getJoueurCourant().getCarteEnJeu("Archimage"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()));
+		ihm = initialiserInterface();
+		if(ihm == null) {
+			es.println("L'application ne fait rien");
+			System.exit(0);
+		}
 
 
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Chasse-marée murloc"));
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Charge"),TerrainDeJeu.getJoueurCourant().getCarteEnJeu("Archimage"));
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Attaque mentale"));
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Champion de Hurlevent"));
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Chef de raid"));
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Garde de Baie-du-butin"));		
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("La missilière téméraire"));		
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("L'ogre-magi"));		
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Archimage"));
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Gnôme Lépreux"));		 
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Golem des moissons"));		
-		//Mage 
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Choc de flamme"));		 
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Eclair de givre"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()));		 
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Intelligence des arcanes"));		 
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Image mirroir"));		
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Explosion pyrotechnique"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()).getCarteEnJeu("Champion de Hurlevent"));
-		 //chasseur
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Busard affamé"));	
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Marque du chasseur"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()).getCarteEnJeu("Archimage"));
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Lâchez les chiens"));
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Tir des arcanes"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()).getCarteEnJeu("Archimage"));
-		//TerrainDeJeu.getJoueurCourant().jouerCarte(TerrainDeJeu.getJoueurCourant().getCarteEnMain("Ordre de tuer"),TerrainDeJeu.getAdversaire(TerrainDeJeu.getJoueurCourant()).getCarteEnJeu("Archimage"));
-		 
-		 
-		 TerrainDeJeu.getJoueurCourant().finirTour();
-		TerrainDeJeu.getJoueurCourant().prendreTour();
-		 TerrainDeJeu.getJoueurCourant().finirTour();
-			TerrainDeJeu.getJoueurCourant().prendreTour();
+		 demarrageDePartie();
 		
-
-			
-	
-	
-		 	
-		 	
-		 	
-
-	
-		 	System.out.println(TerrainDeJeu);
+		
+		
 	}
 
-	/**
-	 * 
-	 * @deprecated 
-	 * @see Plateau.toString()
-	 */
-	public static void afficherMain(ArrayList<Icarte> c ) {
-		String s =">>>> TOUR <<<<\n### Ta main ###\n###############\n";
-		for ( Icarte carte :c)
-			s+="### "+carte.toString()+"\n";
-	   s+="###############";
-		System.out.println(s);
-	}
-	
-	/**
-	 * 
-	 * @deprecated 
-	 * @see Plateau.toString()
-	 */
-	public static void afficherJeu(ArrayList<Icarte> c ) {
-		String s ="==================================\n";
-		for ( Icarte carte :c)
-			s+="### "+carte.toString()+(((Serviteur)carte).isJouable()?"(jouable)":"(en attente)")+"\n";
-	   s+="==================================";
-		System.out.println(s);
-	}
-	
 
+
+
+
+	public static void demarrageDePartie() {
+		TerrainDeJeu.demarrerPartie();
+		 TerrainDeJeu.getJoueurCourant().prendreTour();
+		 while(TerrainDeJeu.estDermarree()) {
+			 
+			 es.println(TerrainDeJeu);
+			 try {
+			 String choix = menu("que voulez vous faire ?\n--->");
+			 
+			 try {
+				ihm.interagir(choix, TerrainDeJeu);
+			} catch (HeartStoneException e) {
+				System.err.println(e.getMessage());
+			}
+			 }catch(IndexOutOfBoundsException e2) {}
+ 
+		 }
+	}
+	public static void choixJoueurs() {
+		while(true) {
+			es.println("joueur "+(TerrainDeJeu.getPlayers().size()+1)+" choisissez votre Heros :");
+			 try {
+				 String choix = menu("quel numero ?\n--->");
+				 try {
+					 ihm.interagir(choix, TerrainDeJeu);
+				 	} catch (HeartStoneException e) {
+				 		System.err.println(e.getMessage());
+				 	}
+			 	}catch(IndexOutOfBoundsException e2) {}
+			 
+			 if(TerrainDeJeu.getPlayers().size() == 2)
+				 break;
+		 }
+	}
 	
-	public static ArrayList<Icarte> deckBase(){
+	public static ArrayList<Icarte> deckBase() throws HeartStoneException{
 		ArrayList<Icarte> deck = new ArrayList<Icarte>();
 		Icarte c5 = new Serviteur("Chasse-marée murloc",2, 2, 1,new InvocationDeServiteur("Cri de guerre",1,1,null,null),null);
 		deck.add(c5);
@@ -124,7 +97,7 @@ public class application {
 		deck.add(c14);
 		Icarte c7 = new Serviteur("Garde de Baie-du-butin",5, 5, 4, new Provocation(),null);
 		deck.add(c7);
-		Icarte c8 = new Serviteur("La missilière téméraire",6,5, 2, new Charge(),null);
+		Icarte c8 = new Serviteur("La missilière téméraire",6,5,2, new Charge(),null);
 		deck.add(c8);
 		Icarte c9 = new Serviteur("L'ogre-magi",4, 4, 4, new Provocation(),null);
 		deck.add(c9);
@@ -146,6 +119,62 @@ public class application {
 				}
 			}
 		return  (ArrayList<Icarte>) deck.clone();
+	}
+
+	public static Interaction initialiserInterface() {
+		Interaction monInterface = null;
+		monInterface = new Abandon(monInterface);
+		monInterface = new PouvoirDuHeros(monInterface);
+		monInterface = new UtiliserCarte(monInterface);
+		monInterface = new JouerCarte(monInterface);
+		monInterface = new FinirTour(monInterface);
+		return monInterface;
+	}
+	public static Interaction initialiserHero() {
+		Interaction monInterface = null;
+		monInterface = new ChoixMage(monInterface);
+		monInterface = new ChoixChasseur(monInterface);
+		
+		return monInterface;
+	}
+	public static Interaction initialiserSousInterface() {
+		Interaction sousInterface = null;
+		sousInterface = new CibleHeros(sousInterface);
+		sousInterface = new CibleServiteur(sousInterface);
+		return sousInterface;
+	}
+	
+	public static String menu(String phrase) {
+		ArrayList <String> menu = new ArrayList<String>();
+		Interaction i = ihm;
+		while (i != null) {
+			menu.add(i.getDescription());
+			i=i.getSuivant();
+		}
+		int n = 1;
+		for (String s : menu) {
+			es.println(""+n+". "+s);
+			n++;
+		}
+		es.print(phrase);
+		int c = es.readInt();
+		return menu.get(c-1);
+	}
+	public static String sousMenu(Interaction ihm) {
+		ArrayList <String> sousMenu = new ArrayList<String>();
+		Interaction i = ihm;
+		while (i != null) {
+			sousMenu.add(i.getDescription());
+			i=i.getSuivant();
+		}
+		int n = 1;
+		for (String s : sousMenu) {
+			es.println(""+n+". "+s);
+			n++;
+		}
+		es.print("Choisissez une cible:");
+		int c = es.readInt();
+		return sousMenu.get(c-1);
 	}
 
 }
