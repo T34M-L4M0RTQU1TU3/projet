@@ -6,23 +6,23 @@ import exceptions.HeartStoneException;
 import player.*;
 
 /**
- * Invoque un serviteur spÃ©cifiÃ© ou non
+ * Invoque un serviteur spécifique
  * 
  * @author JHIDRI GILLOT
  */
 public class InvocationDeServiteur extends Invocation {
 
 	/**
-	 * Invoque un serviteur spÃ©cifique
+	 * Invoque un serviteur spécifique
 	 * 
 	 * @param attaque
 	 *            : attaque du serviteur
 	 * @param vie
 	 *            : vie du serviteur
 	 * @param c
-	 *            : capacitÃ© du serviteur
+	 *            : capacité du serviteur
 	 * @param j
-	 *            : joueur propriÃ©taire du serviteur
+	 *            : joueur propriétaire du serviteur
 	 * @param nomServiteur
 	 *            : nom du serviteur
 	 */
@@ -39,9 +39,9 @@ public class InvocationDeServiteur extends Invocation {
 	 * @param vie
 	 *            : vie du serviteur
 	 * @param c
-	 *            : capacitÃ© du serviteur
+	 *            : capacité du serviteur
 	 * @param j
-	 *            : joueur propriÃ©taire du serviteur
+	 *            : joueur propriétaire du serviteur
 	 */
 	public InvocationDeServiteur(String nom, int attaque, int vie, Capacite c, Ijoueur j) throws HeartStoneException {
 		super(nom, "Invoque un serviteur " + attaque + "/" + vie, new Serviteur("serviteur", 0, attaque, vie, c, j));
@@ -56,10 +56,10 @@ public class InvocationDeServiteur extends Invocation {
 	}
 
 	/**
-	 * Invocation d'un serviteur Ã  la demande du joueur ( Pouvoir du HÃ©ros )
+	 * Invocation d'un serviteur à  la demande du joueur ( Pouvoir du Héros )
 	 * 
 	 * @param cible
-	 *            : joueur propriÃ©taire du serviteur
+	 *            : joueur propriétaire du serviteur
 	 * @throws HeartStoneException
 	 *             : si la cible est nulle
 	 */
@@ -71,7 +71,7 @@ public class InvocationDeServiteur extends Invocation {
 	}
 
 	/**
-	 * Aucun effet pour InvocationDeServiteur en dÃ©but de tour
+	 * Aucun effet pour InvocationDeServiteur en début de tour
 	 */
 	@Override
 	public void executerEffetDebutTour() {
@@ -79,7 +79,7 @@ public class InvocationDeServiteur extends Invocation {
 	}
 
 	/**
-	 * Aucun effet pour InvocationDeServiteur Ã  la disparition de la carte
+	 * Aucun effet pour InvocationDeServiteur à  la disparition de la carte
 	 */
 	@Override
 	public void executerEffetDisparition(Object cible) {
@@ -87,10 +87,10 @@ public class InvocationDeServiteur extends Invocation {
 	}
 
 	/**
-	 * Invocation d'un serviteur Ã  la mise en jeu de la carte
+	 * Invocation d'un serviteur à  la mise en jeu de la carte
 	 * 
 	 * @param cible
-	 *            : joueur propriÃ©taire du serviteur
+	 *            : joueur propriétaire du serviteur
 	 * @throws HeartStoneException:
 	 *             si la cible est nulle
 	 */

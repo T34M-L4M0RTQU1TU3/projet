@@ -238,7 +238,7 @@ public class Joueur implements Ijoueur {
 		for (Icarte c : getJeu() )
 			if ( c.getNom().equals(nomCarte) )
 					return c ;
-		throw new HeartStoneException("cette carte n'est pas dans votre jeu !");
+		throw new HeartStoneException("cette carte n'est pas dans votre jeu !\n");
 	}
 
 	/**
@@ -255,7 +255,7 @@ public class Joueur implements Ijoueur {
 		for (Icarte c : getMain() )
 			if ( c.getNom().equals(nomCarte) )
 					return c ;
-		throw new HeartStoneException("cette carte n'est pas dans votre main !");
+		throw new HeartStoneException("cette carte n'est pas dans votre main !\n");
 	}
 	public void setStockMana(int stockMana) {
 		 if( stockMana < 0)
@@ -313,11 +313,11 @@ public class Joueur implements Ijoueur {
 	@Override
 	public void jouerCarte(Icarte carte, Object cible)throws HeartStoneException {
 		if ( this.getStockMana() < carte.getCout())
-			throw new HeartStoneException("vous n'avez pas assez de Mana !");
+			throw new HeartStoneException("vous n'avez pas assez de Mana !\n");
 		if ( cible == null )
-			throw new HeartStoneException("Cible null dans jouer Carte avec cible ");
+			throw new HeartStoneException("Cible null dans jouer Carte avec cible \n");
 		if (!main.contains(carte))
-			throw new HeartStoneException("cette carte n'est pas dans votre main");
+			throw new HeartStoneException("cette carte n'est pas dans votre main \n");
 		carte.executerEffetDebutMiseEnJeu(cible);	
 		setStockMana(getStockMana()-carte.getCout());
 		main.remove(carte);	
@@ -330,15 +330,18 @@ public class Joueur implements Ijoueur {
 	@Override
 	public void jouerCarte(Icarte carte)throws HeartStoneException {
 		if( carte == null )
-			throw new HeartStoneException("vous ne pouvez pas jouer carte null , saisissez le nom d'une carte  ");
+			throw new HeartStoneException("vous ne pouvez pas jouer carte null , saisissez le nom d'une carte \n");
+		
+		if ( this.getStockMana() < carte.getCout())
+			throw new HeartStoneException("vous n'avez pas assez de Mana !\n");
+		
 		if(carte instanceof Sort)
 			if ( ((Sort)carte).getCapacite() instanceof AttaqueCible)
 				throw new CibleNullException("CIBLE NULL EXCEPTION ! ");
 				
-		if ( this.getStockMana() < carte.getCout())
-			throw new HeartStoneException("vous n'avez pas assez de Mana !");
+
 		if (!main.contains(carte))
-			throw new HeartStoneException("cette carte n'est pas dans votre main");
+			throw new HeartStoneException("cette carte n'est pas dans votre main\n");
 		carte.executerEffetDebutMiseEnJeu(carte.getProprietaire());
 		setStockMana(getStockMana()-carte.getCout());
 		main.remove(carte);	
@@ -368,7 +371,7 @@ public class Joueur implements Ijoueur {
 	@Override
 	public void utiliserCarte(Icarte carte, Object cible) throws HeartStoneException {
 		if (carte == null || cible == null )
-			throw new HeartStoneException("carte ou cible null ");
+			throw new HeartStoneException("carte ou cible null \n");
 			carte.executerAction(cible);
 	}
 
@@ -379,7 +382,7 @@ public class Joueur implements Ijoueur {
 	@Override
 	public void utiliserPouvoir(Object cible)throws HeartStoneException {
 		if(getUtilisationPouvoirParTour() != 0 ) 
-			throw new HeartStoneException("vous avez déjà utiliser votre pouvoir à ce tour !");		
+			throw new HeartStoneException("vous avez déjà utiliser votre pouvoir à ce tour !\n");		
 			getHero().getCapacite().executerAction(cible);
 			setUtilisationPouvoirParTour(1);
 	}
@@ -389,7 +392,7 @@ public class Joueur implements Ijoueur {
 	 */
 	@Override
 	public String toString() {
-		return getPseudo()+"-->"+hero+"\n Stock de mana : "+getStockMana()+"\n Pouvoir du hÃ©ros : "+getHero().getCapacite().getNom()+"-->"+getHero().getCapacite().getDescription();
+		return getPseudo()+"-->"+hero+"\n Stock de mana : "+getStockMana()+"\n Pouvoir du héros : "+getHero().getCapacite().getNom()+"-->"+getHero().getCapacite().getDescription();
 	}
 
 }

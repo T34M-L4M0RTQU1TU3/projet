@@ -17,9 +17,9 @@ public class ImageMirroir extends Invocation {
 	 * @param vie
 	 *            : vie des serviteurs
 	 * @param c
-	 *            : capacitÃ© des serviteurs
+	 *            : capacité des serviteurs
 	 * @param j
-	 *            : joueur propriÃ©taire des serviteurs
+	 *            : joueur propriétaire des serviteurs
 	 */
 	public ImageMirroir(String nom, int attaque, int vie, Capacite c, Ijoueur j) throws HeartStoneException {
 		super(nom, "Invoque deux serviteur de Jayna " + attaque + "/" + vie + " ayant la capacite "
@@ -27,7 +27,7 @@ public class ImageMirroir extends Invocation {
 	}
 
 	/**
-	 * Invocation mirroir Ã  la demande du joueur ( Pouvoir du HÃ©ros)
+	 * Invocation mirroir à  la demande du joueur ( Pouvoir du Héros)
 	 * @throws HeartStoneException 
 	 * 
 	 * @throws IllegalArgumentException
@@ -60,7 +60,7 @@ public class ImageMirroir extends Invocation {
 	}
 
 	/**
-	 * Aucun effet pour ImageMirroir en dÃ©but de tour
+	 * Aucun effet pour ImageMirroir en début de tour
 	 */
 	@Override
 	public void executerEffetDebutTour() {
@@ -68,7 +68,7 @@ public class ImageMirroir extends Invocation {
 	}
 
 	/**
-	 * Aucun effet pour ImageMirroir Ã  la disparition de la carte
+	 * Aucun effet pour ImageMirroir à  la disparition de la carte
 	 */
 	@Override
 	public void executerEffetDisparition(Object cible) {
@@ -76,7 +76,7 @@ public class ImageMirroir extends Invocation {
 	}
 
 	/**
-	 * Invocation mirroir Ã  la mise en jeu de la carte
+	 * Invocation mirroir à  la mise en jeu de la carte
 	 * @throws HeartStoneException 
 	 * 
 	 * @throws IllegalArgumentException

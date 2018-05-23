@@ -6,7 +6,7 @@ import exceptions.HeartStoneException;
 import player.Joueur;
 
 /**
- * ConfÃšre un bonus d'attaque et de vie aux serviteurs prÃ©sents sur le jeu
+ * Confère un bonus d'attaque et de vie aux serviteurs présents sur le jeu
  * 
  * @author JHIDRI GILLOT
  */
@@ -39,7 +39,7 @@ public class EffetPermanent extends Capacite {
 	}
 
 	/**
-	 * DÃ©finit le boost de points de vie
+	 * Définit le boost de points de vie
 	 * 
 	 * @param bPDV
 	 *            : boost de points de vie
@@ -63,7 +63,7 @@ public class EffetPermanent extends Capacite {
 	}
 
 	/**
-	 * DÃ©finit le boost de points d'attaque
+	 * Définit le boost de points d'attaque
 	 * 
 	 * @param bPAT
 	 *            : boost de points d'attaque
@@ -78,7 +78,7 @@ public class EffetPermanent extends Capacite {
 	}
 
 	/**
-	 * Boost de vie et d'attaque Ã  la demande du joueur ( Pouvoir du HÃ©ros )
+	 * Boost de vie et d'attaque à  la demande du joueur ( Pouvoir du Héros )
 	 */
 	@Override
 	public void executerAction(Object cible) throws HeartStoneException {
@@ -91,7 +91,7 @@ public class EffetPermanent extends Capacite {
 	}
 
 	/**
-	 * Aucun effet pour EffetPermanent en dÃ©but de tour
+	 * Aucun effet pour EffetPermanent en début de tour
 	 */
 	@Override
 	public void executerEffetDebutTour() {
@@ -99,7 +99,7 @@ public class EffetPermanent extends Capacite {
 	}
 
 	/**
-	 * Suppression des boost de vie et d'attaque Ã  la disparition de la carte
+	 * Suppression des boost de vie et d'attaque à  la disparition de la carte
 	 */
 	@Override
 	public void executerEffetDisparition(Object cible) throws HeartStoneException {
@@ -112,7 +112,7 @@ public class EffetPermanent extends Capacite {
 	}
 
 	/**
-	 * Boost de vie et d'attaque Ã  la mise en jeu de la carte
+	 * Boost de vie et d'attaque à  la mise en jeu de la carte
 	 * @throws HeartStoneException 
 	 */
 	@Override
@@ -124,7 +124,7 @@ public class EffetPermanent extends Capacite {
 	}
 
 	/**
-	 * Aucun effet pour EffetPermanent en dÃ©but de tour
+	 * Aucun effet pour EffetPermanent en début de tour
 	 */
 	@Override
 	public void executerEffetFinTour() {

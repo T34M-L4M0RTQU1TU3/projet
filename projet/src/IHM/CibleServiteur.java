@@ -5,19 +5,21 @@ import cartes.Carte;
 import exceptions.HeartStoneException;
 import player.Joueur;
 import player.Plateau;
-
+/**
+ * @author Gillot,Jhidri
+ * la classe CibleHeros correspont au choix dans le sousMenu qui permet de cibler le Hero adverse 
+ */
 public class CibleServiteur extends Interaction {
 
 	public CibleServiteur(Interaction suivant) {
 		super(suivant);
 	}
 
-	@Override
-	public boolean saitInteragir(String choix) {
-		if(getDescription().equals(choix))
-			return true;
-		return false;
-	}
+	/**
+	 * execute l'action demander sur le serviteur cible
+	 * @throws HeartStoneException : 
+	 * 								la carte jouer est introuvable,la carte cibler est introuvable
+	 */
 
 	@Override
 	public void executerInteraction(Object o) throws HeartStoneException {
@@ -42,6 +44,9 @@ public class CibleServiteur extends Interaction {
 
 	}
 
+	/**
+	 * @return renvoi la description
+	 */
 	@Override
 	public String getDescription() {
 		return "Cibler un serviteur";

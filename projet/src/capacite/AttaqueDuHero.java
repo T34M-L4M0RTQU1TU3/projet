@@ -6,7 +6,7 @@ import player.Ijoueur;
 import player.Joueur;
 
 /**
- * Attaque infligÃ©e Ã  un hÃ©ros
+ * Attaque infligée à  un héros
  * 
  * @author JHIDRI GILLOT
  */
@@ -28,7 +28,7 @@ public class AttaqueDuHero extends Attaque {
 	}
 
 	/**
-	 * Attaque le hÃ©ros adverse Ã  la demande du joueur ( Pouvoir du HÃ©ros )
+	 * Attaque le héros adverse à  la demande du joueur ( Pouvoir du Héros )
 	 * 
 	 * @param cible
 	 *            : le joueur souhaitant attaquer
@@ -47,7 +47,7 @@ public class AttaqueDuHero extends Attaque {
 	}
 
 	/**
-	 * Aucun effet pour AttaqueDuHero en dÃ©but de tour
+	 * Aucun effet pour AttaqueDuHero en début de tour
 	 */
 	@Override
 	public void executerEffetDebutTour() {
@@ -63,7 +63,7 @@ public class AttaqueDuHero extends Attaque {
 	}
 
 	/**
-	 * Attaque le hÃ©ros adverse Ã  la mise en jeu de la carte
+	 * Attaque le héros adverse à  la mise en jeu de la carte
 	 * 
 	 * @param cible
 	 *            : le joueur souhaitant attaquer

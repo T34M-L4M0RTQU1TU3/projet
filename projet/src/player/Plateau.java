@@ -35,7 +35,7 @@ public class Plateau implements Iplateau {
 		if (players.size() >= 2)
 			throw new IllegalArgumentException("un battle est entre 2 guerrier et non pas plus !");
 		if (players.contains(joueur))
-			throw new IllegalArgumentException("ajouterJoueur ce joueur Ã  dÃ©jÃ  Ã©tÃ© ajoutÃ© a la partie ");
+			throw new IllegalArgumentException("ajouterJoueur ce joueur à déjà été ajouté a la partie ");
 		players.add(joueur);
 		((Joueur) joueur).setPlateau(this);
 	}
@@ -79,7 +79,7 @@ public class Plateau implements Iplateau {
 	@Override
 	public Ijoueur getAdversaire(Ijoueur joueur) {
 		if (!estDermarree())
-			throw new IllegalArgumentException("IL N'Y PAS D'ADVERSAIRE INSCRIT POUR LE MOMENT");
+			throw new IllegalArgumentException("il n y pas de joueur inscrit pour le moment");
 
 		if (joueur == null)
 			throw new IllegalArgumentException("vous chercher l'adversaire d'un null ");
@@ -147,16 +147,14 @@ public class Plateau implements Iplateau {
 		if ( joueur == null )
 			throw new IllegalArgumentException("joueur null dans gagnePartie ");
 		
-		System.out.println(joueur.getPseudo() + " est le gagnant de ce combat acharnÃ© qui a durÃ© 8 nuits et 7 jours ");
+		System.out.println(joueur.getPseudo() + " est le gagnant de ce combat acharné qui a duré 8 nuits et 7 jours ");
 		System.exit(0);
 	}
 
 	/**
 	 * Affichage
 	 */
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+
 	@Override
 	public String toString() {
 		String s = ""  ;
@@ -198,6 +196,13 @@ public class Plateau implements Iplateau {
 		   s+="==================================\n";
 		}
 		return s ;
+	}
+	
+	/**
+	 * @return le tableau qui contiens les joueurs 
+	 */
+	public ArrayList<Ijoueur> getPlayers() {
+		return players;
 	}
 	
 }

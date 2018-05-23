@@ -13,7 +13,7 @@ public class Provocation extends Capacite {
 	 * @see Capacite
 	 */
 	public Provocation() {
-		super("Provocation", "Les attaques n'atteindront pas votre HÃ©ros");
+		super("Provocation", "Les attaques n'atteindront pas votre Héros");
 	}
 
 	/**

@@ -5,22 +5,24 @@ import player.Plateau;
 import application.application;
 import cartes.Carte;
 import exceptions.HeartStoneException;
-
+/**
+ * @author Gillot,Jhidri
+ * la classe CibleHeros correspont au choix dans le sousMenu qui permet de cibler le Hero adverse 
+ */
 public class CibleHeros extends Interaction {
 
 	public CibleHeros(Interaction suivant) {
 		super(suivant);
 	}
 
-	@Override
-	public boolean saitInteragir(String choix) {
-		if(getDescription().equals(choix))
-			return true;
-		return false;
-	}
+	/**
+	 * attaque Le hero 
+	 * @throws HeartStoneException :
+	 * 								le pouvoir du hero est déjà utiliser,le serviteur a déjà attaquer une fois dans le tour courant , ou le héros a un serviteur qui a provocation							
+	 */
 
 	@Override
-	public void executerInteraction(Object o) throws HeartStoneException {
+	public void executerInteraction(Object o) throws HeartStoneException  {
 		if( o instanceof Plateau) // utilisation du pouvoir du heros sur le heros adverse
 			{
 					((Plateau ) o).getJoueurCourant().utiliserPouvoir(((Plateau ) o).getAdversaire(((Plateau ) o).getJoueurCourant())); 
@@ -36,6 +38,9 @@ public class CibleHeros extends Interaction {
 		
 
 	}
+	/**
+	 * @return renvoi la description 
+	 */
 
 	@Override
 	public String getDescription() {

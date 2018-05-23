@@ -6,7 +6,7 @@ import exceptions.HeartStoneException;
 import player.Joueur;
 
 /**
- * Une attaque infligÃ©e une cible donnÃ©e (hÃ©ros ou serviteur)
+ * Une attaque inflige  des dégats à une cible donnée (héros ou serviteur)
  * 
  * @author JHIDRI GILLOT
  * @see Marque @see Charge
@@ -29,10 +29,10 @@ public class AttaqueCible extends Attaque {
 	}
 
 	/**
-	 * Attaque la cible donnÃ©e Ã  la mise en jeu de la carte
+	 * Attaque la cible donnée à  la mise en jeu de la carte
 	 * 
 	 * @param cible
-	 *            : cible Ã  attaquer
+	 *            : cible à  attaquer
 	 * @throws HeartStoneException
 	 *             : si un serviteur adverse a Provocation et que la cible est un
 	 *             autre serviteur ou le héros ou que la cible donnée est nulle
@@ -77,10 +77,10 @@ public class AttaqueCible extends Attaque {
 	}
 
 	/**
-	 * Attaque la cible donnÃ©e Ã  la demande du joueur ( Pouvoir du HÃ©ros )
+	 * Attaque la cible donnée à  la demande du joueur ( Pouvoir du Héros )
 	 * 
 	 * @param cible
-	 *            : cible Ã  attaquer
+	 *            : cible à  attaquer
 	 * @throws HeartStoneException
 	 *             : si un serviteur adverse a Provocation et que la cible est un
 	 *             autre serviteur ou le héros ou que la cible donnée est nulle
@@ -128,7 +128,7 @@ public class AttaqueCible extends Attaque {
 	}
 
 	/**
-	 * Aucun effet pour AttaqueCiblee en dÃ©but de tour
+	 * Aucun effet pour AttaqueCiblee en début de tour
 	 */
 	@Override
 	public void executerEffetDebutTour() {
@@ -136,10 +136,10 @@ public class AttaqueCible extends Attaque {
 	}
 
 	/**
-	 * Aucun effet pour AttaqueCiblee Ã  la dispartition de la carte
+	 * Aucun effet pour AttaqueCiblee à  la dispartition de la carte
 	 * 
 	 * @param cible
-	 *            : cible Ã  attaquer
+	 *            : cible à  attaquer
 	 */
 	@Override
 	public void executerEffetDisparition(Object cible) {

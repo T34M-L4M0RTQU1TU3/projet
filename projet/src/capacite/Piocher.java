@@ -15,7 +15,7 @@ public class Piocher extends Capacite {
 	/**
 	 * @see Capacite
 	 * @param nombre
-	 *            : nombre de cartes Ã  piocher
+	 *            : nombre de cartes à  piocher
 	 */
 	public Piocher(int nombre) {
 		super("Piocher", "pioche " + nombre + " carte(s)");
@@ -23,7 +23,7 @@ public class Piocher extends Capacite {
 	}
 
 	/**
-	 * Donne le nombre de cartes Ã  piocher
+	 * Donne le nombre de cartes à piocher
 	 * 
 	 * @return nombre
 	 */
@@ -32,10 +32,10 @@ public class Piocher extends Capacite {
 	}
 
 	/**
-	 * DÃ©finit le nombre de cartes Ã  piocher
+	 * DÃ©finit le nombre de cartes à piocher
 	 * 
 	 * @param nombre
-	 *            : le nombre de cartes Ã  piocher
+	 *            : le nombre de cartes à  piocher
 	 */
 	public void setNombre(int nombre) {
 		if (nombre <= 0)
@@ -44,7 +44,7 @@ public class Piocher extends Capacite {
 	}
 
 	/**
-	 * Pioche les cartes Ã  la demande du joueur ( Pouvoir du HÃ©ros )
+	 * Pioche les cartes à  la demande du joueur ( Pouvoir du Héros )
 	 * 
 	 * @param cible
 	 *            : joueur qui pioche
@@ -66,7 +66,7 @@ public class Piocher extends Capacite {
 	}
 
 	/**
-	 * Aucun effet pour Piocher en dÃ©but de tour
+	 * Aucun effet pour Piocher en début de tour
 	 */
 	@Override
 	public void executerEffetDebutTour() {
@@ -74,7 +74,7 @@ public class Piocher extends Capacite {
 	}
 
 	/**
-	 * Aucun effet pour Piocher Ã  la disparition de la carte
+	 * Aucun effet pour Piocher à  la disparition de la carte
 	 */
 	@Override
 	public void executerEffetDisparition(Object cible) {
@@ -82,7 +82,7 @@ public class Piocher extends Capacite {
 	}
 
 	/**
-	 * Pioche les cartes Ã  la mise en jeu de la carte
+	 * Pioche les cartes à  la mise en jeu de la carte
 	 * 
 	 * @param cible
 	 *            : joueur qui pioche

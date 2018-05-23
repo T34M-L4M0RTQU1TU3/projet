@@ -14,7 +14,7 @@ public class Marque extends AttaqueCible {
 	/**
 	 * @see Attaque
 	 * @param pointDeVieApresLeMarquage
-	 *            : les points de vie du serviteur adverse aprÃšs le marquage
+	 *            : les points de vie du serviteur adverse aprés le marquage
 	 */
 	public Marque(String nom, int pointDeVieApresLeMarquage) {
 		super(nom, 0);
@@ -22,7 +22,7 @@ public class Marque extends AttaqueCible {
 	}
 
 	/**
-	 * Donne le nombre de points de vie du serviteur adverse aprÃšs le marquage
+	 * Donne le nombre de points de vie du serviteur adverse aprés le marquage
 	 * 
 	 * @return pointDeVieApresLeMarquage
 	 */
@@ -31,7 +31,7 @@ public class Marque extends AttaqueCible {
 	}
 
 	/**
-	 * dÃ©finit la variable pointDeVieApresLeMarquage
+	 * définit la valeur de la variable pointDeVieApresLeMarquage
 	 * 
 	 * @throws IllegalArgumentException
 	 *             : si le nombre de points de vies après marquage donné est
@@ -48,12 +48,12 @@ public class Marque extends AttaqueCible {
 	 */
 	@Override
 	public String toString() {
-		return "Capacite [nom=" + getNom() + ", description=Abaisse ÃÂ  " + getpointDeVieApresLeMarquage()
-				+ " les points de vie du serviteur ciblÃÂ©]";
+		return "Capacite [nom=" + getNom() + ", description=Abaisse à " + getpointDeVieApresLeMarquage()
+				+ " les points de vie du serviteur ciblée]";
 	}
 
 	/**
-	 * Marque sur la cible donnÃ©e Ã  la demande du joueur ( Pouvoir du HÃ©ros )
+	 * Marque sur la cible donnée à  la demande du joueur ( Pouvoir du Héros )
 	 * 
 	 * @throws HeartStoneException
 	 *             : Si Marque est utilisée sur une cible autre qu'un serviteur ou
@@ -64,14 +64,14 @@ public class Marque extends AttaqueCible {
 		if (cible == null)
 			throw new HeartStoneException("Cible de la marque nulle");
 		if (!(cible instanceof Serviteur))
-			throw new HeartStoneException("Marque ne peut ÃÂªtre utilisée que sur un serviteur");
+			throw new HeartStoneException("Marque ne peut être utilisée que sur un serviteur");
 
 		((Serviteur) cible).setVie(getpointDeVieApresLeMarquage());
 
 	}
 
 	/**
-	 * Marque sur la cible donnÃ©e Ã  la mise en jeu de la carte
+	 * Marque sur la cible donnée à  la mise en jeu de la carte
 	 * 
 	 * @throws HeartStoneException
 	 *             : Si Marque est utilisée sur une cible autre qu'un serviteur ou
@@ -82,7 +82,7 @@ public class Marque extends AttaqueCible {
 		if (cible == null)
 			throw new HeartStoneException("Cible de la marque nulle");
 		if (!(cible instanceof Serviteur))
-			throw new HeartStoneException("Marque ne peut ÃÂªtre utilisée que sur un serviteur");
+			throw new HeartStoneException("Marque ne peut être utilisée que sur un serviteur");
 
 		((Serviteur) cible).setVie(getpointDeVieApresLeMarquage());
 

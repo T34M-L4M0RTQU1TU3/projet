@@ -64,8 +64,7 @@ public class Serviteur extends Carte {
 	 */
 	public void setVie(int vie) throws HeartStoneException {		
 		this.vie = vie;
-		//if (this.vie <= 0)
-			//getProprietaire().perdreCarte(this);
+		
 	}
 
 	/**

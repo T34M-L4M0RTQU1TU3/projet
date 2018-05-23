@@ -8,7 +8,7 @@ import player.Ijoueur;
 import player.Joueur;
 
 /**
- * Inflige des dÃ©gÃ¢ts Ã  tous les serviteurs adverses
+ * Inflige des dégats à  tous les serviteurs adverses
  * 
  * @author JHIDRI GILLOT
  */
@@ -30,7 +30,7 @@ public class AttaqueTotal extends Attaque {
 	}
 
 	/**
-	 * Attaque le jeu de la cible Ã  la demande du joueur ( Pouvoir du HÃ©ros )
+	 * Attaque le jeu de la cible à  la demande du joueur ( Pouvoir du Héros )
 	 * 
 	 * @param cible
 	 *            : joueur adverse
@@ -60,7 +60,7 @@ public class AttaqueTotal extends Attaque {
 	}
 
 	/**
-	 * Aucun effet pour AttaqueTotale en dÃ©but de tour
+	 * Aucun effet pour AttaqueTotale en début de tour
 	 */
 	@Override
 	public void executerEffetDebutTour() {
@@ -68,7 +68,7 @@ public class AttaqueTotal extends Attaque {
 	}
 
 	/**
-	 * Aucun effet pour AttaqueTotale Ã  la disparition de la carte
+	 * Aucun effet pour AttaqueTotale à  la disparition de la carte
 	 * 
 	 * @param cible
 	 *            : joueur adverse

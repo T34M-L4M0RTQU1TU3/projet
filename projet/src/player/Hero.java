@@ -65,11 +65,6 @@ public abstract class Hero {
 	 */
 	public abstract Capacite getCapacite();
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
 	
 	/**
 	 * Affichage

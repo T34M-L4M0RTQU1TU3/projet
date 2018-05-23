@@ -19,7 +19,7 @@ public abstract class Invocation extends Capacite {
 	 * @param description
 	 *            : description de l'invocation
 	 * @param s
-	 *            : serviteur Ã  invoquer
+	 *            : serviteur à  invoquer
 	 */
 	public Invocation(String nom, String description, Serviteur s) throws HeartStoneException {
 		super(nom, description);
@@ -27,7 +27,7 @@ public abstract class Invocation extends Capacite {
 	}
 
 	/**
-	 * Donne le serviteur Ã  invoquer
+	 * Donne le serviteur à  invoquer
 	 * 
 	 * @return s
 	 */
@@ -36,10 +36,10 @@ public abstract class Invocation extends Capacite {
 	}
 
 	/**
-	 * DÃ©finit le serviteur Ã  invoquer
+	 * Définit le serviteur à  invoquer
 	 * 
 	 * @param s
-	 *            : serviteur Ã  invoquer
+	 *            : serviteur à  invoquer
 	 * @throws HeartStoneException
 	 *             : si le serviteur donné est null
 	 */

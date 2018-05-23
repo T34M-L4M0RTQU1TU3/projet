@@ -4,7 +4,7 @@
 package capacite;
 
 /**
- * Classe abstraite qui implÃ©mente IcapacitÃ©
+ * Classe abstraite qui implémente Icapacite
  * 
  * @author JHIDRI GILLOT exemple @see Charge @see Marque
  */
@@ -17,7 +17,7 @@ public abstract class Capacite implements Icapacite {
 	 * @param nom
 	 *            : nom de la capacitÃ©
 	 * @param description
-	 *            : description de la capacitÃ©
+	 *            : description de la capacité
 	 * @throws IllegalArgumentException
 	 *             : en cas de nom null, vide ou uniquement constitué d'espaces
 	 */
@@ -27,10 +27,10 @@ public abstract class Capacite implements Icapacite {
 	}
 
 	/**
-	 * DÃ©finit le nom de la capacitÃ©
+	 * DÃ©finit le nom de la capacité
 	 * 
 	 * @param nom
-	 *            : nom de la capacitÃ©
+	 *            : nom de la capacité
 	 */
 	public void setNom(String nom) {
 		if (nom == null || nom.isEmpty() || nom.trim().isEmpty())
@@ -39,7 +39,7 @@ public abstract class Capacite implements Icapacite {
 	}
 
 	/**
-	 * Donne le nom de la capacitÃ©
+	 * Donne le nom de la capacité
 	 * 
 	 * @return nom
 	 */
@@ -49,10 +49,10 @@ public abstract class Capacite implements Icapacite {
 	}
 
 	/**
-	 * DÃ©finit la description de la capacitÃ©
+	 * Définit la description de la capacité
 	 * 
 	 * @param description
-	 *            : description de la capacitÃ©
+	 *            : description de la capacité
 	 * @throws IllegalArgumentException
 	 *             : en cas de description nulle, vide ou uniquement constituée
 	 *             d'espaces
@@ -64,8 +64,7 @@ public abstract class Capacite implements Icapacite {
 	}
 
 	/**
-	 * Donne la description de la capacitÃ©
-	 * 
+	 * Donne la description de la capacité
 	 * @return description
 	 */
 	@Override

@@ -5,7 +5,7 @@ import exceptions.HeartStoneException;
 import player.*;
 
 /**
- * Invoque autant de serviteurs que le nombre de seviteurs adverses ( propre Ã 
+ * Invoque autant de serviteurs que le nombre de seviteurs adverses ( propre à 
  * Rexxar )
  * 
  * @author JHIDRI GILLOT
@@ -18,9 +18,9 @@ public class MultiClonage extends Invocation {
 	 * @param vie
 	 *            : vie des serviteurs
 	 * @param c
-	 *            : capacitÃ© des serviteurs
+	 *            : capacité des serviteurs
 	 * @param j
-	 *            : joueur propriÃ©taire des serviteurs
+	 *            : joueur propriétaire des serviteurs
 	 */
 	public MultiClonage(String nom, int attaque, int vie, Capacite c, Ijoueur j) throws HeartStoneException {
 		super(nom, "Invoque autant de chien " + attaque + "/" + vie + " avec la capacite "
@@ -37,10 +37,10 @@ public class MultiClonage extends Invocation {
 	}
 
 	/**
-	 * Invocation Multiclonnage Ã  la demande du joueur ( Pouvoir du HÃ©ros )
+	 * Invocation Multiclonnage à  la demande du joueur ( Pouvoir du Héros )
 	 * 
 	 * @param cible
-	 *            : joueur propriÃ©taire des serviteurs
+	 *            : joueur propriétaire des serviteurs
 	 * @throws HeartStoneException
 	 *             : si la cible est nulle
 	 */
@@ -64,7 +64,7 @@ public class MultiClonage extends Invocation {
 	}
 
 	/**
-	 * Aucun effet pour Multiclonnage en dÃ©but de tour
+	 * Aucun effet pour Multiclonnage en début de tour
 	 */
 	@Override
 	public void executerEffetDebutTour() {
@@ -72,10 +72,10 @@ public class MultiClonage extends Invocation {
 	}
 
 	/**
-	 * Aucun effet pour Multiclonnage Ã  la disparition de la carte
+	 * Aucun effet pour Multiclonnage à  la disparition de la carte
 	 * 
 	 * @param cible
-	 *            : joueur propriÃ©taire des serviteurs
+	 *            : joueur propriétaire des serviteurs
 	 */
 	@Override
 	public void executerEffetDisparition(Object cible) {
@@ -83,10 +83,10 @@ public class MultiClonage extends Invocation {
 	}
 
 	/**
-	 * Invocation Multiclonnage Ã  la mise en jeu de la carte
+	 * Invocation Multiclonnage à  la mise en jeu de la carte
 	 * 
 	 * @param cible
-	 *            : joueur propriÃ©taire des serviteurs
+	 *            : joueur propriétaire des serviteurs
 	 * @throws HeartStoneException
 	 *             : si la cible est nulle
 	 */
