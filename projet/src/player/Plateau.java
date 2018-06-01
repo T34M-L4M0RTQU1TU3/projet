@@ -147,13 +147,14 @@ public class Plateau implements Iplateau {
 		if ( joueur == null )
 			throw new IllegalArgumentException("joueur null dans gagnePartie ");
 		
-		System.out.println(joueur.getPseudo() + " est le gagnant de ce combat ");
-		application.es.println("------------->Fin de la partie<------------");
-		application.es.println("===============>===========<===============");
-		application.es.println("===============>           <===============");
-		application.es.println("===============>HearthStone<===============");
-		application.es.println("===============>           <===============");
-		application.es.println("===============>===========<===============");
+		System.out.printf("%100s\n",joueur.getPseudo() + " est le gagnant de ce combat ");
+		System.out.printf("%100s\n","------------->Fin de la partie<------------");
+		System.out.printf("%100s\n","===========================================");
+		System.out.printf("%100s\n","===============>           <===============");
+		System.out.printf("%100s\n","===============>HearthStone<===============");
+		System.out.printf("%100s\n","===============>           <===============");
+		System.out.printf("%100s\n","===========================================");
+
 		System.exit(0);
 	}
 
@@ -167,6 +168,7 @@ public class Plateau implements Iplateau {
 		s=s+players.get(0).toString()+"\n" ;
 		if ( players.get(0) == getJoueurCourant())
 		{
+			
 			s =s+">>>> TOUR <<<<\n### Ta main ###\n###############\n";
 			for ( Icarte carte :players.get(0).getMain())
 				s+="### "+carte.toString()+"\n";

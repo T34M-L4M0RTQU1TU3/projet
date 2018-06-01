@@ -40,7 +40,7 @@ public class UtiliserCarte extends Interaction {
 		try {
 			sousIhm.interagir(choix, carteAJouer);
 			}	catch(HeartStoneException e){	
-				System.err.println(e.getMessage());
+				System.err.printf("%100s\n",e.getMessage());
 			}
 
 	}

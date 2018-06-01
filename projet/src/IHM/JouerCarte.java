@@ -56,7 +56,7 @@ public class JouerCarte extends Interaction {
 		}	
 			catch(HeartStoneException e)
 		{
-				System.err.println(e.getMessage());
+				System.err.printf("%100s\n",e.getMessage());
 		}
 		
 	}

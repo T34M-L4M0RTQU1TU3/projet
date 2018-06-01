@@ -17,11 +17,14 @@ public class application {
 	
 	public static void main(String[] args)  {
 
-		es.println("===============>===========<===============");
-		es.println("===============>           <===============");
-		es.println("===============>HearthStone<===============");
-		es.println("===============>           <===============");
-		es.println("===============>===========<===============");
+
+		System.out.printf("%100s\n","===========================================");
+		System.out.printf("%100s\n","===============>           <===============");
+		System.out.printf("%100s\n","===============>HearthStone<===============");
+		System.out.printf("%100s\n","===============>           <===============");
+		System.out.printf("%100s\n","===========================================");
+
+
 		
 		ihm = initialiserHero();
 		if(ihm == null) {
@@ -37,11 +40,8 @@ public class application {
 			System.exit(0);
 		}
 
-
 		 demarrageDePartie();
-		
-		
-		
+
 	}
 
 
@@ -60,7 +60,8 @@ public class application {
 			 try {
 				ihm.interagir(choix, TerrainDeJeu);
 			} catch (HeartStoneException e) {
-				System.err.println(e.getMessage());
+				System.err.printf("%100s\n",e.getMessage());
+
 			}
 			 }catch(IndexOutOfBoundsException e2) {}
  
@@ -74,7 +75,7 @@ public class application {
 				 try {
 					 ihm.interagir(choix, TerrainDeJeu);
 				 	} catch (HeartStoneException e) {
-				 		System.err.println(e.getMessage());
+				 		System.err.printf("%100s\n",e.getMessage());
 				 	}
 			 	}catch(IndexOutOfBoundsException e2) {}
 			 

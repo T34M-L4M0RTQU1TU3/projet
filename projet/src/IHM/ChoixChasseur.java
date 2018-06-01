@@ -49,7 +49,7 @@ public class ChoixChasseur extends Interaction {
 	@Override
 	public String getDescription() {
 		
-		return "Rexxar";
+		return "Rexar";
 	}
 
 }
